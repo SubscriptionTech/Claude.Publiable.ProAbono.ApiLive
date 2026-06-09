@@ -1,7 +1,7 @@
-# [Project Name]
+# ProAbono.ApiLive
 
-**Scope:** [Scope]
-**Description:** [Short description]
+**Scope:** Publiable
+**Description:** Live API documentation for ProAbono
 **Stack:** [Stack]
 
 ## How Claude interacts with the User
