@@ -2,3 +2,7 @@
 	path = shared/ProAbonoLive
 	url = https://github.com/SubscriptionTech/Claude.SharedApi.ProAbonoLive
 	branch = main
+[submodule "shared/ProAbonoBO"]
+	path = shared/ProAbonoBO
+	url = https://github.com/SubscriptionTech/Claude.SharedApi.ProAbonoBO
+	branch = main
