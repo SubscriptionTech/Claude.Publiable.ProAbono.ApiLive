@@ -18,12 +18,4 @@ npm install   # first time only
 npm start
 ```
 
-The site is served at `http://localhost:3000`. By default the dev server runs the English locale only.
-
-### Running with a specific locale
-
-```bash
-npx docusaurus start --locale fr
-```
-
-The site is then served at `http://localhost:3000/fr/`. See [description/i18n.md](description/i18n.md) for details on the single-locale dev server limitation.
+The site is served at `http://localhost:3000`.

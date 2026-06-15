@@ -17,15 +17,14 @@ Read these files before implementing the site:
 1. [stack.md](stack.md) — framework and tooling choices (Docusaurus)
 2. [architecture.md](architecture.md) — repo layout, content origins, build process
 3. [content-pipeline.md](content-pipeline.md) — extraction script, filtering rules, MDX output format
-4. [i18n.md](i18n.md) — supported locales (en, fr), URL structure, what is translated, translation workflow
-5. [design.md](design.md) — color palette, typography, layout, UI components
-6. [navigation.md](navigation.md) — sidebar sections, page hierarchy, sidebar configuration
-7. [pages/getting-started.md](pages/getting-started.md) — Quick Start page spec
-8. [pages/authentication.md](pages/authentication.md) — Authentication page spec
-9. [pages/concepts.md](pages/concepts.md) — Core Concepts and Conventions pages spec
-10. [pages/guides.md](pages/guides.md) — Guides section spec (onboard, terminate & anonymize)
-11. [pages/api-reference.md](pages/api-reference.md) — API Reference section structure (auto-generated)
-12. [deployment.md](deployment.md) — Azure Static Web Apps config, GitHub Actions workflow, branch strategy
+4. [design.md](design.md) — color palette, typography, layout, UI components
+5. [navigation.md](navigation.md) — sidebar sections, page hierarchy, sidebar configuration
+6. [pages/getting-started.md](pages/getting-started.md) — Quick Start page spec
+7. [pages/authentication.md](pages/authentication.md) — Authentication page spec
+8. [pages/concepts.md](pages/concepts.md) — Core Concepts and Conventions pages spec
+9. [pages/guides.md](pages/guides.md) — Guides section spec (onboard, terminate & anonymize)
+10. [pages/api-reference.md](pages/api-reference.md) — API Reference section structure (auto-generated)
+11. [deployment.md](deployment.md) — Azure Static Web Apps config, GitHub Actions workflow, branch strategy
 
 ## Relationship to the API specs
 

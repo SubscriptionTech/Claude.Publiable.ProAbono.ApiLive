@@ -21,15 +21,6 @@ const config = {
     },
   },
 
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'fr'],
-    localeConfigs: {
-      en: { label: 'English', path: 'en' },
-      fr: { label: 'Français', path: 'fr' },
-    },
-  },
-
   plugins: [
     function rootRedirectPlugin() {
       return {
@@ -96,10 +87,6 @@ const config = {
         },
         style: 'dark',
         items: [
-          {
-            type: 'localeDropdown',
-            position: 'right',
-          },
           {
             href: 'https://github.com/your-org/your-repo',
             position: 'right',
