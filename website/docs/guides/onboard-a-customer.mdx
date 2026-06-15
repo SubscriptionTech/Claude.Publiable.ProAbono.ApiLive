@@ -1,0 +1,84 @@
+---
+title: Onboard a customer
+sidebar_position: 2
+---
+
+When a user signs up in your application, two API calls to ProAbono are enough to create the customer record and start their subscription.
+
+## Prerequisites
+
+- An active Offer in the backoffice (you need its `ReferenceOffer`)
+- API credentials (see [Authentication](../authentication/))
+
+## Step 1 — Create the customer
+
+`POST /v1/Customer`
+
+```bash
+curl -X POST "https://api-<IdBusiness>.proabono.com/v1/Customer" \
+  -u "<AgentKey>:<ApiKey>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "ReferenceCustomer": "user-42",
+    "Email": "bob@example.com",
+    "Name": "Bob"
+  }'
+```
+
+Request body:
+```json
+{
+  "ReferenceCustomer": "user-42",
+  "Email": "bob@example.com",
+  "Name": "Bob"
+}
+```
+
+Response — `201 Created`:
+```json
+{
+  "Id": 99,
+  "ReferenceCustomer": "user-42",
+  "Email": "bob@example.com",
+  "Name": "Bob",
+  "Status": "Enabled",
+  "Links": [{ "rel": "self", "href": "/v1/Customer/99" }]
+}
+```
+
+:::note
+The `Id` returned here is ProAbono's internal identifier — you can always use `ReferenceCustomer` in subsequent calls instead.
+:::
+
+See [Customers](../api-reference/customer/) for the full object schema and all available fields.
+
+## Step 2 — Subscribe the customer
+
+`POST /v1/Subscription`
+
+```bash
+curl -X POST "https://api-<IdBusiness>.proabono.com/v1/Subscription" \
+  -u "<AgentKey>:<ApiKey>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "ReferenceCustomer": "user-42",
+    "ReferenceOffer": "plan-starter"
+  }'
+```
+
+Request body:
+```json
+{
+  "ReferenceCustomer": "user-42",
+  "ReferenceOffer": "plan-starter"
+}
+```
+
+Response — `201 Created` with the new Subscription object.
+
+See [Subscriptions](../api-reference/subscription/) for all subscription fields and start options.
+
+## What's next
+
+- [Check usage](../api-reference/usage/) — verify which features the customer can now access
+- [Get a quote first](../api-reference/quoting/) — simulate the subscription cost before creating it

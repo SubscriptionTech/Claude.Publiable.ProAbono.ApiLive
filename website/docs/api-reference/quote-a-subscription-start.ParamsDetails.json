@@ -1,0 +1,1 @@
+{"parameters":[{"name":"IdSubscription","in":"path","required":true,"schema":{"type":"integer"},"description":"Internal identifier of the subscription"},{"name":"EnsureBillable","in":"query","required":false,"schema":{"type":"boolean"},"description":"If true, checks that the customer has valid payment information before computing. Returns 403 if not."}]}

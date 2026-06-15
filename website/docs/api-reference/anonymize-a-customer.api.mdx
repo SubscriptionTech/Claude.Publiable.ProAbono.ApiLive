@@ -1,0 +1,69 @@
+---
+id: anonymize-a-customer
+title: "Anonymize a customer"
+description: "Anonymizes the customer's personal data (email, name). Used for GDPR erasure requests."
+sidebar_label: "Anonymize a customer"
+hide_title: true
+hide_table_of_contents: true
+api: eJztV81u20YQfpXBXCoBlGynTovyZiduYyBpBP+cbB9G3KG08XKX2R81qiCgD9En7JMUQ1KybMp1W6S3ngjuzu83M9/urjDSLGB+g29SiK5iH/AuQ8Wh8LqO2lnM8cQ6u6z0rxwgzhmKTvKbADX74CwZUBQJBlyRNhlYqng4huvACkrn4ae3kwtgTyF5Bs+fE4cYxphhTZ4qjuI0v1mh6GGOF1yyZ1vwJiTMUEscnxP7JWYoJrRnhXn0iTMMxZwrwnyFcVmLhRC9tjNcr+9EONTOBg6y/+rwUD6P09u4ATf9xEXEDAtnI9soolTXRhckogefgsiv+v62irV3NfuoW2/nakdG28gz9rjO8Fxd8qzqHPS3+/n3M9uR6tt6EHqTvMgs+5tPa3yqjdF2BkWnAYPzy49w/Oro++EY3nKpLSug2DRAaD2C4QUb+OO336Ega12EKUOqFUVW4vznppx7ojqTNtm7857sLNFsj9rTeCW67779YXQEr0aGY2QPhVMMAx7PxnCLbG9xCM6DcQWZ3fXR9eUtZnCLpR/9eHGLQ3F8GSmmsM8t21TJfJxZmhpWmOFlCjVbxao/Ke/0bD5qYSmTLWSVDIRIkWHQ+tgUdfioiCdlqY2m1kw/CJuMEfdtx68zfEvxJZ3S+Yoi5igFGUVd8T5DHziSDO++bt43JnDPy9GCTGKoSfsAg4q+wOv2J4Pj14dQzMk31ACN3BAzJKV0C8bk0YT0GiDqKME9hCVNoe39rjR5T0IDOnIVXp5Cz3t67WlyF2waIMNc1yCi24YJbMq2X7QNOvJo7iruumbuuXzZ9vXFe6gpziG6Zny8+GIFnoNLvmCx1FLbi6bObOGXtSg3CrAlUBikDdvWzkcyYAS1Ia53QBUgcb27smWYdbN8fHjUp8cPOgRhBudB2wUZraDwrNhGTSZ8PbZ849R+uvjAIezlBKGSLwXXz03A4zw+WrOE2nMQ6nIWgqsYXh8eAnvvfBBrV+RnvIdJe+TTZF/q7kAsNRsl+GwqKkRZUjLxEfxn4meL9HEf6YuNunBp6ZJV/6P7L9BdZ1hxnDuFOdYuNFhQnGOOB4ujg03LH2xuNS2BZhjYLzY3keQN5jiPsQ75wQHVerTS6jQFbTmE9bj2jqbOunHhql74E+9UKjqjC/Ja+LapwYOJfu03OyAXAS+nht7A4GFAC9INb4O2DSgT704kAphSce/KUhcNzypugclx6ZIfTTujI62auX+aWF2P/mluPKq/en4vBn4n1SmS13HZlGdKQRcnSWp6c7e7eynT0AazI7NtOMkbu/ui/DcyvSTfXV1N4FS2QPQhNfQnqNNMuvuel0ABUpA8Kgayqtk9mZxv9moK4Rfn1RhOXZzLagDyDH+njnAuV0HftCUEbpAe39qm2bUtXZNP1/RbdfH9Xi/4mVOb/aikQtIQQTklNppjODHG/dLWpfMa5KSqyNLs4bIfMghpurUcMiiZolzok9BHJmeD0wWHDKZkyBYsJ5D8Cjyfk4vaziSNDGXK2uAWR8ILMqMVNRzTvQC2Dw6gbQBPM1s9MON/90Dp+ibyl3hQG9JW4m1maNVxyo0kkeHOU+Uxr9xlOBcOym9wtZpS4Gtv1mtZ7o78mxUqHdq7ZV6SCfwXiQ4uuqfPEJ6L7p6Xz7yhmtsY5ogyMZvBbSYowzmTkofGzaozcFII9e9o9Q4fsbLl2cnHyytcr/8Eevn6MQ==
+sidebar_class_name: "post api-method"
+info_path: docs/api-reference/proabono-api-live
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Anonymize a customer"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/Customer/Anonymization"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Anonymizes the customer's personal data (email, name). Used for GDPR erasure requests.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("./anonymize-a-customer.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("./anonymize-a-customer.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("./anonymize-a-customer.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+
+      

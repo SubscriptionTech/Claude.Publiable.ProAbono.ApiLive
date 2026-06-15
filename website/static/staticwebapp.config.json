@@ -1,0 +1,15 @@
+{
+  "routes": [
+    {
+      "route": "/",
+      "redirect": "/en/",
+      "statusCode": 302
+    }
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/en/404.html",
+      "statusCode": 404
+    }
+  }
+}

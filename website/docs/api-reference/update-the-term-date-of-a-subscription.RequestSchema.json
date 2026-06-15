@@ -1,0 +1,1 @@
+{"title":"Body","body":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["DateTerm"],"properties":{"DateTerm":{"type":"string","format":"date-time"}},"title":"SubscriptionUpdateTermDateRequest"}}}}}

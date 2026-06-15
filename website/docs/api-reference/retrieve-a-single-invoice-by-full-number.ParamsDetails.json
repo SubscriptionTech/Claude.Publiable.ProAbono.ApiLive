@@ -1,0 +1,1 @@
+{"parameters":[{"name":"FullNumber","in":"query","required":true,"schema":{"type":"string"},"description":"Full invoice number"},{"name":"ReferenceSegment","in":"query","required":false,"schema":{"type":"string"}}]}

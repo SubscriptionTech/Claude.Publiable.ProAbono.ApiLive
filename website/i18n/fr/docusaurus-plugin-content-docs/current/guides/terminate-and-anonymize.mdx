@@ -1,0 +1,41 @@
+---
+title: Résilier et anonymiser
+sidebar_position: 3
+---
+
+Le RGPD impose de pouvoir effacer les données personnelles d'un client sur demande. ProAbono prend en charge cela via un processus en deux étapes : résilier l'abonnement d'abord, puis anonymiser le client.
+
+## Étape 1 — Résiliez l'abonnement
+
+L'abonnement peut être identifié par `ReferenceCustomer` (recommandé) ou par l'`Id` de l'abonnement.
+
+```bash
+curl -X DELETE \
+  "https://api-<IdBusiness>.proabono.com/v1/Subscription?ReferenceCustomer=user-42" \
+  -u "<AgentKey>:<ApiKey>"
+```
+
+:::warning
+La résiliation est immédiate par défaut — l'abonnement se termine maintenant, pas à la prochaine période de facturation. Consultez la référence des Abonnements pour les options de résiliation différée.
+:::
+
+Consultez [Abonnements](../api-reference/subscription/) pour la référence complète des actions.
+
+## Étape 2 — Anonymisez le client
+
+```bash
+curl -X POST \
+  "https://api-<IdBusiness>.proabono.com/v1/Customer/Anonymization?ReferenceCustomer=user-42" \
+  -u "<AgentKey>:<ApiKey>"
+```
+
+:::note
+L'anonymisation efface le `Name` et l'`Email` du client. L'`Id` et le `ReferenceCustomer` sont conservés pour l'intégrité de l'historique de facturation — les factures et les écritures de solde restent accessibles.
+:::
+
+Consultez [Clients](../api-reference/customer/) pour la référence complète des actions.
+
+## Étapes suivantes
+
+- [Clients](../api-reference/customer/) — référence complète de la ressource Client
+- [Abonnements](../api-reference/subscription/) — toutes les actions du cycle de vie des abonnements

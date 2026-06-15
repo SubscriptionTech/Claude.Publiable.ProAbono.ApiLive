@@ -1,0 +1,1 @@
+{"parameters":[{"name":"IdSubscription","in":"path","required":true,"schema":{"type":"integer"},"description":"Internal identifier of the subscription"}]}

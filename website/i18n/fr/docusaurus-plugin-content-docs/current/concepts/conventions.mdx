@@ -1,0 +1,115 @@
+---
+title: Conventions
+sidebar_position: 2
+---
+
+Référence pour les conventions techniques transversales : nommage des champs, pagination, localisation, codes de statut HTTP et format des réponses d'erreur.
+
+## Nommage des champs
+
+- Tous les champs utilisent le **PascalCase** (ex. `ReferenceCustomer`, `DateCreated`).
+- Les champs d'identifiant partagé sont préfixés par `Reference` (ex. `ReferenceCustomer`).
+- Les champs d'identifiant interne : `Id` (l'ID propre à la ressource) ou `Id<Ressource>` (clé étrangère, ex. `IdSubscription`).
+
+## Types de champs particuliers
+
+| Type de valeur | Type JSON | Format / exemple |
+|----------------|-----------|-----------------|
+| Date | string | ISO 8601 — `"2025-01-31T00:00:00Z"` |
+| Montant | integer | Plus petite unité monétaire (centimes) — `1999` = 19,99 € |
+| Devise | string | ISO 4217 — `"EUR"`, `"USD"` |
+| Pays | string | ISO 3166-1 alpha-2 — `"FR"`, `"US"` |
+| Région | string | ISO 3166-2 — uniquement pour les États-Unis, le Canada (`CA`), l'Espagne (`ES`) |
+| Langue | string | Code ISO 639 ou locale — `"fr"`, `"fr-FR"` |
+
+## Champs communs à tous les objets
+
+Chaque objet ressource inclut ces champs :
+
+| Champ | Type | Description |
+|-------|------|-------------|
+| `Id` | integer | Identifiant numérique interne |
+| `Links` | array | Liens HATEOAS vers les ressources associées |
+
+Format de `Links` :
+```json
+"Links": [
+  { "rel": "self", "href": "/v1/Customer/42" }
+]
+```
+
+## Pagination
+
+Tous les endpoints de liste acceptent :
+
+| Paramètre | Défaut | Description |
+|-----------|--------|-------------|
+| `Page` | `1` | Index de page (base 1) |
+| `SizePage` | `10` | Éléments par page (max : 1000). Passez `0` pour obtenir uniquement le total sans récupérer les éléments. |
+
+Format de réponse paginée :
+```json
+{
+  "Count": 10,
+  "Page": 1,
+  "SizePage": 10,
+  "TotalItems": 42,
+  "DateGenerated": "2025-01-31T00:00:00Z",
+  "Items": []
+}
+```
+
+| Champ | Description |
+|-------|-------------|
+| `Count` | Éléments retournés dans cette page |
+| `TotalItems` | Total des éléments correspondants sur toutes les pages |
+| `DateGenerated` | Date de génération de cette liste |
+
+## Localisation
+
+Certains champs (`TitleLocalized`, `DescriptionLocalized`) sont résolus via une chaîne de repli à quatre niveaux :
+
+| Priorité | Source | Condition |
+|----------|--------|-----------|
+| 1 | Paramètre de requête `?lang=` | Toujours prioritaire lorsqu'il est fourni |
+| 2 | Langue du client | Lorsque la requête cible un client spécifique |
+| 3 | Langue du Segment | Lorsque la requête cible un Segment spécifique |
+| 4 | Langue du Business | Valeur par défaut de dernier recours |
+
+La valeur de `lang` suit le format de langue ci-dessus (`"fr"`, `"fr-FR"`, etc.).
+
+## Codes de statut HTTP
+
+| Code | Signification |
+|------|---------------|
+| `200` | OK — succès, le corps contient la ressource |
+| `201` | Created — ressource créée, le corps contient la nouvelle ressource |
+| `204` | No content — succès, pas de corps |
+| `400` | Bad request — erreur client générale |
+| `401` | Unauthorized — identifiants manquants ou invalides |
+| `403` | Forbidden — identifiants valides mais action non autorisée |
+| `404` | Not found — la ressource n'existe pas |
+| `409` | Conflict — référence en double ou conflit d'état |
+| `422` | Unprocessable entity — erreurs de validation (voir format d'erreur ci-dessous) |
+| `500` | Internal server error — erreur interne du serveur |
+
+## Format des réponses d'erreur
+
+Toutes les erreurs non-422 retournent un objet unique :
+```json
+{
+  "Code": "string",
+  "Message": "Description lisible par un humain",
+  "Exception": "string",
+  "Target": "string"
+}
+```
+
+`Exception` est uniquement présent sur certaines erreurs `500`. `Target` est rarement retourné ; il identifie le champ ou la ressource en cause.
+
+Les réponses `422` retournent un **tableau** d'objets d'erreur :
+```json
+[
+  { "Code": "string", "Message": "string", "Target": "string" }
+]
+```

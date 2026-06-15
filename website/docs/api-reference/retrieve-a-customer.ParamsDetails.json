@@ -1,0 +1,1 @@
+{"parameters":[{"name":"ReferenceCustomer","in":"query","required":true,"schema":{"type":"string"},"description":"Shared identifier of the customer"},{"name":"ReferenceOffer","in":"query","required":false,"schema":{"type":"string"},"description":"When provided, the response Links include a hosted subscription page for that offer"}]}

@@ -1,0 +1,45 @@
+---
+title: Core Concepts
+sidebar_position: 1
+---
+
+ProAbono is a subscription billing platform. The following entities are the building blocks of every integration.
+
+## Entity hierarchy
+
+A **Business** sells a product. It is partitioned into one or more **Segments** (by region, customer type, currency, etc.). Each **Segment** has a catalog of **Offers**. A **Customer** subscribes to an **Offer**, creating a **Subscription**. Subscriptions generate **Invoices** and **Balance Lines** during billing. **Features** define what a subscription grants access to; **Usage** reflects the current state of that access for a customer. Before making a billing change, a developer can request a **Quote** to see the exact cost.
+
+## Entity glossary
+
+| Entity | Description | Resource |
+|--------|-------------|----------|
+| Business | A tenant — represents one subscription-based product sold through ProAbono. Data is fully partitioned per Business. | (not a public API resource) |
+| Segment | A sub-division of a Business with its own currency, billing rules, and offers catalog. | (not a public API resource) |
+| Customer | An end-customer — the recipient and/or buyer of a subscription. | [Customers](../api-reference/customer/) |
+| Offer | A pricing plan. Subscribing a Customer to an Offer creates a Subscription. "Plan" and "Offer" are synonyms. | [Offers](../api-reference/offer/) |
+| Feature | A component of an Offer: **on/off** (binary access), **limitation** (non-resetting quota), or **consumption** (quota reset at each renewal). | [Features](../api-reference/feature/) |
+| Subscription | Links an Offer to up to two Customers: a **recipient** (who consumes the service) and a **buyer** (who is billed). | [Subscriptions](../api-reference/subscription/) |
+| Invoice | A billing document. Only the buyer of a subscription has related invoices. | [Invoices](../api-reference/invoice/) |
+| Balance Line | A credit or debit entry in the customer's billing history. | [Balance Lines](../api-reference/balance-line/) |
+| Usage | A snapshot of which Features a Customer can access and at what quantity. | [Usage](../api-reference/usage/) |
+| Quoting | A cost estimate for a billing operation (subscribe, upgrade, etc.) computed before it is executed. | [Quoting](../api-reference/quoting/) |
+
+## Shared identifiers
+
+Developers can assign their own identifiers to link ProAbono resources to counterparts in their own system (e.g. `ReferenceCustomer=user-42`). If none is provided, ProAbono generates one automatically.
+
+| Resource | Field | Typical use |
+|----------|-------|-------------|
+| Customer | `ReferenceCustomer` | Mapped to the user or account in the integrating application |
+| Feature | `ReferenceFeature` | Mapped to a protected feature or capability in the application |
+| Offer | `ReferenceOffer` | Used to start a welcome/trial subscription at signup, or for analytics |
+| Segment | `ReferenceSegment` | Used to partition customers by type, region, etc. |
+
+:::tip
+Once set, a shared reference can be used in place of the internal `Id` in any API call targeting that resource.
+:::
+
+## Next steps
+
+- [Conventions](./conventions) — field naming, pagination, dates, amounts, and error shapes
+- [API Reference](../api-reference/) — per-resource endpoint documentation

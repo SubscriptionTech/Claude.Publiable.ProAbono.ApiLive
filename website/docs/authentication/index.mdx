@@ -1,0 +1,79 @@
+---
+title: Authentication
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The ProAbono API Live uses **HTTP Basic Auth** — an Agent Key and an API Key encoded together in the `Authorization` header.
+
+## Getting your credentials
+
+1. Log into the ProAbono backoffice.
+2. Go to the **Integration** section.
+3. Copy the **Agent Key** and the **API Key**.
+
+:::warning
+Treat these keys like passwords. Store them in environment variables or a secrets manager — never commit them to source code.
+:::
+
+## Base URL
+
+The base URL is specific to your Business. `IdBusiness` is the internal numeric identifier visible in the backoffice Integration section.
+
+| Environment | Base URL |
+|-------------|----------|
+| Production | `https://api-<IdBusiness>.proabono.com/` |
+| Pre-production | `https://pp-api-<IdBusiness>.proabono.com/` |
+| Dev | `https://api-<IdBusiness>.shop.chezmose.com/` |
+
+## The Authorization header
+
+Encode your credentials as:
+
+```
+Authorization: Basic <base64(AgentKey:ApiKey)>
+```
+
+<Tabs>
+<TabItem value="curl" label="curl" default>
+
+The `-u` flag encodes credentials automatically:
+
+```bash
+curl -u "<AgentKey>:<ApiKey>" \
+  "https://api-<IdBusiness>.proabono.com/v1/Customer/1"
+```
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+```js
+const credentials = btoa(`${process.env.PROABONO_AGENT_KEY}:${process.env.PROABONO_API_KEY}`);
+
+const response = await fetch('https://api-<IdBusiness>.proabono.com/v1/Customer/1', {
+  headers: { Authorization: `Basic ${credentials}` },
+});
+```
+
+:::note
+`btoa` is available in the browser and Node.js ≥ 16. For older Node.js, use
+`Buffer.from(agentKey + ':' + apiKey).toString('base64')` instead.
+:::
+
+</TabItem>
+</Tabs>
+
+:::note
+All requests and responses use `Content-Type: application/json`.
+:::
+
+## Auth-related error codes
+
+| Status | Meaning |
+|--------|---------|
+| `401 Unauthorized` | Credentials are missing or invalid |
+| `403 Forbidden` | Credentials are valid but the action is not permitted |
+
+See [Conventions](../concepts/conventions#http-status-codes) for the full list of HTTP status codes.

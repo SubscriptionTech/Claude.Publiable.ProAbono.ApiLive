@@ -1,0 +1,69 @@
+---
+id: create-a-subscription
+title: "Créer un abonnement"
+description: "Crée un nouvel abonnement pour un client. Par défaut, l'abonnement est une copie de l'offre au moment de la création. Pour remplacer les paramètres de l'offre (tarification, période d'essai, fonctionnalités, etc.), incluez les champs de remplacement dans le corps de la requête."
+sidebar_label: "Créer un abonnement"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: docs/api-reference/proabono-api-live
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+import Translate from "@docusaurus/Translate";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Créer un abonnement"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/v1/Subscription"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Crée un nouvel abonnement pour un client. Par défaut, l'abonnement est une copie de l'offre au moment de la création. Pour remplacer les paramètres de l'offre (tarification, période d'essai, fonctionnalités, etc.), incluez les champs de remplacement dans le corps de la requête.
+
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+>
+  <Translate id="theme.openapi.request.title">Request</Translate>
+</Heading>
+
+<ParamsDetails
+  {...require("@site/docs/api-reference/create-a-subscription.ParamsDetails.json")}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  {...require("@site/docs/api-reference/create-a-subscription.RequestSchema.json")}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  {...require("@site/docs/api-reference/create-a-subscription.StatusCodes.json")}
+>
+  
+</StatusCodes>
+
+

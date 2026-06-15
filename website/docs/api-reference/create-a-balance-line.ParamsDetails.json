@@ -1,0 +1,1 @@
+{"parameters":[{"name":"EnsureBillable","in":"query","required":false,"schema":{"type":"boolean"},"description":"Check whether the customer can be billed (valid payment method, no late invoices, …) before creating the line"}]}
