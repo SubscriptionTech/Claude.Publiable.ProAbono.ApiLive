@@ -39,8 +39,6 @@ Table of environments (source: `convention.md`):
 | Environment | Base URL |
 |-------------|----------|
 | Production | `https://api-<IdBusiness>.proabono.com/` |
-| Pre-production | `https://pp-api-<IdBusiness>.proabono.com/` |
-| Dev | `https://api-<IdBusiness>.shop.chezmose.com/` |
 
 `IdBusiness` is the internal numeric identifier of your Business, visible in the backoffice Integration section.
 

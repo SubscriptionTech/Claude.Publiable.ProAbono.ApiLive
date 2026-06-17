@@ -20,22 +20,7 @@ JSON is displayed exclusively in the right pane. The center pane contains only p
 
 ## Sidebar
 
-The plugin generates `website/docs/api-reference/sidebar.js`. Import it in `website/sidebars.js` and position it as the last item in the main sidebar (after Guides):
-
-```js
-// sidebars.js
-const apiSidebar = require('./docs/api-reference/sidebar');
-
-module.exports = {
-  mainSidebar: [
-    'getting-started/index',
-    'authentication/index',
-    { type: 'category', label: 'Concepts', items: [...] },
-    { type: 'category', label: 'Guides', items: [...] },
-    ...apiSidebar,
-  ],
-};
-```
+The plugin generates `website/docs/api-reference/sidebar.ts`. It is imported into `website/sidebars.js` as the last item in the main sidebar. See [navigation.md](../navigation.md#docusaurus-sidebar-configuration) for the full sidebar configuration.
 
 ---
 

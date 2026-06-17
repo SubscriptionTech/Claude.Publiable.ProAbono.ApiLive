@@ -7,5 +7,5 @@ export default function Home() {
   // Non-default locales (e.g. /fr/) are prefixed even in dev mode.
   const isDev = process.env.NODE_ENV === 'development';
   const localePrefix = (isDev && currentLocale === defaultLocale) ? '' : `/${currentLocale}`;
-  return <Redirect to={`${localePrefix}/docs/getting-started/`} />;
+  return <Redirect to={`${localePrefix}/docs/introduction/`} />;
 }

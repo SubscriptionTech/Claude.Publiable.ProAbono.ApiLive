@@ -3,28 +3,26 @@ title: Core Concepts
 sidebar_position: 1
 ---
 
-ProAbono is a subscription billing platform. The following entities are the building blocks of every integration.
+<img src="/img/ProAbono-core-concepts.svg" alt="ProAbono core concepts" style={{width: '100%'}} />
 
-## Entity hierarchy
-
-A **Business** sells a product. It is partitioned into one or more **Segments** (by region, customer type, currency, etc.). Each **Segment** has a catalog of **Offers**. A **Customer** subscribes to an **Offer**, creating a **Subscription**. Subscriptions generate **Invoices** and **Balance Lines** during billing. **Features** define what a subscription grants access to; **Usage** reflects the current state of that access for a customer. Before making a billing change, a developer can request a **Quote** to see the exact cost.
-
-## Entity glossary
+## Glossary
 
 | Entity | Description | Resource |
 |--------|-------------|----------|
-| Business | A tenant — represents one subscription-based product sold through ProAbono. Data is fully partitioned per Business. | (not a public API resource) |
-| Segment | A sub-division of a Business with its own currency, billing rules, and offers catalog. | (not a public API resource) |
+| Business | Represents an organization that sells a subscription-based product through ProAbono. | (not an API Live resource) |
+| Segment | A sub-division of a Business with its own currency, billing rules, customers, and offers catalog. | (not an API Live resource) |
 | Customer | An end-customer — the recipient and/or buyer of a subscription. | [Customers](../api-reference/customer/) |
-| Offer | A pricing plan. Subscribing a Customer to an Offer creates a Subscription. "Plan" and "Offer" are synonyms. | [Offers](../api-reference/offer/) |
+| Offer | A pricing plan. Subscribing a Customer to an Offer creates a Subscription. | [Offers](../api-reference/offer/) |
 | Feature | A component of an Offer: **on/off** (binary access), **limitation** (non-resetting quota), or **consumption** (quota reset at each renewal). | [Features](../api-reference/feature/) |
 | Subscription | Links an Offer to up to two Customers: a **recipient** (who consumes the service) and a **buyer** (who is billed). | [Subscriptions](../api-reference/subscription/) |
-| Invoice | A billing document. Only the buyer of a subscription has related invoices. | [Invoices](../api-reference/invoice/) |
-| Balance Line | A credit or debit entry in the customer's billing history. | [Balance Lines](../api-reference/balance-line/) |
-| Usage | A snapshot of which Features a Customer can access and at what quantity. | [Usage](../api-reference/usage/) |
-| Quoting | A cost estimate for a billing operation (subscribe, upgrade, etc.) computed before it is executed. | [Quoting](../api-reference/quoting/) |
+| Invoice | A billing document. Issued when a subscription starts, and then monthly if there is anything to bill. | [Invoices](../api-reference/invoice/) |
+| Balance Line | A credit or debit entry that is used to establish the monthly invoice. | [Balance Lines](../api-reference/balance-line/) |
+| Usage | A snapshot of which Features a Customer can access and at what quantity. Updating a usage may trigger a new balance line depending on whether the related feature is paying. | [Usage](../api-reference/usage/) |
+| Quoting | A cost estimate for a billing operation (subscribe, upgrade, usage update, etc.) computed before it is executed. | [Quoting](../api-reference/quoting/) |
 
 ## Shared identifiers
+
+Shared identifiers are designed to save you from storing extra data in your database. Resources are mapped to entities that already exist in your application (e.g. a Customer) or that should be used directly as a fixed identifier, so that the same identifier works in both your sandbox and production environments.
 
 Developers can assign their own identifiers to link ProAbono resources to counterparts in their own system (e.g. `ReferenceCustomer=user-42`). If none is provided, ProAbono generates one automatically.
 
@@ -36,7 +34,7 @@ Developers can assign their own identifiers to link ProAbono resources to counte
 | Segment | `ReferenceSegment` | Used to partition customers by type, region, etc. |
 
 :::tip
-Once set, a shared reference can be used in place of the internal `Id` in any API call targeting that resource.
+Once set, a shared reference can be used in place of the internal `Id` in any API Live call targeting that resource.
 :::
 
 ## Next steps

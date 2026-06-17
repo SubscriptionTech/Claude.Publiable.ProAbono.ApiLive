@@ -34,14 +34,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api-reference/suspend-a-customer",
-          label: "Suspend a customer",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api-reference/invalidate-a-customer",
-          label: "Invalidate a customer",
+          id: "api-reference/anonymize-a-customer",
+          label: "Anonymize a customer",
           className: "api-method post",
         },
         {
@@ -52,20 +46,26 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api-reference/anonymize-a-customer",
-          label: "Anonymize a customer",
+          id: "api-reference/invalidate-a-customer",
+          label: "Invalidate a customer",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api-reference/suspend-a-customer-by-internal-identifier",
-          label: "Suspend a customer by internal identifier",
+          id: "api-reference/suspend-a-customer",
+          label: "Suspend a customer",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api-reference/invalidate-a-customer-by-internal-identifier",
-          label: "Invalidate a customer by internal identifier",
+          id: "api-reference/retrieve-the-billing-address-of-a-customer",
+          label: "Retrieve the billing address of a customer",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api-reference/update-the-billing-address-of-a-customer",
+          label: "Update the billing address of a customer",
           className: "api-method post",
         },
         {
@@ -78,6 +78,40 @@ const sidebar: SidebarsConfig = {
           type: "doc",
           id: "api-reference/update-the-payment-settings-of-a-customer",
           label: "Update the payment settings of a customer",
+          className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Usage",
+      link: {
+        type: "doc",
+        id: "api-reference/usage",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api-reference/retrieve-all-usages-for-a-customer-or-feature",
+          label: "Retrieve all usages for a customer or feature",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api-reference/update-multiple-usages",
+          label: "Update multiple usages",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api-reference/retrieve-a-single-usage",
+          label: "Retrieve a single usage",
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "api-reference/update-a-single-usage",
+          label: "Update a single usage",
           className: "api-method post",
         },
       ],
@@ -154,14 +188,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api-reference/list-subscriptions",
-          label: "List subscriptions",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "api-reference/start-a-subscription",
-          label: "Start a subscription",
+          id: "api-reference/update-the-term-date-of-a-subscription",
+          label: "Update the term date of a subscription",
           className: "api-method post",
         },
         {
@@ -172,14 +200,14 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "api-reference/upgrade-a-subscription",
-          label: "Upgrade a subscription",
+          id: "api-reference/start-a-subscription",
+          label: "Start a subscription",
           className: "api-method post",
         },
         {
           type: "doc",
-          id: "api-reference/update-the-term-date-of-a-subscription",
-          label: "Update the term date of a subscription",
+          id: "api-reference/upgrade-a-subscription",
+          label: "Upgrade a subscription",
           className: "api-method post",
         },
         {
@@ -187,6 +215,12 @@ const sidebar: SidebarsConfig = {
           id: "api-reference/terminate-a-subscription",
           label: "Terminate a subscription",
           className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api-reference/list-subscriptions",
+          label: "List subscriptions",
+          className: "api-method get",
         },
       ],
     },
@@ -198,12 +232,6 @@ const sidebar: SidebarsConfig = {
         id: "api-reference/invoices",
       },
       items: [
-        {
-          type: "doc",
-          id: "api-reference/bill-a-customer",
-          label: "Bill a customer",
-          className: "api-method post",
-        },
         {
           type: "doc",
           id: "api-reference/retrieve-a-single-invoice-by-internal-identifier",
@@ -222,82 +250,10 @@ const sidebar: SidebarsConfig = {
           label: "List invoices",
           className: "api-method get",
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "BalanceLines",
-      link: {
-        type: "doc",
-        id: "api-reference/balance-lines",
-      },
-      items: [
         {
           type: "doc",
-          id: "api-reference/create-a-balance-line",
-          label: "Create a balance line",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api-reference/list-balance-lines",
-          label: "List balance lines",
-          className: "api-method get",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "CustomerAddressBilling",
-      link: {
-        type: "doc",
-        id: "api-reference/customer-address-billing",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "api-reference/retrieve-the-billing-address-of-a-customer",
-          label: "Retrieve the billing address of a customer",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "api-reference/update-the-billing-address-of-a-customer",
-          label: "Update the billing address of a customer",
-          className: "api-method post",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Usage",
-      link: {
-        type: "doc",
-        id: "api-reference/usage",
-      },
-      items: [
-        {
-          type: "doc",
-          id: "api-reference/retrieve-a-single-usage",
-          label: "Retrieve a single usage",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "api-reference/update-a-single-usage",
-          label: "Update a single usage",
-          className: "api-method post",
-        },
-        {
-          type: "doc",
-          id: "api-reference/retrieve-all-usages-for-a-customer-or-feature",
-          label: "Retrieve all usages for a customer or feature",
-          className: "api-method get",
-        },
-        {
-          type: "doc",
-          id: "api-reference/update-multiple-usages",
-          label: "Update multiple usages",
+          id: "api-reference/bill-a-customer",
+          label: "Bill a customer",
           className: "api-method post",
         },
       ],
@@ -339,6 +295,28 @@ const sidebar: SidebarsConfig = {
           id: "api-reference/quote-a-balance-line-creation",
           label: "Quote a balance line creation",
           className: "api-method post",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "BalanceLines",
+      link: {
+        type: "doc",
+        id: "api-reference/balance-lines",
+      },
+      items: [
+        {
+          type: "doc",
+          id: "api-reference/create-a-balance-line",
+          label: "Create a balance line",
+          className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "api-reference/list-balance-lines",
+          label: "List balance lines",
+          className: "api-method get",
         },
       ],
     },

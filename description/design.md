@@ -114,7 +114,7 @@ The Docusaurus classic theme enforces the sidebar / content split. Apply customi
 - **Height:** 60px
 - **Logo:** ProAbono SVG (`brand.ab41491b.svg`), 32px tall, placed on the left
 - **Site name:** "API Live" in Inter 600, white, placed immediately after the logo
-- **Items (right):** locale dropdown, GitHub link icon
+- **Items (right):** GitHub link icon
 - **Border-bottom:** none; the visual separation comes from the page background being white
 
 ---

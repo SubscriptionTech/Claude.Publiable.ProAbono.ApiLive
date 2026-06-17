@@ -4,16 +4,15 @@ Framework and tooling choices for the ProAbono API Live documentation website.
 
 ## Choice: Docusaurus
 
-**Use Docusaurus** as the static site framework. It is the best fit for the combination of multi-language support, Azure Static Web Apps hosting, build-time content from local files, and a developer documentation audience.
+**Use Docusaurus** as the static site framework. It is the best fit for the combination of Azure Static Web Apps hosting, build-time content from local files, and a developer documentation audience.
 
 ### Docusaurus
 
 | Dimension | Assessment |
 |---|---|
-| i18n | First-class. Whole-document translation granularity (not sentence-split), declarative locale config in `docusaurus.config.js`, predictable filesystem layout at `website/i18n/[locale]/[pluginName]/`. |
 | Static output | Emits a `build/` directory. `output_location: build` in the Azure SWA pipeline config is all that is needed. Multiple tutorials and the official Azure SWA blog confirm this path. |
 | Content from files | Plugins expose `loadContent()` (reads any local file at build time) and `createData()` (serializes data to static JSON for page props). No server runtime required. |
-| Docs features | Sidebar navigation, breadcrumbs, syntax-highlighted code blocks, and a locale dropdown are available. **Note:** several of these require explicit plugin or theme configuration — they are not all active by default on a blank install. |
+| Docs features | Sidebar navigation, breadcrumbs, and syntax-highlighted code blocks are available. **Note:** several of these require explicit plugin or theme configuration — they are not all active by default on a blank install. |
 | Ecosystem | Maintained by Meta, powers a large share of open-source project docs. Active release cadence. |
 | Learning curve | React + MDX. Moderate if the team has no React background, but the Docusaurus abstraction layer means React knowledge is rarely needed for content or configuration work. |
 
@@ -39,7 +38,7 @@ The plugin is configured in `docusaurus.config.js` to point at the OpenAPI spec 
 | Tool | Choice |
 |---|---|
 | Package manager | npm (default for Docusaurus) |
-| Node.js | LTS (current: 22.x) |
+| Node.js | LTS (≥ 20) |
 | Build command | `npm run build` |
 | Output directory | `build/` |
 
@@ -47,7 +46,6 @@ The plugin is configured in `docusaurus.config.js` to point at the OpenAPI spec 
 
 ## Sources
 
-- [Docusaurus i18n docs](https://docusaurus.io/docs/i18n/introduction)
 - [Docusaurus plugin lifecycle API](https://docusaurus.io/docs/api/plugin-methods/lifecycle-apis)
 - [Docusaurus deployment docs](https://docusaurus.io/docs/deployment)
 - [Azure Static Web Apps — Next.js static export](https://learn.microsoft.com/en-us/azure/static-web-apps/deploy-nextjs-static-export)

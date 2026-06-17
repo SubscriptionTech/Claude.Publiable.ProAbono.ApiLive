@@ -19,12 +19,8 @@ Read these files before implementing the site:
 3. [content-pipeline.md](content-pipeline.md) — extraction script, filtering rules, MDX output format
 4. [design.md](design.md) — color palette, typography, layout, UI components
 5. [navigation.md](navigation.md) — sidebar sections, page hierarchy, sidebar configuration
-6. [pages/getting-started.md](pages/getting-started.md) — Quick Start page spec
-7. [pages/authentication.md](pages/authentication.md) — Authentication page spec
-8. [pages/concepts.md](pages/concepts.md) — Core Concepts and Conventions pages spec
-9. [pages/guides.md](pages/guides.md) — Guides section spec (onboard, terminate & anonymize)
-10. [pages/api-reference.md](pages/api-reference.md) — API Reference section structure (auto-generated)
-11. [deployment.md](deployment.md) — Azure Static Web Apps config, GitHub Actions workflow, branch strategy
+6. [pages/index.md](pages/index.md) — page-by-page specs index
+7. [deployment.md](deployment.md) — Azure Static Web Apps config, GitHub Actions workflow, branch strategy
 
 ## Relationship to the API specs
 

@@ -16,17 +16,17 @@ Introduce the ProAbono data model. Help developers understand the entities and t
 
 ### Page structure
 
-#### 1. Intro paragraph
+#### 1. Core concepts diagram
 
-Two sentences: ProAbono is a subscription billing platform. The following entities are the building blocks of every integration.
+Full-width SVG diagram illustrating the entity relationships:
 
-#### 2. Entity hierarchy
+```mdx
+<img src="/img/ProAbono-core-concepts.svg" alt="ProAbono core concepts" style={{width: '100%'}} />
+```
 
-A brief prose description of the relationship chain:
+The source file lives at `website/static/img/ProAbono-core-concepts.svg`. Update it when the entity model changes.
 
-> A **Business** sells a product. It is partitioned into one or more **Segments** (by region, customer type, currency, etc.). Each **Segment** has a catalog of **Offers**. A **Customer** subscribes to an **Offer**, creating a **Subscription**. Subscriptions generate **Invoices** and **Balance Lines** during billing. **Features** define what a subscription grants access to; **Usage** reflects the current state of that access for a customer. Before making a billing change, a developer can request a **Quote** to see the exact cost.
-
-#### 3. Entity glossary
+#### 2. Entity glossary
 
 Table: Entity, Description, API resource.
 
@@ -43,7 +43,7 @@ Table: Entity, Description, API resource.
 | Usage | A snapshot of which Features a Customer can access and at what quantity. | [Usage](../api-reference/usage/) |
 | Quoting | A cost estimate for a billing operation (subscribe, upgrade, etc.) computed before it is executed. | [Quoting](../api-reference/quoting/) |
 
-#### 4. Shared identifiers
+#### 3. Shared identifiers
 
 Introduce the `Reference*` pattern: developers can assign their own identifiers to link ProAbono resources to counterparts in their own system (e.g. `ReferenceCustomer=user-42`). If none is provided, ProAbono generates one automatically.
 
@@ -58,7 +58,7 @@ Resources with a shared identifier:
 
 Add a `tip` admonition: once set, a shared reference can be used in place of the internal `Id` in any API call targeting that resource.
 
-#### 5. Next steps
+#### 4. Next steps
 
 Two links:
 - [Conventions](./conventions) — field naming, pagination, dates, amounts, and error shapes

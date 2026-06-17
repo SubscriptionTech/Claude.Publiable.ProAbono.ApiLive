@@ -52,7 +52,7 @@ plugins: [
   [
     'docusaurus-plugin-openapi-docs',
     {
-      id: 'api-reference',
+      id: 'api',
       docsPluginId: 'classic',
       config: {
         proabono: {
@@ -60,6 +60,7 @@ plugins: [
           outputDir: 'docs/api-reference',
           sidebarOptions: {
             groupPathsBy: 'tag',
+            categoryLinkSource: 'tag',
           },
         },
       },
@@ -75,7 +76,7 @@ The theme must be listed in `themes` (not `plugins`) for the 3-pane rendering to
 
 The plugin writes MDX files into `website/docs/api-reference/`. These files use internal components from `docusaurus-theme-openapi-docs` and must not be edited manually — they will be overwritten on the next `gen-api-docs` run.
 
-The plugin also generates a sidebar slice (`website/docs/api-reference/sidebar.js`). Import it into `website/sidebars.js` and position it under the API Reference category.
+The plugin also generates a sidebar slice (`website/docs/api-reference/sidebar.ts`). Import it into `website/sidebars.js` and position it under the API Reference category.
 
 ## CI constraint
 

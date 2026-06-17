@@ -16,7 +16,7 @@ Get a developer from zero to a successful API call in under 5 minutes. Assumes t
 
 ### 1. Intro paragraph
 
-Two to three sentences: what the ProAbono API Live is and what a developer can do with it (create customers, manage subscriptions, check usage, simulate costs). Keep it practical — no marketing language.
+One sentence: what the ProAbono API Live lets a developer do (create customers, start or update subscriptions, check feature access, simulate billing costs). Keep it practical — no marketing language.
 
 ### 2. Prerequisites
 
@@ -34,7 +34,7 @@ Introduce the per-Business base URL pattern:
 https://api-<IdBusiness>.proabono.com/
 ```
 
-Mention the pre-production variant (`pp-api-`) for testing. Link to [Authentication](../authentication/) for the full environment table.
+Link to [Authentication](../authentication/) for authentication details.
 
 ### 4. Step 2 — Create a customer
 

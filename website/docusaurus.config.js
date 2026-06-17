@@ -22,18 +22,6 @@ const config = {
   },
 
   plugins: [
-    function rootRedirectPlugin() {
-      return {
-        name: 'root-redirect-plugin',
-        async contentLoaded({ actions }) {
-          actions.addRoute({
-            path: '/',
-            component: '@site/src/pages/index.js',
-            exact: true,
-          });
-        },
-      };
-    },
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -99,6 +87,19 @@ const config = {
         style: 'dark',
         copyright: `Copyright © ${new Date().getFullYear()} ProAbono`,
       },
+      languageTabs: [
+        { language: "curl" },
+        { language: "python" },
+        { language: "javascript" },
+        { language: "nodejs" },
+        { language: "php" },
+        { language: "go" },
+        { language: "java" },
+        { language: "csharp" },
+        { language: "ruby" },
+        { language: "http" },
+        { language: "powershell" },
+      ],
       prism: {
         theme: prismThemes.vsDark,
         darkTheme: prismThemes.vsDark,

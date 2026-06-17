@@ -234,6 +234,34 @@ tr:hover td {
   font-weight: 400;
 }
 
+/* ─── Hide Try It (Request/Response tiles) ───────────────────────────────── */
+
+.openapi-explorer__request-form,
+.openapi-explorer__response-container {
+  display: none;
+}
+
+/* ─── API Examples (Request / Response blocks below code snippets) ───────── */
+
+.api-examples {
+  margin-top: 1rem;
+}
+
+/* ─── Code panel language select ─────────────────────────────────────────── */
+
+.openapi-tabs__code-select {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.75rem;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.875rem;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-toc-border-color);
+  border-radius: var(--ifm-global-radius, 4px);
+  cursor: pointer;
+}
+
 /* ─── TOC (right sidebar) ────────────────────────────────────────────────── */
 
 .table-of-contents__link {
@@ -251,4 +279,10 @@ tr:hover td {
 
 .table-of-contents__left-border {
   border-left: 1px solid var(--ifm-toc-border-color);
+}
+
+/* ─── OpenAPI code block height ──────────────────────────────────────────── */
+
+.openapi-explorer__code-block code {
+  max-height: 400px;
 }
