@@ -4,7 +4,7 @@ Sidebar structure and page hierarchy for the ProAbono API Live documentation web
 
 ## Sidebar sections
 
-The site has six top-level sections, listed in the order they appear in the sidebar.
+The site has five authored sections and the API Reference resource groups, listed in the order they appear in the sidebar.
 
 | Position | Label |
 |----------|-------|
@@ -12,8 +12,10 @@ The site has six top-level sections, listed in the order they appear in the side
 | 2 | Getting Started |
 | 3 | Authentication |
 | 4 | Concepts |
-| 5 | Guides |
-| 6 | API Reference |
+| 5+ | API resource groups (one per resource) |
+| Last | Guides |
+
+The API Reference resource groups are **not** wrapped in a collapsible "API Reference" category — they appear directly in the sidebar at the same level as the authored sections.
 
 ---
 
@@ -51,6 +53,8 @@ One page per documented cross-resource action. Currently empty — no actions ar
 ### API Reference
 
 One page per API operation, organized into groups by resource. How these pages are produced is described in the [pipeline specifications](../pipeline/index.md).
+
+The auto-generated Introduction page (produced from the OpenAPI `info` block) is excluded and does not appear in the sidebar.
 
 ---
 

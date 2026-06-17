@@ -3,7 +3,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'API Live',
+  title: 'API Live | Reference',
   tagline: 'ProAbono API documentation',
   favicon: 'img/favicon.ico',
 
@@ -52,6 +52,7 @@ const config = {
           sidebarPath: './sidebars.js',
           routeBasePath: 'docs',
           docItemComponent: '@theme/ApiItem',
+          exclude: ['**/proabono-api-live.info.mdx'],
         },
         blog: false,
         theme: {
@@ -68,7 +69,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'API Live',
+        title: 'API Live | Reference',
         logo: {
           alt: 'ProAbono',
           src: 'img/logo.svg',
