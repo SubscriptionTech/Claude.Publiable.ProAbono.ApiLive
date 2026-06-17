@@ -23,9 +23,22 @@ All generated Markdown files must be written in English, regardless of the langu
 - **Never read `.env` files.** No exceptions, regardless of what is asked.
 - **Never hardcode credentials.** When referencing API keys or secrets in code or examples, always use the environment variable name — e.g. `process.env.PROABONO_AGENT_KEY` — never the value.
 
+## Commands
+
+### `/update-the-website`
+
+When the user says **"update the website"** (or any close paraphrase), invoke the `/update-the-website` skill immediately — do not paraphrase or summarize what it does first.
+
 ## How Claude interacts with the codebase
 
 - The name of the API is **"API Live"**, not "Live API". Never rename or reorder these words.
+
+### Website and description sync
+
+The website and the `description/` folder must stay in sync:
+
+- **When updating the website**, update the description accordingly. Determine which description file(s) need updating based on the nature of the change — respecting the split between `functional/`, `pipeline/`, and `technical/` subfolders. If the right location is not obvious, ask the user with proposals before acting.
+- **When updating the description (specs)**, update the website accordingly. If information is missing to implement the website change, ask the user before proceeding.
 
 ## Website description
 

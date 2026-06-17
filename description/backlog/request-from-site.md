@@ -1,22 +1,53 @@
-# Backlog: Try It Panel (request from site)
+<!-- ============================================================
+FOR THE READER — Claude should skip this section entirely.
 
-Allow developers to make live API calls directly from the documentation page, using the built-in Try It panel provided by `docusaurus-theme-openapi-docs`.
+The Try It panel lets developers make live API calls directly from the
+documentation. It was hidden because the ProAbono API does not allow
+cross-domain requests (CORS). Once the API team adds CORS support for the
+documentation domain, ask Claude to re-enable the panel using these
+instructions.
+============================================================ -->
 
-The Request and Response tiles are hidden because the API does not allow cross-domain calls (CORS). Before re-enabling them, CORS support must be added on the API side. The right panel itself (code snippets, security schemes) remains visible.
+# Implementation instructions — Try It panel (request from site)
 
-## How it is hidden
+## Functional
 
-Two complementary layers are in place:
+Each API reference page includes a **Try It** panel that lets developers make
+live API calls without leaving the documentation. The panel contains:
 
-### Layer 1 — Swizzled component (primary)
+- A request form with fields for path parameters, query parameters, headers,
+  and request body.
+- An agent key / API key input field for authentication.
+- A response display showing the HTTP status, headers, and body returned by
+  the API.
 
-[website/src/theme/ApiExplorer/index.tsx](../../website/src/theme/ApiExplorer/index.tsx) is an ejected copy of the theme's `ApiExplorer` component with `<Request>` and `<Response>` removed. Docusaurus picks up any file under `src/theme/` over the plugin default, so this file takes precedence at build time.
+The right-hand panel (code snippets and security scheme display) is already
+visible and is not affected by this change.
 
-The original theme component is at `node_modules/docusaurus-theme-openapi-docs/src/theme/ApiExplorer/index.tsx` for reference.
+## Pipeline
 
-### Layer 2 — CSS fallback (belt-and-suspenders)
+No pipeline changes required.
 
-In [website/src/css/custom.css](../../website/src/css/custom.css), the following block hides the tiles at runtime in case the swizzle ever stops taking effect (e.g. after a plugin upgrade that resets the component resolution):
+## Technical
+
+The Try It panel is currently suppressed by two complementary layers. Remove
+both.
+
+### Step 1 — Remove the swizzled component
+
+Delete `website/src/theme/ApiExplorer/index.tsx`.
+
+This file is an ejected copy of the plugin's `ApiExplorer` component with
+`<Request>` and `<Response>` removed. Deleting it causes Docusaurus to fall
+back to the plugin's built-in component, which includes both tiles.
+
+The original theme component is at
+`node_modules/docusaurus-theme-openapi-docs/src/theme/ApiExplorer/index.tsx`
+for reference.
+
+### Step 2 — Remove the CSS fallback
+
+In `website/src/css/custom.css`, delete the following block:
 
 ```css
 /* ─── Hide Try It (Request/Response tiles) ───────────────────────────────── */
@@ -27,13 +58,10 @@ In [website/src/css/custom.css](../../website/src/css/custom.css), the following
 }
 ```
 
-## How to re-enable
+### Prerequisites
 
-1. **Remove the swizzled file**: delete `website/src/theme/ApiExplorer/index.tsx`. Docusaurus will fall back to the plugin's built-in component, which includes `<Request>` and `<Response>`.
+Before making these changes, confirm with the user that:
 
-2. **Remove the CSS fallback**: delete the `Hide Try It` block from `website/src/css/custom.css`.
-
-## Prerequisites
-
-- The API must expose CORS headers allowing requests from the documentation domain.
-- Review authentication UX: the panel will need an agent key / API key input for live calls.
+- The API exposes CORS headers allowing requests from the documentation domain.
+- The authentication UX for the panel has been decided (agent key format, where
+  the user enters it).
