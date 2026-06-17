@@ -89,7 +89,7 @@ jobs:
       - name: Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_MUD_025800203 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: website
@@ -107,7 +107,7 @@ The workflow does **not** include a `pull_request` trigger, so no PR preview env
 
 | Secret name                          | Where to get it |
 |--------------------------------------|-----------------|
-| `AZURE_STATIC_WEB_APPS_API_TOKEN`    | Azure portal → Static Web Apps resource → **Manage deployment token** |
+| `AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_MUD_025800203`    | Azure portal → Static Web Apps resource → **Manage deployment token** |
 
 Add this secret to the GitHub repository under **Settings → Secrets and variables → Actions**.
 
