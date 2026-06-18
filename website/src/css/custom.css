@@ -27,7 +27,6 @@
   --ifm-toc-border-color: #E5E7EB;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 116, 212, 0.15);
-  --ifm-code-background: #1E1E2E;
 }
 
 [data-theme='dark'] {
@@ -36,7 +35,6 @@
   --ifm-font-color-base: #E5E7EB;
   --ifm-toc-border-color: #2D3748;
   --docusaurus-highlighted-code-line-bg: rgba(0, 116, 212, 0.2);
-  --ifm-code-background: #1A1D23;
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────── */
@@ -169,7 +167,7 @@ th {
   background: #F9FAFB;
   font-weight: 600;
   text-align: left;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.75rem;
   border-bottom: 2px solid #E5E7EB;
 }
 
@@ -289,14 +287,141 @@ tr:hover td {
   max-height: 400px;
 }
 
-/* ─── OpenAPI params list ────────────────────────────────────────────────── */
+/* ─── Pagefind search ─────────────────────────────────────────────────────── */
 
-.openapi-params__list-item {
-  padding: 5px 0 5px 1rem;
+/* Results panel overflows the navbar — must be visible */
+.navbar__inner {
+  overflow: visible;
 }
 
-/* ─── Responses: remove redundant MIME-type tab (always application/json) ── */
+/* Positioned ancestor for the absolute results dropdown */
+.pagefind-search-container {
+  position: relative;
+}
 
-.openapi-tabs__mime-container {
-  display: none !important;
+/* ── Theme variables ── */
+.navbar .pagefind-ui {
+  --pagefind-ui-scale: 0.8;
+  --pagefind-ui-primary: #0074D4;
+  --pagefind-ui-text: #E5E7EB;
+  --pagefind-ui-background: #1A1D23;
+  --pagefind-ui-border: rgba(255, 255, 255, 0.08);
+  --pagefind-ui-tag: rgba(255, 255, 255, 0.08);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: var(--ifm-font-family-base);
+}
+
+/* ── Search input ── */
+.navbar .pagefind-ui__form {
+  margin: 0;
+}
+
+.navbar .pagefind-ui__search-input-container {
+  height: 36px;
+}
+
+.navbar .pagefind-ui__search-input {
+  height: 36px !important;
+  width: 200px;
+  box-sizing: border-box;
+  padding-right: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #E5E7EB;
+  font-size: 0.8125rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.navbar .pagefind-ui__search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar .pagefind-ui__search-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #0074D4;
+  outline: none;
+}
+
+.navbar .pagefind-ui__search-clear,
+.navbar .pagefind-ui__search-submit {
+  display: none;
+}
+
+/* ── Results dropdown ── */
+.navbar .pagefind-ui__results-area {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 400px;
+  max-height: 60vh;
+  overflow-y: auto;
+  background: #1A1D23;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+
+[data-theme='dark'] .navbar .pagefind-ui__results-area {
+  background: #13161D;
+}
+
+.navbar .pagefind-ui__message {
+  padding: 0.4rem 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8125rem;
+}
+
+/* ── Result items ── */
+.navbar .pagefind-ui__results {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navbar .pagefind-ui__result {
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.1s;
+}
+
+.navbar .pagefind-ui__result-inner {
+  padding: 0.6rem 1rem;
+}
+
+.navbar .pagefind-ui__result:last-child {
+  border-bottom: none;
+}
+
+.navbar .pagefind-ui__result:hover .pagefind-ui__result-inner {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.navbar .pagefind-ui__result-link {
+  color: #60A5FA;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.navbar .pagefind-ui__result-link:hover {
+  color: #93C5FD;
+  text-decoration: underline;
+}
+
+.navbar .pagefind-ui__result-excerpt {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.8125rem;
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+/* ── Highlighted match terms ── */
+.navbar mark {
+  background: rgba(0, 116, 212, 0.25);
+  color: #93C5FD;
+  border-radius: 2px;
+  padding: 0 1px;
 }

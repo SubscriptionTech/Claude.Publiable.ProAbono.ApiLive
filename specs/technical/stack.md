@@ -33,13 +33,24 @@ The plugin is configured in `docusaurus.config.js` to point at the OpenAPI spec 
 
 ---
 
+## Search
+
+| Item | Detail |
+|---|---|
+| Library | [Pagefind](https://pagefind.app/) (`pagefind` devDependency) |
+| Index step | Runs after the Docusaurus build: `pagefind --site build` — writes the index and UI assets to `build/pagefind/` |
+| Integration | A local Docusaurus plugin (`plugins/docusaurus-pagefind/`) exposes a custom `SearchBar` theme component. The plugin is registered in `docusaurus.config.js`; a `type: 'search'` navbar item renders it in the top bar. |
+| Exclusions | Non-content pages (e.g. 404) are excluded using `data-pagefind-ignore` on their root element. |
+
+---
+
 ## Runtime and build tools
 
 | Tool | Choice |
 |---|---|
 | Package manager | npm (default for Docusaurus) |
 | Node.js | LTS (≥ 20) |
-| Build command | `npm run build` |
+| Build command | `npm run build` (runs Docusaurus build then Pagefind indexing) |
 | Output directory | `build/` |
 
 ---

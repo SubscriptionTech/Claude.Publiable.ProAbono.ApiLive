@@ -1,5 +1,9 @@
 // @ts-check
+import path from 'path';
+import { fileURLToPath } from 'url';
 import {themes as prismThemes} from 'prism-react-renderer';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -22,6 +26,7 @@ const config = {
   },
 
   plugins: [
+    path.join(__dirname, 'plugins/docusaurus-pagefind'),
     [
       'docusaurus-plugin-openapi-docs',
       {
@@ -76,6 +81,7 @@ const config = {
         },
         style: 'dark',
         items: [
+          { type: 'search', position: 'right' },
           {
             href: 'https://github.com/SubscriptionTech/Claude.Publiable.ProAbono.ApiLive',
             position: 'right',

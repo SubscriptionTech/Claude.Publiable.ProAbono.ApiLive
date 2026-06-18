@@ -60,6 +60,7 @@ The auto-generated Introduction page (produced from the OpenAPI `info` block) is
 
 ## Navbar items
 
-Right-aligned navbar items:
+Right-aligned navbar items, in order:
 
-1. GitHub icon link (repository URL to be provided at implementation time)
+1. **Search box** — a text input that accepts free-text queries and returns matching pages as a dropdown list. Results appear as the user types; selecting a result navigates to the corresponding page. Placeholder text: `Search`. Displayed to the left of the GitHub icon.
+2. **GitHub icon link** (repository URL to be provided at implementation time)
