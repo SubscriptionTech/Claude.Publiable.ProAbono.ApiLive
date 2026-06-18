@@ -2,6 +2,8 @@
 
 Features deferred to future versions of the ProAbono API Live documentation website.
 
+See [CLAUDE.md](CLAUDE.md) for the expected structure of this folder and its files.
+
 ## Add guides
 
 See [add-guides.md](add-guides.md).
@@ -31,3 +33,12 @@ See [changelog.md](changelog.md).
 
 A hand-authored page listing API changes over time: new resources, new actions,
 breaking changes, and deprecations.
+
+## Code Snippet Example Picker
+
+See [code-snippet-example-picker.md](code-snippet-example-picker.md).
+
+Add a dropdown above the generated code snippet on pages whose `requestBody`
+defines multiple named examples, so developers can browse all variants directly
+in the snippet. Currently the first example is always shown. Implement when
+multi-example endpoints become numerous or user feedback flags it as a pain point.
