@@ -6,7 +6,7 @@
  * body is a non-empty raw body, setBody() returns early instead of clearing it.
  * This preserves the example injected by ApiExplorer/index.tsx.
  * Without this guard, every render clears the body because the interactive body
- * form was removed (CORS — see description/backlog/request-from-site.md).
+ * form was removed (CORS — see specs/backlog/request-from-site.md).
  * ========================================================================== */
 
 import { AuthState, Scheme } from "@theme/ApiExplorer/Authorization/slice";

@@ -2,7 +2,7 @@
  * Swizzled from docusaurus-theme-openapi-docs
  *
  * Request and Response components are intentionally omitted — the API does not
- * allow cross-domain calls (CORS). See description/backlog/request-from-site.md
+ * allow cross-domain calls (CORS). See specs/backlog/request-from-site.md
  * ========================================================================== */
 
 import React from "react";

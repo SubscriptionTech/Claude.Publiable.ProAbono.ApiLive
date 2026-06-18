@@ -12,7 +12,7 @@ Options (in this order):
 1. **Pull the latest version of the API Live specs** — Update the `shared/ProAbonoLive` submodule to the latest remote commit.
 2. **Re-generate the API reference** — Run `npm run gen-api-docs` in the `website/` folder.
 3. **Adjust authored pages** — Compare the spec source files against the authored website pages and resolve discrepancies.
-4. **Full audit of the website** — Audit the description folder against the website source (long, costs many tokens).
+4. **Full audit of the website** — Audit the specs folder against the website source (long, costs many tokens).
 5. **Commit** — Stage, commit, and push all changes in the root repository.
 
 Wait for the user's selections before doing anything.
@@ -73,7 +73,7 @@ If the submodule was just updated (Action 1 was also checked), you can instead d
 
 **3b. Read the source spec files** that have changed (or all of them if you cannot determine what changed).
 
-**3c. Read the corresponding authored pages** in the website source (under `website/docs/` or `website/src/pages/`). Consult `description/pipeline/authoring.md` and `description/functional/` for the page locations.
+**3c. Read the corresponding authored pages** in the website source (under `website/docs/` or `website/src/pages/`). Consult `specs/pipeline/authoring.md` and `specs/functional/` for the page locations.
 
 **3d. For each discrepancy** — a case where the source spec says X but the authored website page says Y, or something present in the spec is missing from the page — present it to the user using a numbered list. For each item, offer at least 2 options, for example:
 - **Option A — Update the website page** to reflect the spec change (describe what would change).
@@ -89,13 +89,13 @@ If no discrepancies are found, report that and move on.
 
 Apply this prompt verbatim:
 
-> Audit the description folder against the actual website, then walk me through each discrepancy.
+> Audit the specs folder against the actual website, then walk me through each discrepancy.
 >
 > Steps:
-> 1. Read `description/index.md` to understand the description structure, then read all relevant description files.
+> 1. Read `specs/index.md` to understand the specs structure, then read all relevant specs files.
 > 2. Read the website source (`website/src/`, `website/static/`, and any config files) to understand what is actually built.
-> 3. Produce a complete numbered list of discrepancies — things where the description says X but the website does Y (or vice versa).
-> 4. Present discrepancy #1 only: describe what the description says, what the website actually does, and propose two options — fix the description to match the website, or fix the website to match the description. Ask me which to apply.
+> 3. Produce a complete numbered list of discrepancies — things where the specs say X but the website does Y (or vice versa).
+> 4. Present discrepancy #1 only: describe what the specs say, what the website actually does, and propose two options — fix the specs to match the website, or fix the website to match the specs. Ask me which to apply.
 > 5. Wait for my decision, apply it if needed, then move to #2, and so on until the list is exhausted.
 >
 > Do not batch or pre-apply fixes. One discrepancy at a time, wait for my go-ahead each time.

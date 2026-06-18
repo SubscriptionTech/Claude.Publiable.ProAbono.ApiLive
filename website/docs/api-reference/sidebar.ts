@@ -300,10 +300,10 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "BalanceLines",
+      label: "Balance",
       link: {
         type: "doc",
-        id: "api-reference/balance-lines",
+        id: "api-reference/balance",
       },
       items: [
         {

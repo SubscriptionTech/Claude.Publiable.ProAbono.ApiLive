@@ -77,7 +77,7 @@ const config = {
         style: 'dark',
         items: [
           {
-            href: 'https://github.com/your-org/your-repo',
+            href: 'https://github.com/SubscriptionTech/Claude.Publiable.ProAbono.ApiLive',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',

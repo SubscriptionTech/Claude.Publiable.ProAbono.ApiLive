@@ -27,6 +27,7 @@
   --ifm-toc-border-color: #E5E7EB;
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 116, 212, 0.15);
+  --ifm-code-background: #1E1E2E;
 }
 
 [data-theme='dark'] {
@@ -35,6 +36,7 @@
   --ifm-font-color-base: #E5E7EB;
   --ifm-toc-border-color: #2D3748;
   --docusaurus-highlighted-code-line-bg: rgba(0, 116, 212, 0.2);
+  --ifm-code-background: #1A1D23;
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────── */
@@ -167,7 +169,7 @@ th {
   background: #F9FAFB;
   font-weight: 600;
   text-align: left;
-  padding: 0.6rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-bottom: 2px solid #E5E7EB;
 }
 
