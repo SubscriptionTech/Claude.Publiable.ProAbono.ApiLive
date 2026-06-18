@@ -29,7 +29,7 @@ const config = {
         docsPluginId: 'classic',
         config: {
           proabono: {
-            specPath: '../shared/ProAbonoLive/shared-specs/pa-live-openapi-3.0.3.yaml',
+            specPath: '../shared/ProAbonoLive/open-api/pa-live-openapi-3.0.3.yaml',
             outputDir: 'docs/api-reference',
             sidebarOptions: {
               groupPathsBy: 'tag',

@@ -8,7 +8,7 @@ Repo layout and build commands for the ProAbono API Live documentation website.
 Claude.DocApiLive/
 ├── shared/
 │   └── ProAbonoLive/              ← git submodule — API spec source of truth (not deployed)
-│       └── shared-specs/
+│       └── open-api/
 │           └── pa-live-openapi-3.0.3.yaml  ← input to docusaurus gen-api-docs
 ├── website/                       ← Docusaurus project
 │   ├── docs/

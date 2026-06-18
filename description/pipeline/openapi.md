@@ -5,7 +5,7 @@ How the OpenAPI spec flows into the API Reference section of the website.
 ## Overview
 
 ```
-shared/ProAbonoLive/shared-specs/pa-live-openapi-3.0.3.yaml
+shared/ProAbonoLive/open-api/pa-live-openapi-3.0.3.yaml
           ↓
    content generation tool      (run locally, output committed)
           ↓
@@ -19,7 +19,7 @@ The generation tool reads the OpenAPI spec and produces one page per operation. 
 The single source for the API reference is the OpenAPI spec:
 
 ```
-shared/ProAbonoLive/shared-specs/pa-live-openapi-3.0.3.yaml
+shared/ProAbonoLive/open-api/pa-live-openapi-3.0.3.yaml
 ```
 
 This spec is kept in sync with the markdown resource docs in `shared/ProAbonoLive/resources/` (see the submodule's CLAUDE.md). It already excludes `Documented: no` actions — no additional filtering step is needed.
