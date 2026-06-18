@@ -3,8 +3,162 @@ title: Authentication
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import StaticSnippets from '@site/src/components/StaticSnippets';
+
+export const snippets = {
+  curl:
+`curl \\
+  -u "$PROABONO_AGENT_KEY:$PROABONO_API_KEY" \\
+  "https://api-$PROABONO_ID_BUSINESS.proabono.com/v1/Customers"`,
+
+  python:
+`import os
+import requests
+
+response = requests.get(
+    f"https://api-{os.environ['PROABONO_ID_BUSINESS']}.proabono.com/v1/Customers",
+    auth=(os.environ["PROABONO_AGENT_KEY"], os.environ["PROABONO_API_KEY"]),
+)
+print(response.json())`,
+
+  javascript:
+`const credentials = btoa(PROABONO_AGENT_KEY + ':' + PROABONO_API_KEY);
+
+const response = await fetch(
+  'https://api-' + PROABONO_ID_BUSINESS + '.proabono.com/v1/Customers',
+  {
+    headers: { Authorization: 'Basic ' + credentials },
+  }
+);
+const data = await response.json();
+console.log(data);`,
+
+  nodejs:
+`import https from 'https';
+
+const credentials = Buffer.from(
+  process.env.PROABONO_AGENT_KEY + ':' + process.env.PROABONO_API_KEY
+).toString('base64');
+
+const options = {
+  hostname: 'api-' + process.env.PROABONO_ID_BUSINESS + '.proabono.com',
+  path: '/v1/Customers',
+  headers: { Authorization: 'Basic ' + credentials },
+};
+
+https.get(options, (res) => {
+  let body = '';
+  res.on('data', (chunk) => (body += chunk));
+  res.on('end', () => console.log(JSON.parse(body)));
+});`,
+
+  php:
+`<?php
+$credentials = base64_encode(
+    getenv('PROABONO_AGENT_KEY') . ':' . getenv('PROABONO_API_KEY')
+);
+$idBusiness = getenv('PROABONO_ID_BUSINESS');
+
+$ch = curl_init("https://api-{$idBusiness}.proabono.com/v1/Customers");
+curl_setopt($ch, CURLOPT_HTTPHEADER, ["Authorization: Basic {$credentials}"]);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+echo curl_exec($ch);
+curl_close($ch);`,
+
+  go:
+`package main
+
+import (
+\t"encoding/base64"
+\t"fmt"
+\t"io"
+\t"net/http"
+\t"os"
+)
+
+func main() {
+\tcredentials := base64.StdEncoding.EncodeToString(
+\t\t[]byte(os.Getenv("PROABONO_AGENT_KEY") + ":" + os.Getenv("PROABONO_API_KEY")),
+\t)
+\turl := "https://api-" + os.Getenv("PROABONO_ID_BUSINESS") + ".proabono.com/v1/Customers"
+
+\treq, _ := http.NewRequest("GET", url, nil)
+\treq.Header.Set("Authorization", "Basic "+credentials)
+
+\tresp, _ := http.DefaultClient.Do(req)
+\tdefer resp.Body.Close()
+
+\tbody, _ := io.ReadAll(resp.Body)
+\tfmt.Println(string(body))
+}`,
+
+  java:
+`import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Base64;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        String credentials = Base64.getEncoder().encodeToString(
+            (System.getenv("PROABONO_AGENT_KEY") + ":" + System.getenv("PROABONO_API_KEY"))
+                .getBytes()
+        );
+        String url = "https://api-" + System.getenv("PROABONO_ID_BUSINESS")
+            + ".proabono.com/v1/Customers";
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Authorization", "Basic " + credentials)
+            .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}`,
+
+  csharp:
+`using System;
+using System.Net.Http;
+using System.Text;
+
+var credentials = Convert.ToBase64String(
+    Encoding.ASCII.GetBytes(
+        Environment.GetEnvironmentVariable("PROABONO_AGENT_KEY") + ":" +
+        Environment.GetEnvironmentVariable("PROABONO_API_KEY")
+    )
+);
+var idBusiness = Environment.GetEnvironmentVariable("PROABONO_ID_BUSINESS");
+
+using var client = new HttpClient();
+client.DefaultRequestHeaders.Add("Authorization", "Basic " + credentials);
+
+var response = await client.GetAsync(
+    "https://api-" + idBusiness + ".proabono.com/v1/Customers"
+);
+Console.WriteLine(await response.Content.ReadAsStringAsync());`,
+
+  ruby:
+`require 'net/http'
+require 'base64'
+require 'json'
+
+credentials = Base64.strict_encode64(
+  ENV['PROABONO_AGENT_KEY'] + ':' + ENV['PROABONO_API_KEY']
+)
+uri = URI('https://api-' + ENV['PROABONO_ID_BUSINESS'] + '.proabono.com/v1/Customers')
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+
+request = Net::HTTP::Get.new(uri)
+request['Authorization'] = 'Basic ' + credentials
+
+puts JSON.parse(http.request(request).body)`,
+};
 
 The ProAbono API Live uses **HTTP Basic Auth** — an Agent Key and an API Key encoded together in the `Authorization` header.
 
@@ -34,34 +188,7 @@ Encode your credentials as:
 Authorization: Basic <base64(AgentKey:ApiKey)>
 ```
 
-<Tabs>
-<TabItem value="curl" label="curl" default>
-
-The `-u` flag encodes credentials automatically:
-
-```bash
-curl -u "<AgentKey>:<ApiKey>" \
-  "https://api-<IdBusiness>.proabono.com/v1/Customer/1"
-```
-
-</TabItem>
-<TabItem value="js" label="JavaScript">
-
-```js
-const credentials = btoa(`${process.env.PROABONO_AGENT_KEY}:${process.env.PROABONO_API_KEY}`);
-
-const response = await fetch('https://api-<IdBusiness>.proabono.com/v1/Customer/1', {
-  headers: { Authorization: `Basic ${credentials}` },
-});
-```
-
-:::note
-`btoa` is available in the browser and Node.js ≥ 16. For older Node.js, use
-`Buffer.from(agentKey + ':' + apiKey).toString('base64')` instead.
-:::
-
-</TabItem>
-</Tabs>
+<StaticSnippets snippets={snippets} />
 
 :::note
 All requests and responses use `Content-Type: application/json`.

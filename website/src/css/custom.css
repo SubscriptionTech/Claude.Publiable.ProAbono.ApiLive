@@ -286,3 +286,15 @@ tr:hover td {
 .openapi-explorer__code-block code {
   max-height: 400px;
 }
+
+/* ─── OpenAPI params list ────────────────────────────────────────────────── */
+
+.openapi-params__list-item {
+  padding: 5px 0 5px 1rem;
+}
+
+/* ─── Responses: remove redundant MIME-type tab (always application/json) ── */
+
+.openapi-tabs__mime-container {
+  display: none !important;
+}

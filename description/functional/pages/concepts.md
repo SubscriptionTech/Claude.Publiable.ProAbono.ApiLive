@@ -20,9 +20,9 @@ A full-width SVG diagram illustrating the entity relationships. Update this diag
 
 #### 2. Glossary
 
-Table: Entity, Description, API resource.
+Table: Resource, Description, API resource.
 
-| Entity | Description | Resource |
+| Resource | Description | Resource |
 |--------|-------------|----------|
 | Business | Represents an organization that sells a subscription-based product through ProAbono. | (not an API Live resource) |
 | Segment | A sub-division of a Business with its own currency, billing rules, customers, and offers catalog. | (not an API Live resource) |
