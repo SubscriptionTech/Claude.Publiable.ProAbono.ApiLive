@@ -41,7 +41,7 @@ Extracted from the ProAbono logo SVG (`brand.ab41491b.svg`):
 | Primary accent | `--ifm-color-primary` | `#0074D4` |
 | Primary hover | `--ifm-color-primary-dark` | `#0063B5` |
 | Primary lightest (tint) | `--ifm-color-primary-lightest` | `#D6EAFF` |
-| Code block background | `--ifm-code-background` | `#1E1E2E` |
+| Code block background | `--ifm-code-background` | `#1A1D23` |
 | Inline code background | — | `#F3F4F6` |
 | Inline code text | — | `#0063B5` |
 | Admonition tip border | — | `#F0D250` |
