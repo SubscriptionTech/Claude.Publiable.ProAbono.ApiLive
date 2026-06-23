@@ -5,6 +5,19 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Docusaurus injects Prism theme colors as inline styles on every code block,
+// which overrides any CSS variable declaration. The only way to control
+// --prism-background-color from CSS is to make the JS theme object agree
+// with the design tokens from the start.
+const lightPrismTheme = {
+  plain: { color: '#9CDCFE', backgroundColor: '#333' },   // matches --pad-background-sidebar (light)
+  styles: prismThemes.vsDark.styles,
+};
+const darkPrismTheme = {
+  plain: { color: '#9CDCFE', backgroundColor: '#1F2937' }, // matches --pad-background-sidebar (dark)
+  styles: prismThemes.vsDark.styles,
+};
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'API Live | Reference',
@@ -108,8 +121,8 @@ const config = {
         { language: "powershell" },
       ],
       prism: {
-        theme: prismThemes.vsDark,
-        darkTheme: prismThemes.vsDark,
+        theme: lightPrismTheme,
+        darkTheme: darkPrismTheme,
         additionalLanguages: ['bash', 'json', 'http'],
       },
     }),

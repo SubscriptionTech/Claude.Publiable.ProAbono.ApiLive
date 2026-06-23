@@ -19,14 +19,40 @@ https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap
 
 ## Prism syntax highlighter
 
-Configure in `website/docusaurus.config.js`:
+### Inline style injection — why CSS variables alone are not enough
+
+Docusaurus reads the configured Prism theme object at render time and injects `plain.color` and `plain.backgroundColor` as **inline styles** directly on each code block element. Inline styles have higher specificity than any CSS rule, so a declaration like `--prism-background-color: var(--pad-background-sidebar)` in `custom.css` is silently overridden.
+
+The only reliable way to control those colors from the design token system is to make the Prism theme JS object agree with the token values from the start. Because the theme object is pure JavaScript evaluated at build time, it cannot reference CSS variables — the flow must go **JS → CSS**, never the other way around.
+
+### Configuration
+
+Define separate light and dark theme objects in `website/docusaurus.config.js`, using the exact hex values from the `--pad-background-sidebar` token:
+
+```js
+import {themes as prismThemes} from 'prism-react-renderer';
+
+const lightPrismTheme = {
+  plain: { color: '#9CDCFE', backgroundColor: '#333' },   // matches --pad-background-sidebar (light)
+  styles: prismThemes.vsDark.styles,
+};
+const darkPrismTheme = {
+  plain: { color: '#9CDCFE', backgroundColor: '#1F2937' }, // matches --pad-background-sidebar (dark)
+  styles: prismThemes.vsDark.styles,
+};
+```
+
+Then reference them in the Prism config:
 
 ```js
 prism: {
-  theme: require('prism-react-renderer').themes.vsDark,
+  theme: lightPrismTheme,
+  darkTheme: darkPrismTheme,
   additionalLanguages: ['bash', 'json', 'http'],
 },
 ```
+
+**Consequence:** do not set `--prism-background-color` in `custom.css`. It would be overridden anyway, and the inline value is now already correct. If `--pad-background-sidebar` is ever changed, update both the CSS token and the two `backgroundColor` values in `docusaurus.config.js`.
 
 ---
 

@@ -7,6 +7,16 @@ ProAbono is a subscription-billing platform and API Live is designed to craft yo
 
 The ProAbono API Live lets you manage subscriptions programmatically — create customers, start or update subscriptions, check feature access, and calculate billing costs before committing to a change.
 
+Before getting started, you need a ProAbono account. [Sign up here](https://via.proabono.com/Auth/Welcome) to create one.
+
 :::warning
-This API is designed to be used from a server to a server, and **NOT** from a client to server in JavaScript. This is very important for security purposes.
+**Never call this API from a browser.** Your API key would be exposed in network requests, browser DevTools, and JavaScript bundles — readable by any user.
+
+Route calls through your own backend instead:
+
+```
+Browser → Your backend → ProAbono API Live
+```
+
+Your backend holds the API key; the browser never sees it.
 :::

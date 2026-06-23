@@ -1,1 +1,420 @@
-{"responses":{"200":{"description":"Paginated list of offers","content":{"application/json":{"schema":{"allOf":[{"type":"object","properties":{"Count":{"type":"integer","description":"Number of items returned in this page"},"Page":{"type":"integer","description":"Current page index (1-based)"},"SizePage":{"type":"integer","description":"Page size used for this response"},"TotalItems":{"type":"integer","description":"Total number of matching items across all pages"}},"title":"PaginatedList"},{"type":"object","properties":{"Items":{"type":"array","items":{"type":"object","properties":{"Id":{"type":"integer"},"IdSegment":{"type":"integer","description":"Internal identifier of the segment the offer belongs to"},"ReferenceOffer":{"type":"string"},"ReferenceSegment":{"type":"string","description":"Shared identifier of the segment the offer belongs to"},"Name":{"type":"string"},"IsVisible":{"type":"boolean"},"IsPriced":{"type":"boolean","description":"`false` if the offer is always free, `true` if it has any fee or paying feature (e.g. an offer free until a threshold is reached is considered priced)"},"TitleLocalized":{"type":"string"},"DescriptionLocalized":{"type":"string","nullable":true},"PricingLocalized":{"type":"string","nullable":true},"Currency":{"type":"string"},"AmountUpFront":{"type":"integer"},"AmountTrial":{"type":"integer"},"DurationTrial":{"type":"integer"},"UnitTrial":{"type":"string","enum":["Day","Week","Month","Year"]},"PricingSubtotal":{"type":"integer"},"PricingTotal":{"type":"integer"},"AmountRecurrence":{"type":"integer"},"DurationRecurrence":{"type":"integer"},"UnitRecurrence":{"type":"string","enum":["Day","Week","Month","Year"]},"CountRecurrences":{"type":"integer","nullable":true},"CountMinRecurrences":{"type":"integer","nullable":true},"AmountTermination":{"type":"integer"},"Features":{"type":"array","items":{"type":"object","properties":{"Id":{"type":"integer"},"ReferenceFeature":{"type":"string"},"IsVisible":{"type":"boolean"},"TitleLocalized":{"type":"string"},"DescriptionLocalized":{"type":"string"},"TypeFeature":{"type":"string","enum":["OnOff","Limitation","Consumption"]},"PricingLocalized":{"type":"string","nullable":true},"Properties":{"type":"string","description":"Behavioral flags, comma-separated","nullable":true},"IsIncluded":{"type":"boolean","description":"OnOff only","nullable":true},"IsEnabled":{"type":"boolean","description":"OnOff only","nullable":true},"QuantityIncluded":{"type":"integer","description":"Limitation and Consumption only","nullable":true},"QuantityCurrent":{"type":"integer","description":"Limitation and Consumption only","nullable":true},"Metadata":{"type":"object","description":"Custom key-value pairs (max 5 pairs, 450 chars per value)","additionalProperties":{"type":"string"},"title":"Metadata"}},"title":"OfferFeature"}},"Metadata":{"type":"object","description":"Custom key-value pairs (max 5 pairs, 450 chars per value)","additionalProperties":{"type":"string"},"title":"Metadata"},"Links":{"type":"array","items":{"type":"object","properties":{"rel":{"type":"string","description":"Relationship type (e.g. \"self\", \"insite-home\")"},"href":{"type":"string","description":"URL path to the related resource"},"query":{"type":"string","description":"Encrypted query parameter (used for portal links)"}},"title":"Link"}}},"title":"Offer"}}}}],"title":"OfferList"},"example":{"Page":1,"SizePage":10,"Count":2,"TotalItems":2,"Items":[{"Id":64400,"IdSegment":69,"ReferenceOffer":"offer-starter","ReferenceSegment":"demo-eur","IsVisible":true,"IsPriced":true,"Name":"Premium","TitleLocalized":"Premium","DescriptionLocalized":"Premium plan description","PricingLocalized":"€190.00/month(s)","Currency":"EUR","AmountUpFront":0,"AmountTrial":0,"DurationTrial":0,"UnitTrial":"Month","PricingSubtotal":19000,"PricingTotal":22800,"AmountRecurrence":19000,"DurationRecurrence":1,"UnitRecurrence":"Month","CountRecurrences":null,"CountMinRecurrences":null,"AmountTermination":0,"Features":[{"Id":48896,"ReferenceFeature":"feat-module-a","IsVisible":true,"TitleLocalized":"Module A","TypeFeature":"OnOff","PricingLocalized":null,"IsIncluded":true,"IsEnabled":true},{"Id":48897,"ReferenceFeature":"feat-users","IsVisible":true,"TitleLocalized":"Active Users","TypeFeature":"Limitation","PricingLocalized":"+€7.00/extra unit","Properties":"UpdatableBeforeSubscription, UpdatableAfterSubscription, FreeInTrial","QuantityIncluded":3,"QuantityCurrent":3},{"Id":48898,"ReferenceFeature":"feat-module-b","IsVisible":true,"Properties":"UpdatableBeforeSubscription, UpdatableAfterSubscription","TitleLocalized":"Module B","PricingLocalized":"optional +€10.00","TypeFeature":"OnOff","IsIncluded":false,"IsEnabled":false},{"Id":48899,"ReferenceFeature":"feat-text-messages","IsVisible":true,"TitleLocalized":"Text Messages Sent","TypeFeature":"Consumption","PricingLocalized":"from €0.20/extra unit","QuantityIncluded":0,"QuantityCurrent":0}],"Metadata":{"category":"enterprise"},"Links":[{"rel":"insite-home","href":"https://demo-eur.proabono.com/portal-anon"},{"rel":"insite-subscribe","query":"{Unique-Encrypted-Query-Parameter}"}]},{"Id":64401,"ReferenceOffer":"offer-premium","IsVisible":true,"Name":"Premium Pro+","TitleLocalized":"Premium Pro+","PricingLocalized":"€250.00/month(s) ","Currency":"EUR","PricingSubtotal":25000,"PricingTotal":30000,"AmountRecurrence":25000,"DurationRecurrence":1,"UnitRecurrence":"Month","Features":[{"Id":48896,"ReferenceFeature":"feat-module-a","IsVisible":true,"TitleLocalized":"Module A","TypeFeature":"OnOff","IsIncluded":true,"IsEnabled":true},{"Id":48897,"ReferenceFeature":"feat-users","IsVisible":true,"Properties":"UpdatableBeforeSubscription, UpdatableAfterSubscription, FreeInTrial","TitleLocalized":"Active Users","PricingLocalized":"from €3.00/extra unit","TypeFeature":"Limitation","QuantityIncluded":10,"QuantityCurrent":10},{"Id":48898,"ReferenceFeature":"feat-module-b","IsVisible":true,"TitleLocalized":"Module B","TypeFeature":"OnOff","IsIncluded":true,"IsEnabled":true},{"Id":48899,"ReferenceFeature":"feat-text-messages","IsVisible":true,"TitleLocalized":"Text Messages Sent","PricingLocalized":"from €0.01/extra unit","TypeFeature":"Consumption","QuantityIncluded":100,"QuantityCurrent":0}],"Links":[{"rel":"insite-home","href":"https://demo-eur.proabono.com/portal-anon"},{"rel":"insite-subscribe","query":"{Unique-Encrypted-Query-Parameter2}"}]}]}}}},"401":{"description":"Missing or invalid credentials","content":{"application/json":{"schema":{"type":"object","properties":{"Code":{"type":"string"},"Message":{"type":"string"},"Exception":{"type":"string","description":"Only present on some 500 errors"},"Target":{"type":"string","description":"Identifies the field or resource at fault"}},"title":"Error"}}}}}}
+{
+  "responses": {
+    "200": {
+      "description": "Paginated list of offers",
+      "content": {
+        "application/json": {
+          "schema": {
+            "allOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Count": {
+                    "type": "integer",
+                    "description": "Number of items returned in this page"
+                  },
+                  "Page": {
+                    "type": "integer",
+                    "description": "Current page index (1-based)"
+                  },
+                  "SizePage": {
+                    "type": "integer",
+                    "description": "Page size used for this response"
+                  },
+                  "TotalItems": {
+                    "type": "integer",
+                    "description": "Total number of matching items across all pages"
+                  }
+                },
+                "title": "PaginatedList"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "Items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Id": {
+                          "type": "integer"
+                        },
+                        "IdSegment": {
+                          "type": "integer",
+                          "description": "Internal identifier of the segment the offer belongs to"
+                        },
+                        "ReferenceOffer": {
+                          "type": "string"
+                        },
+                        "ReferenceSegment": {
+                          "type": "string",
+                          "description": "Shared identifier of the segment the offer belongs to"
+                        },
+                        "Name": {
+                          "type": "string"
+                        },
+                        "IsVisible": {
+                          "type": "boolean"
+                        },
+                        "IsPriced": {
+                          "type": "boolean",
+                          "description": "`false` if the offer is always free, `true` if it has any fee or paying feature (e.g. an offer free until a threshold is reached is considered priced)"
+                        },
+                        "TitleLocalized": {
+                          "type": "string"
+                        },
+                        "DescriptionLocalized": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "PricingLocalized": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "Currency": {
+                          "type": "string"
+                        },
+                        "AmountUpFront": {
+                          "type": "integer"
+                        },
+                        "AmountTrial": {
+                          "type": "integer"
+                        },
+                        "DurationTrial": {
+                          "type": "integer"
+                        },
+                        "UnitTrial": {
+                          "type": "string",
+                          "enum": [
+                            "Day",
+                            "Week",
+                            "Month",
+                            "Year"
+                          ]
+                        },
+                        "PricingSubtotal": {
+                          "type": "integer"
+                        },
+                        "PricingTotal": {
+                          "type": "integer"
+                        },
+                        "AmountRecurrence": {
+                          "type": "integer"
+                        },
+                        "DurationRecurrence": {
+                          "type": "integer"
+                        },
+                        "UnitRecurrence": {
+                          "type": "string",
+                          "enum": [
+                            "Day",
+                            "Week",
+                            "Month",
+                            "Year"
+                          ]
+                        },
+                        "CountRecurrences": {
+                          "type": "integer",
+                          "nullable": true
+                        },
+                        "CountMinRecurrences": {
+                          "type": "integer",
+                          "nullable": true
+                        },
+                        "AmountTermination": {
+                          "type": "integer"
+                        },
+                        "Features": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Id": {
+                                "type": "integer"
+                              },
+                              "ReferenceFeature": {
+                                "type": "string"
+                              },
+                              "IsVisible": {
+                                "type": "boolean"
+                              },
+                              "TitleLocalized": {
+                                "type": "string"
+                              },
+                              "DescriptionLocalized": {
+                                "type": "string"
+                              },
+                              "TypeFeature": {
+                                "type": "string",
+                                "enum": [
+                                  "OnOff",
+                                  "Limitation",
+                                  "Consumption"
+                                ]
+                              },
+                              "PricingLocalized": {
+                                "type": "string",
+                                "nullable": true
+                              },
+                              "Properties": {
+                                "type": "string",
+                                "description": "Behavioral flags, comma-separated",
+                                "nullable": true
+                              },
+                              "IsIncluded": {
+                                "type": "boolean",
+                                "description": "OnOff only",
+                                "nullable": true
+                              },
+                              "IsEnabled": {
+                                "type": "boolean",
+                                "description": "OnOff only",
+                                "nullable": true
+                              },
+                              "QuantityIncluded": {
+                                "type": "integer",
+                                "description": "Limitation and Consumption only",
+                                "nullable": true
+                              },
+                              "QuantityCurrent": {
+                                "type": "integer",
+                                "description": "Limitation and Consumption only",
+                                "nullable": true
+                              },
+                              "Metadata": {
+                                "type": "object",
+                                "description": "Custom key-value pairs (max 5 pairs, 450 chars per value)",
+                                "additionalProperties": {
+                                  "type": "string"
+                                },
+                                "title": "Metadata"
+                              }
+                            },
+                            "title": "OfferFeature"
+                          }
+                        },
+                        "Metadata": {
+                          "type": "object",
+                          "description": "Custom key-value pairs (max 5 pairs, 450 chars per value)",
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "title": "Metadata"
+                        },
+                        "Links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "rel": {
+                                "type": "string",
+                                "description": "Relationship type (e.g. \"self\", \"insite-home\")"
+                              },
+                              "href": {
+                                "type": "string",
+                                "description": "URL path to the related resource"
+                              },
+                              "query": {
+                                "type": "string",
+                                "description": "Encrypted query parameter (used for portal links)"
+                              }
+                            },
+                            "title": "Link"
+                          }
+                        }
+                      },
+                      "title": "Offer"
+                    }
+                  }
+                }
+              }
+            ],
+            "title": "OfferList"
+          },
+          "example": {
+            "Page": 1,
+            "SizePage": 10,
+            "Count": 2,
+            "TotalItems": 2,
+            "Items": [
+              {
+                "Id": 64400,
+                "IdSegment": 69,
+                "ReferenceOffer": "offer-starter",
+                "ReferenceSegment": "demo-eur",
+                "IsVisible": true,
+                "IsPriced": true,
+                "Name": "Premium",
+                "TitleLocalized": "Premium",
+                "DescriptionLocalized": "Premium plan description",
+                "PricingLocalized": "€190.00/month(s)",
+                "Currency": "EUR",
+                "AmountUpFront": 0,
+                "AmountTrial": 0,
+                "DurationTrial": 0,
+                "UnitTrial": "Month",
+                "PricingSubtotal": 19000,
+                "PricingTotal": 22800,
+                "AmountRecurrence": 19000,
+                "DurationRecurrence": 1,
+                "UnitRecurrence": "Month",
+                "CountRecurrences": null,
+                "CountMinRecurrences": null,
+                "AmountTermination": 0,
+                "Features": [
+                  {
+                    "Id": 48896,
+                    "ReferenceFeature": "feat-module-a",
+                    "IsVisible": true,
+                    "TitleLocalized": "Module A",
+                    "TypeFeature": "OnOff",
+                    "PricingLocalized": null,
+                    "IsIncluded": true,
+                    "IsEnabled": true
+                  },
+                  {
+                    "Id": 48897,
+                    "ReferenceFeature": "feat-users",
+                    "IsVisible": true,
+                    "TitleLocalized": "Active Users",
+                    "TypeFeature": "Limitation",
+                    "PricingLocalized": "+€7.00/extra unit",
+                    "Properties": "UpdatableBeforeSubscription, UpdatableAfterSubscription, FreeInTrial",
+                    "QuantityIncluded": 3,
+                    "QuantityCurrent": 3
+                  },
+                  {
+                    "Id": 48898,
+                    "ReferenceFeature": "feat-module-b",
+                    "IsVisible": true,
+                    "Properties": "UpdatableBeforeSubscription, UpdatableAfterSubscription",
+                    "TitleLocalized": "Module B",
+                    "PricingLocalized": "optional +€10.00",
+                    "TypeFeature": "OnOff",
+                    "IsIncluded": false,
+                    "IsEnabled": false
+                  },
+                  {
+                    "Id": 48899,
+                    "ReferenceFeature": "feat-text-messages",
+                    "IsVisible": true,
+                    "TitleLocalized": "Text Messages Sent",
+                    "TypeFeature": "Consumption",
+                    "PricingLocalized": "from €0.20/extra unit",
+                    "QuantityIncluded": 0,
+                    "QuantityCurrent": 0
+                  }
+                ],
+                "Metadata": {
+                  "category": "enterprise"
+                },
+                "Links": [
+                  {
+                    "rel": "insite-home",
+                    "href": "https://demo-eur.proabono.com/portal-anon"
+                  },
+                  {
+                    "rel": "insite-subscribe",
+                    "query": "<crypted-query-arg>"
+                  }
+                ]
+              },
+              {
+                "Id": 64401,
+                "ReferenceOffer": "offer-premium",
+                "IsVisible": true,
+                "Name": "Premium Pro+",
+                "TitleLocalized": "Premium Pro+",
+                "PricingLocalized": "€250.00/month(s) ",
+                "Currency": "EUR",
+                "PricingSubtotal": 25000,
+                "PricingTotal": 30000,
+                "AmountRecurrence": 25000,
+                "DurationRecurrence": 1,
+                "UnitRecurrence": "Month",
+                "Features": [
+                  {
+                    "Id": 48896,
+                    "ReferenceFeature": "feat-module-a",
+                    "IsVisible": true,
+                    "TitleLocalized": "Module A",
+                    "TypeFeature": "OnOff",
+                    "IsIncluded": true,
+                    "IsEnabled": true
+                  },
+                  {
+                    "Id": 48897,
+                    "ReferenceFeature": "feat-users",
+                    "IsVisible": true,
+                    "Properties": "UpdatableBeforeSubscription, UpdatableAfterSubscription, FreeInTrial",
+                    "TitleLocalized": "Active Users",
+                    "PricingLocalized": "from €3.00/extra unit",
+                    "TypeFeature": "Limitation",
+                    "QuantityIncluded": 10,
+                    "QuantityCurrent": 10
+                  },
+                  {
+                    "Id": 48898,
+                    "ReferenceFeature": "feat-module-b",
+                    "IsVisible": true,
+                    "TitleLocalized": "Module B",
+                    "TypeFeature": "OnOff",
+                    "IsIncluded": true,
+                    "IsEnabled": true
+                  },
+                  {
+                    "Id": 48899,
+                    "ReferenceFeature": "feat-text-messages",
+                    "IsVisible": true,
+                    "TitleLocalized": "Text Messages Sent",
+                    "PricingLocalized": "from €0.01/extra unit",
+                    "TypeFeature": "Consumption",
+                    "QuantityIncluded": 100,
+                    "QuantityCurrent": 0
+                  }
+                ],
+                "Links": [
+                  {
+                    "rel": "insite-home",
+                    "href": "https://demo-eur.proabono.com/portal-anon"
+                  },
+                  {
+                    "rel": "insite-subscribe",
+                    "query": "<crypted-query>"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "401": {
+      "description": "Missing or invalid credentials",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "Code": {
+                "type": "string"
+              },
+              "Message": {
+                "type": "string"
+              },
+              "Exception": {
+                "type": "string",
+                "description": "Only present on some 500 errors"
+              },
+              "Target": {
+                "type": "string",
+                "description": "Identifies the field or resource at fault"
+              }
+            },
+            "title": "Error"
+          }
+        }
+      }
+    }
+  }
+}

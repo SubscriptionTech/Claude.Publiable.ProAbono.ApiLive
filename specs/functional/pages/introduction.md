@@ -19,11 +19,24 @@ Two sentences describing what the platform is and what the API lets a developer 
 - ProAbono is a subscription-billing platform; API Live is designed to craft end-user experiences in a few calls.
 - The API lets you manage subscriptions programmatically — create customers, start or update subscriptions, check feature access, and calculate billing costs before committing to a change.
 
-### 2. Security warning
+### 2. Account sign-up prompt
 
-A mandatory `warning` admonition:
+A sentence before the warning:
 
-> This API is designed to be used from a server to a server, and **NOT** from a client to server in JavaScript. This is very important for security purposes.
+> Before getting started, you need a ProAbono account. [Sign up here](https://via.proabono.com/Auth/Welcome) to create one.
+
+### 3. Security warning
+
+A mandatory `warning` admonition that:
+
+1. Names the concrete risk: calling the API from a browser exposes the API key in network requests, browser DevTools, and JavaScript bundles — visible to any user.
+2. Shows the correct proxy architecture in a plain-text diagram:
+
+```
+Browser → Your backend → ProAbono API Live
+```
+
+3. Closes with one sentence: "Your backend holds the API key; the browser never sees it."
 
 ---
 

@@ -20,7 +20,7 @@ One sentence: what the ProAbono API Live lets a developer do (create customers, 
 
 Short bulleted list:
 
-- A ProAbono backoffice account with an active Business
+- A ProAbono account with an active Business
 - Your **Agent Key** and **API Key** — find them in the backoffice under **Integration**
 - Your **Business ID** (`IdBusiness`) — also in the Integration section
 
