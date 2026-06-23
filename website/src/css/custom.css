@@ -459,6 +459,7 @@ tr:hover td {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
   margin-top: 0px;
+  border: none !important;
 }
 
 /* ── Highlighted match terms ── */
