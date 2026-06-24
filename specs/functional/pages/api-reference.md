@@ -2,25 +2,7 @@
 
 The API Reference section contains one page per API operation. How these pages are produced is described in the [pipeline specifications](../../pipeline/index.md); how they are rendered is described in the [technical specifications](../../technical/index.md).
 
----
-
-## Layout
-
-Each API reference page uses a 3-pane layout:
-
-| Pane | Content |
-|------|---------|
-| Left | Collapsible sidebar listing all operations, grouped by resource |
-| Center | Operation description, path parameters, query parameters, request body schema |
-| Right | Code samples (request), response examples (JSON) |
-
-JSON is displayed exclusively in the right pane. The center pane contains only prose and parameter tables — no raw JSON.
-
----
-
-## Sidebar
-
-The API reference sidebar lists all operations, grouped by resource. How the sidebar is generated and integrated into the site navigation is described in the [technical specifications](../../technical/index.md).
+For the layout definition and per-operation page structure, see `shared/DocApi/functional/api-reference-layout.md`.
 
 ---
 
@@ -39,23 +21,7 @@ Ten resources. Display order and grouping rules are defined in [shared/ProAbonoL
 | Subscription | Subscriptions | Customer/offer links — create, start, suspend, upgrade, terminate |
 | Invoice | Invoices | Billing documents — retrieve and list (read-only) |
 | Quoting | Quoting | Price simulation — compute the exact cost of an operation before executing it |
-| Balance | Balance Lines | Credit/debit entries — create and list |
+| Balance | Balance | Credit/debit entries — create and list |
 | Customer Address Billing | Customer Address Billing | Customer billing address — retrieve and update |
 | Customer Payment Settings | Customer Payment Settings | Customer payment configuration — retrieve and update |
 
----
-
-## Per-operation page structure
-
-Each operation page contains:
-
-**Center pane**
-- Operation title and description
-- Authorization note (if the operation requires authentication)
-- Path parameters table (if any)
-- Query parameters table (if any)
-- Request body schema (if any) — field names, types, required flag, descriptions
-
-**Right pane**
-- Request code sample (curl by default; additional languages may be added)
-- Response schema and example (JSON)

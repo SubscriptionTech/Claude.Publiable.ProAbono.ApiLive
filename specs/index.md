@@ -6,7 +6,38 @@ Its purpose is to give a language model (such as Claude Code) everything it need
 
 ## How to use this folder
 
-Read this file first, then follow the links below. The specification is organized into three categories — read them in the order listed.
+Read this file first, then follow the links below in order. The specification has two layers:
+
+1. **Shared base (DocApi)** — applies to all ProAbono API documentation websites
+2. **API Live overrides** — what is specific to this website; takes precedence over DocApi
+
+```mermaid
+graph TD
+    subgraph submodules["shared/ — git submodules"]
+        DocApi["DocApi\n─────────────────\nBase specs for all\nProAbono API doc websites\nfunctional · pipeline · technical"]
+        ProAbonoLive["ProAbonoLive\n─────────────────\nOpenAPI spec\nResource docs\nConventions · Enums · Actions"]
+    end
+
+    subgraph project["Claude.DocApiLive — this project"]
+        Specs["specs/\n─────────────────\nWebsite specs\nAPI Live overrides\n(extend DocApi, take precedence)"]
+        Pipeline["Content pipeline\n─────────────────\nTransforms ProAbonoLive\ninto website pages"]
+        Website["website/\n─────────────────\nDocusaurus\nPublic documentation site"]
+    end
+
+    DocApi -->|"shared base (extended by)"| Specs
+    Specs -->|"blueprint for"| Website
+    Specs -->|"describes pipeline behavior"| Pipeline
+    ProAbonoLive -->|"source of truth for API content"| Pipeline
+    Pipeline -->|"generates pages into"| Website
+```
+
+## Shared base specifications (DocApi)
+
+All ProAbono API documentation websites share a common foundation. Read the DocApi specifications first — they define the base design, stack, pipeline architecture, and implementation patterns.
+
+Shared spec root: [`shared/DocApi/`](../shared/DocApi/)
+
+The three categories below mirror the DocApi structure. Each category index lists the relevant DocApi files alongside the API Live overrides, and notes which project files extend or replace the shared defaults.
 
 ## 1. Functional — what to build
 
@@ -64,3 +95,5 @@ When one spec needs to point to another, reference the **index** of that categor
 ## Relationship to the API specs
 
 The website documents the ProAbono API Live. The API specs live in [shared/ProAbonoLive/](../shared/ProAbonoLive/). The website implementation must treat those specs as the source of truth for all API-related content.
+
+**This website is public documentation.** When working on any part of the API Reference — content, navigation, grouping, or ordering — read [`shared/ProAbonoLive/specs/authoring.md`](../shared/ProAbonoLive/specs/authoring.md) first. It is the mandatory source of truth for how resources are presented in public-facing targets.

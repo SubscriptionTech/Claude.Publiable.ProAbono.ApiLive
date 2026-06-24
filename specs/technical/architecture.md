@@ -2,6 +2,8 @@
 
 Repo layout and build commands for the ProAbono API Live documentation website.
 
+For the general repo layout template, see `shared/DocApi/technical/architecture.md`.
+
 ## Repo layout
 
 ```
@@ -26,31 +28,3 @@ Claude.DocApiLive/
 └── specs/                         ← specification files
 ```
 
-## Build commands
-
-### Development server
-
-```bash
-cd website
-npm start
-```
-
-### Production build
-
-```bash
-cd website
-npm run build
-```
-
-Output: `website/build/` — the directory deployed to Azure Static Web Apps.
-
-### Updating API content (local)
-
-Run from the `website/` folder after every submodule update:
-
-```bash
-cd website
-npm run gen-api-docs
-```
-
-Writes to `website/docs/api-reference/`. Commit the result before pushing. See [content-pipeline.md](content-pipeline.md) for the full command and plugin configuration.

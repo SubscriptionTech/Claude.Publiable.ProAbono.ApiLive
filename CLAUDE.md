@@ -16,7 +16,10 @@ When producing a list that the user needs to review and validate — such as a l
 
 ### Working with specs
 
-When the user asks to do anything with the specs, assume the user is talking about the specs of the working project. If the user is working on a file of the submodule, assume the user is talking about the specs of the submodule. If there is any doubt, ask the user which specs to update.
+- **Local specs** are the specs located in the root `specs/` folder of this project.
+- **Shared specs** are specs located inside a `shared/` folder. When multiple shared utilities have been added, the name of the shared utility is used for disambiguation (e.g. "the DocApi specs").
+
+When the user asks to do anything with the specs, default to the local specs unless they explicitly reference a shared utility by name or are currently working on a file inside a shared folder. If there is any doubt, ask the user which specs to update.
 
 ### Language
 
@@ -53,5 +56,5 @@ The [specs/](specs/) folder contains the full requirements for the ProAbono API 
 Read the following files for context before answering questions about this project:
 
 <!-- populated by pa-shared-add -->
-- shared/ProAbonoLive/CLAUDE.md
 - shared/DocApi/CLAUDE.md
+- shared/ProAbonoLive/CLAUDE.md

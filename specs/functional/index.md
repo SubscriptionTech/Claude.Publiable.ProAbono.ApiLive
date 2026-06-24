@@ -4,11 +4,18 @@ This folder describes the ProAbono API Live documentation website from the **use
 
 Everything here is stack-agnostic. An implementer reading only this folder should understand *what* to build, not *how*.
 
-## Files
+## Shared DocApi files (read first)
 
-1. [design.md](design.md) — Visual identity: brand colors, color palette, typography, layout, and all UI components
-2. [navigation.md](navigation.md) — Sidebar sections, page hierarchy, and navbar items
-3. [pages/index.md](pages/index.md) — Page-by-page specifications
+See [`shared/DocApi/functional/index.md`](../../shared/DocApi/functional/index.md) for the full list of shared functional specifications (design, navigation, API reference layout).
+
+## API Live overrides (read after DocApi)
+
+| File | What it overrides or adds |
+|------|--------------------------|
+| [design.md](design.md) | Full design spec — identical to DocApi except site name is `"API Live \| Reference"` |
+| [navigation.md](navigation.md) | Per-section page counts and sub-page labels (extends DocApi section order) |
+| [pages/index.md](pages/index.md) — page-by-page specifications | |
+| [pages/api-reference.md](pages/api-reference.md) | Resource inventory table — the ten resources this API exposes (extends DocApi layout) |
 
 ## Related
 

@@ -2,20 +2,7 @@
 
 Sidebar structure and page hierarchy for the ProAbono API Live documentation website.
 
-## Sidebar sections
-
-The site has five authored sections and the API Reference resource groups, listed in the order they appear in the sidebar.
-
-| Position | Label |
-|----------|-------|
-| 1 | Introduction |
-| 2 | Getting Started |
-| 3 | Authentication |
-| 4 | Concepts |
-| 5+ | API resource groups (one per resource) |
-| Last | Guides |
-
-The API Reference resource groups are **not** wrapped in a collapsible "API Reference" category — they appear directly in the sidebar at the same level as the authored sections.
+For the standard section order and navbar items, see `shared/DocApi/functional/navigation.md`.
 
 ---
 
@@ -46,21 +33,12 @@ Two pages:
 1. **Core Concepts** — entity glossary and entity relationships
 2. **Conventions** — field naming, pagination, dates, amounts, and error shapes
 
-### Guides
-
-One page per documented cross-resource action. Currently empty — no actions are marked for documentation yet. See the [backlog](../backlog/add-guides.md).
-
 ### API Reference
 
 One page per API operation, organized into groups by resource. How these pages are produced is described in the [pipeline specifications](../pipeline/index.md).
 
 The auto-generated Introduction page (produced from the OpenAPI `info` block) is excluded and does not appear in the sidebar.
 
----
+### Guides
 
-## Navbar items
-
-Right-aligned navbar items, in order:
-
-1. **Search box** — a text input that accepts free-text queries and returns matching pages as a dropdown list. Results appear as the user types; selecting a result navigates to the corresponding page. Placeholder text: `Search`. Displayed to the left of the GitHub icon.
-2. **GitHub icon link** (repository URL to be provided at implementation time)
+One page per documented cross-resource action. Currently empty — no actions are marked for documentation yet. See the [backlog](../backlog/add-guides.md).

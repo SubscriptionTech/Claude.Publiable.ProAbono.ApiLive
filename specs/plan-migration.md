@@ -1,5 +1,7 @@
 # DocApi Extraction Plan
 
+> **Progress tracking:** Completed steps are marked with ~~strikethrough~~.
+
 Extract specs from `Claude.DocApiLive/specs/` that apply to all ProAbono API documentation websites into the `shared/DocApi/` submodule.
 
 ## DocApi target structure
@@ -25,45 +27,45 @@ shared/DocApi/
 
 ## Group A — Full extractions
 
-1. **`functional/design.md` → DocApi `functional/design.md`**
-   Brand colors, `--pad-` token system, typography, layout, navbar, search, sidebar, code blocks, admonitions, tables, breadcrumbs, in-page TOC, API operation page display rules. No Live-specific content.
+1. ~~**`functional/design.md` → DocApi `functional/design.md`**
+   Brand colors, `--pad-` token system, typography, layout, navbar, search, sidebar, code blocks, admonitions, tables, breadcrumbs, in-page TOC, API operation page display rules. No Live-specific content.~~
 
-2. **`technical/design.md` → DocApi `technical/design.md`**
-   Font loading, Prism syntax highlighter configuration, full CSS variable overrides (`custom.css` content), logo configuration. Identical across all ProAbono API doc sites.
+2. ~~**`technical/design.md` → DocApi `technical/design.md`**
+   Font loading, Prism syntax highlighter configuration, full CSS variable overrides (`custom.css` content), logo configuration. Identical across all ProAbono API doc sites.~~
 
-3. **`technical/stack.md` → DocApi `technical/stack.md`**
-   Docusaurus, OpenAPI plugin pair (`docusaurus-plugin-openapi-docs` + `docusaurus-theme-openapi-docs`), Pagefind, Azure SWA — tool choices and their rationale.
+3. ~~**`technical/stack.md` → DocApi `technical/stack.md`**
+   Docusaurus, OpenAPI plugin pair (`docusaurus-plugin-openapi-docs` + `docusaurus-theme-openapi-docs`), Pagefind, Azure SWA — tool choices and their rationale.~~
 
-4. **`technical/deployment.md` → DocApi `technical/deployment.md`**
-   Azure SWA creation steps, GitHub Actions workflow template, `staticwebapp.config.json` pattern. Project-specific values (secret token name, root redirect URL) are already called out as implementation-time details.
+4. ~~**`technical/deployment.md` → DocApi `technical/deployment.md`**
+   Azure SWA creation steps, GitHub Actions workflow template, `staticwebapp.config.json` pattern. Project-specific values (secret token name, root redirect URL) are already called out as implementation-time details.~~
 
 ---
 
 ## Group B — Partial extractions
 
-5. **`functional/navigation.md` → DocApi `functional/navigation.md`**
+5. ~~**`functional/navigation.md` → DocApi `functional/navigation.md`**
    **Extract:** standard section order (Introduction, Getting Started, Authentication, Concepts, API Reference groups, Guides) and navbar items pattern (Search box, GitHub icon).
-   **Keep in project:** per-section page counts and sub-page labels (Concepts having two pages, etc.).
+   **Keep in project:** per-section page counts and sub-page labels (Concepts having two pages, etc.).~~
 
-6. **`functional/pages/api-reference.md` → DocApi `functional/api-reference-layout.md`**
+6. ~~**`functional/pages/api-reference.md` → DocApi `functional/api-reference-layout.md`**
    **Extract:** the 3-pane layout definition (sidebar / description / code samples) and per-operation page structure (center pane / right pane content breakdown).
-   **Keep in project:** the resource inventory table (Customer, Usage, Offer, Feature, Subscription…).
+   **Keep in project:** the resource inventory table (Customer, Usage, Offer, Feature, Subscription…).~~
 
-7. **`pipeline/openapi.md` → DocApi `pipeline/openapi.md`**
+7. ~~**`pipeline/openapi.md` → DocApi `pipeline/openapi.md`**
    **Extract:** the pipeline architecture pattern (OpenAPI spec → generation tool → committed output, CI constraint — submodule not checked out in CI).
-   **Keep in project:** specific spec path (`shared/ProAbonoLive/open-api/…`) and output directory.
+   **Keep in project:** specific spec path (`shared/ProAbonoLive/open-api/…`) and output directory.~~
 
-8. **`technical/architecture.md` → DocApi `technical/architecture.md`**
+8. ~~**`technical/architecture.md` → DocApi `technical/architecture.md`**
    **Extract:** the general repo layout template (shared/ submodule + website/ Docusaurus project + specs/ folder) and build commands shape.
-   **Keep in project:** specific submodule path, OpenAPI spec filename.
+   **Keep in project:** specific submodule path, OpenAPI spec filename.~~
 
-9. **`technical/content-pipeline.md` → DocApi `technical/content-pipeline.md`**
+9. ~~**`technical/content-pipeline.md` → DocApi `technical/content-pipeline.md`**
    **Extract:** the plugin configuration shape (plugin + theme registration, `gen-api-docs` script, `sidebar.ts` import pattern).
-   **Keep in project:** specific `specPath`, `outputDir`, and plugin `id` values.
+   **Keep in project:** specific `specPath`, `outputDir`, and plugin `id` values.~~
 
-10. **`technical/navigation.md` → DocApi `technical/navigation.md`**
+10. ~~**`technical/navigation.md` → DocApi `technical/navigation.md`**
     **Extract:** `_category_.json` format and the autogenerated-entries + imported-API-sidebar pattern for `sidebars.js`.
-    **Keep in project:** specific `dirName` values.
+    **Keep in project:** specific `dirName` values.~~
 
 ---
 

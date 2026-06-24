@@ -3,7 +3,7 @@ title: Core Concepts
 sidebar_position: 1
 ---
 
-<img src="/img/ProAbono-core-concepts.svg" alt="ProAbono core concepts" style={{width: '100%'}} />
+<img src="/img/ProAbono-core-concepts.svg" alt="ProAbono core concepts" width="204" height="150" style={{width: '100%', height: 'auto'}} />
 
 ## Glossary
 
@@ -11,14 +11,14 @@ sidebar_position: 1
 |--------|-------------|----------|
 | Business | Represents an organization that sells a subscription-based product through ProAbono. | (not an API Live resource) |
 | Segment | A sub-division of a Business with its own currency, billing rules, customers, and offers catalog. | (not an API Live resource) |
-| Customer | An end-customer — the recipient and/or buyer of a subscription. | [Customers](../api-reference/customer/) |
-| Offer | A pricing plan. Subscribing a Customer to an Offer creates a Subscription. | [Offers](../api-reference/offer/) |
-| Feature | A component of an Offer: **on/off** (binary access), **limitation** (non-resetting quota), or **consumption** (quota reset at each renewal). | [Features](../api-reference/feature/) |
-| Subscription | Links an Offer to up to two Customers: a **recipient** (who consumes the service) and a **buyer** (who is billed). | [Subscriptions](../api-reference/subscription/) |
-| Invoice | A billing document. Issued when a subscription starts, and then monthly if there is anything to bill. | [Invoices](../api-reference/invoice/) |
-| Balance Line | A credit or debit entry that is used to establish the monthly invoice. | [Balance Lines](../api-reference/balance-line/) |
-| Usage | A snapshot of which Features a Customer can access and at what quantity. Updating a usage may trigger a new balance line depending on whether the related feature is paying. | [Usage](../api-reference/usage/) |
-| Quoting | A cost estimate for a billing operation (subscribe, upgrade, usage update, etc.) computed before it is executed. | [Quoting](../api-reference/quoting/) |
+| Customer | An end-customer — the recipient and/or buyer of a subscription. | [Customers](../api-reference/customers) |
+| Offer | A pricing plan. Subscribing a Customer to an Offer creates a Subscription. | [Offers](../api-reference/offers) |
+| Feature | A component of an Offer: **on/off** (binary access), **limitation** (non-resetting quota), or **consumption** (quota reset at each renewal). | [Features](../api-reference/features) |
+| Subscription | Links an Offer to up to two Customers: a **recipient** (who consumes the service) and a **buyer** (who is billed). | [Subscriptions](../api-reference/subscriptions) |
+| Invoice | A billing document. Issued when a subscription starts, and then monthly if there is anything to bill. | [Invoices](../api-reference/invoices) |
+| Balance Line | A credit or debit entry that is used to establish the monthly invoice. | [Balance Lines](../api-reference/balance) |
+| Usage | A snapshot of which Features a Customer can access and at what quantity. Updating a usage may trigger a new balance line depending on whether the related feature is paying. | [Usage](../api-reference/usage) |
+| Quoting | A cost estimate for a billing operation (subscribe, upgrade, usage update, etc.) computed before it is executed. | [Quoting](../api-reference/quoting) |
 
 ## Shared identifiers
 
