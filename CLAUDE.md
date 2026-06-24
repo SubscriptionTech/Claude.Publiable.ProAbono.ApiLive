@@ -58,3 +58,4 @@ Read the following files for context before answering questions about this proje
 <!-- populated by pa-shared-add -->
 - shared/DocApi/CLAUDE.md
 - shared/ProAbonoLive/CLAUDE.md
+- shared/ProAbonoBO/CLAUDE.md
