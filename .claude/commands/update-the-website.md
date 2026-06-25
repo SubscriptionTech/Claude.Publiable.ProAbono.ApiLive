@@ -4,23 +4,33 @@ You are running the `/update-the-website` command. Follow the steps below exactl
 
 ---
 
-## Step 1 — Present the checklist
+## Step 1 — Ask what to pull
 
-Use `AskUserQuestion` with `multiSelect: true` to ask the user which actions to perform. The question is: "Which update steps do you want to run?"
+Use `AskUserQuestion` with `multiSelect: true` to ask the user which submodules to pull. The question is: "Which submodules do you want to pull?"
 
 Options (in this order):
 1. **Pull the latest version of the API Live specs** — Update the `shared/ProAbonoLive` submodule to the latest remote commit.
 2. **Pull the latest version of the API Documentation specs** — Update the `shared/DocApi` submodule to the latest remote commit.
-3. **Re-generate the API reference** — Run `npm run gen-api-docs` in the `website/` folder.
-4. **Adjust authored pages** — Compare the spec source files against the authored website pages and resolve discrepancies.
-5. **Full audit of the website** — Audit the specs folder against the website source (long, costs many tokens).
-6. **Commit** — Stage, commit, and push all changes in the root repository.
 
 Wait for the user's selections before doing anything.
 
 ---
 
-## Step 2 — Execute selected actions in order
+## Step 2 — Ask what other actions to perform
+
+Use `AskUserQuestion` with `multiSelect: true` to ask the user which additional actions to perform. The question is: "Which other actions do you want to run?"
+
+Options (in this order):
+1. **Re-generate the API reference** — Run `npm run gen-api-docs` in the `website/` folder.
+2. **Adjust authored pages** — Compare the spec source files against the authored website pages and resolve discrepancies.
+3. **Full audit of the website** — Audit the specs folder against the website source (long, costs many tokens).
+4. **Commit** — Stage, commit, and push all changes in the root repository.
+
+Wait for the user's selections before doing anything.
+
+---
+
+## Step 3 — Execute selected actions in order
 
 Run only the checked actions, in the order listed above (1 → 6). Stop if an error or unexpected result occurs — do not proceed to the next action. If a decision is needed, prompt the user before continuing.
 
@@ -70,12 +80,13 @@ Report the output. If an error occurs, report it clearly and **stop the entire p
 
 The following source files in `shared/ProAbonoLive` are used when authoring the non-API-reference website pages:
 
-| Source file | Used to author |
-|---|---|
-| `shared/ProAbonoLive/resources/` (all `.md` files) | Source reference for all resource pages |
-| `shared/ProAbonoLive/specs/enum.md` | Concepts pages |
-| `shared/ProAbonoLive/specs/convention.md` | Authentication page |
-| `shared/ProAbonoLive/specs/actions.md` | Guides pages |
+| File | Used for |
+|------|----------|
+| `shared/ProAbonoLive/resources/` | Source markdown — used for authoring and kept in sync with the spec |
+| `shared/ProAbonoLive/specs/` | Authoring conventions — internal use only |
+| `shared/ProAbonoLive/specs/enum.md` | Authoring Concepts pages |
+| `shared/ProAbonoLive/specs/convention.md` | Authoring Authentication pages |
+| `shared/ProAbonoLive/specs/actions.md` | Cross-resource flows — authoring Guides |
 
 Follow these steps:
 
