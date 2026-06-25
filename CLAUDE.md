@@ -2,7 +2,7 @@
 
 **Scope:** Publiable
 **Description:** API Live documentation for ProAbono
-**Stack:** [Stack]
+**Stack:** React + Docusaurus
 
 ## How Claude interacts with the User
 
@@ -24,6 +24,11 @@ When the user asks to do anything with the specs, default to the local specs unl
 ### Language
 
 All generated Markdown files must be written in English, regardless of the language used in user instructions.
+
+The only exception is **localized content files** (e.g. user-facing copy translated for a specific locale). If a user asks to create a Markdown file in a non-English language:
+1. Ask whether it is a localized content file.
+2. If yes — proceed.
+3. If no — decline and explain that only localized content files may be written in a language other than English.
 
 ### Security
 
