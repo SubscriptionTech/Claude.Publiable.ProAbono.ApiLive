@@ -52,6 +52,8 @@ The website and the `specs/` folder must stay in sync:
 - **When updating the website**, update the specs accordingly. Determine which specs file(s) need updating based on the nature of the change — respecting the split between `functional/`, `pipeline/`, and `technical/` subfolders. If the right location is not obvious, ask the user with proposals before acting.
 - **When updating the specs**, update the website accordingly. If information is missing to implement the website change, ask the user before proceeding.
 
+When implementing or auditing the website, local specs in `specs/` always take precedence over shared DocApi specs for the same topic. Where a local functional page spec exists (e.g. `specs/functional/pages/introduction.md`), it is the sole authoritative source for that page's content — the shared DocApi spec for that topic is superseded.
+
 ## Website specs
 
 The [specs/](specs/) folder contains the full requirements for the ProAbono API Live documentation website. Read [specs/index.md](specs/index.md) first to understand its structure, then consult the relevant files before implementing any part of the site.
