@@ -121,8 +121,6 @@ const config = {
         // Force the navbar to use the dark colour variant regardless of page theme
         style: 'dark',
         items: [
-          // Pagefind search box on the right
-          { type: 'search', position: 'right' },
           {
             // Link to the source repository; CSS class adds the GitHub icon
             href: 'https://github.com/SubscriptionTech/Claude.Publiable.ProAbono.ApiLive',

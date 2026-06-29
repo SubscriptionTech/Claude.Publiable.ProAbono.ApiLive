@@ -5,7 +5,7 @@
 :root {
   /* ── Design tokens — light mode ── */
   --pad-background: #FFFFFF;
-  --pad-background-sidebar: #333;
+  --pad-background-sidebar: #081f38;
   --pad-background-code-inline: #F3F4F6;
   --pad-background-table-header: #F9FAFB;
   --pad-background-table-row-hover: #F9FAFB;
@@ -109,9 +109,10 @@ h4 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
   --ifm-navbar-background-color: var(--pad-background-sidebar);
 }
 
-.navbar__logo {
-  height: 32px;
-  width: auto;
+.navbar__logo,
+.navbar__logo img {
+  width: 200px;
+  height: 40px;
 }
 
 .navbar__brand .navbar__title {
@@ -120,12 +121,57 @@ h4 { font-size: 1rem; font-weight: 600; line-height: 1.4; }
   top: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--pad-text-on-dark);
   white-space: nowrap;
 }
+/* on smaller screens */
+@media (max-width: 996px) {
+  /* ------------ navbar --------------- */
+  .navbar__brand {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
 
+  /* clear centering */
+  .navbar__brand .navbar__title {
+    position: static;
+    transform: none;
+  }
+
+  /* ------------ sidebar settings ------------ */
+
+  .navbar-sidebar .navbar-sidebar__brand {
+    /* allow higher height */
+    height: auto;
+    /* clear bottom padding */
+    padding-bottom: 0;
+  }
+  .navbar-sidebar .navbar__brand {
+    /* align other stuff correctly */
+    flex: 1 1 auto;
+    /* make content multi-line */
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    /* add a padding */
+    padding: .5rem .5rem 0 .5rem;
+  }
+  .navbar-sidebar .navbar__brand .navbar__logo {
+    margin-bottom: 0.5rem;
+  }
+  .navbar-sidebar .navbar-sidebar__close {
+    margin-left: none;
+  }
+
+  .navbar-sidebar .navbar-sidebar__back {
+    display: none;
+  }
+}
 /* GitHub icon in navbar */
 .header-github-link::before {
   content: '';
@@ -358,11 +404,13 @@ tr:hover td {
   border: none !important;
 }
 
-/* ─── Pagefind search ─────────────────────────────────────────────────────── */
+/* ─── Pagefind search (sidebar) ──────────────────────────────────────────── */
 
-/* Results panel overflows the navbar — must be visible */
-.navbar__inner {
-  overflow: visible;
+/* Sidebar search wrapper — sits at the top of the sidebar, above the nav tree */
+.sidebar-search-wrapper {
+  flex-shrink: 0;
+  padding: 0.75rem;
+  background: var(--pad-background-sidebar);
 }
 
 /* Positioned ancestor for the absolute results dropdown */
@@ -371,7 +419,7 @@ tr:hover td {
 }
 
 /* ── Theme variables ── */
-.navbar .pagefind-ui {
+.sidebar-search-wrapper .pagefind-ui {
   --pagefind-ui-scale: 0.8;
   --pagefind-ui-primary: var(--pad-primary);
   --pagefind-ui-text: var(--pad-text-on-dark);
@@ -384,17 +432,17 @@ tr:hover td {
 }
 
 /* ── Search input ── */
-.navbar .pagefind-ui__form {
+.sidebar-search-wrapper .pagefind-ui__form {
   margin: 0;
 }
 
-.navbar .pagefind-ui__search-input-container {
+.sidebar-search-wrapper .pagefind-ui__search-input-container {
   height: 36px;
 }
 
-.navbar .pagefind-ui__search-input {
+.sidebar-search-wrapper .pagefind-ui__search-input {
   height: 36px !important;
-  width: 200px;
+  width: 100%;
   box-sizing: border-box;
   padding-right: 12px;
   background: var(--pad-search-input-bg);
@@ -405,24 +453,26 @@ tr:hover td {
   transition: background 0.15s, border-color 0.15s;
 }
 
-.navbar .pagefind-ui__search-input::placeholder {
+.sidebar-search-wrapper .pagefind-ui__search-input::placeholder {
   opacity: 1 !important;
   color: var(--pad-search-placeholder);
 }
 
-.navbar .pagefind-ui__search-input:focus {
+.sidebar-search-wrapper .pagefind-ui__search-input:focus {
   background: var(--pad-search-input-focus-bg);
   border-color: var(--pad-primary);
   outline: none;
 }
-.navbar  .pagefind-ui__form::before {
+
+.sidebar-search-wrapper .pagefind-ui__form::before {
   top: calc(14px * var(--pagefind-ui-scale)) !important;
 }
-.navbar .pagefind-ui__search-submit {
+
+.sidebar-search-wrapper .pagefind-ui__search-submit {
   display: none;
 }
 
-.navbar .pagefind-ui__search-clear:not([hidden]) {
+.sidebar-search-wrapper .pagefind-ui__search-clear:not([hidden]) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -439,80 +489,81 @@ tr:hover td {
   top: 5px;
 }
 
-.navbar .pagefind-ui__search-clear:hover {
+.sidebar-search-wrapper .pagefind-ui__search-clear:hover {
   opacity: 1;
 }
 
-/* ── Results dropdown ── */
-.navbar .pagefind-ui__results-area {
+/* ── Results dropdown — full sidebar width, overlays the nav below ── */
+.sidebar-search-wrapper .pagefind-ui__results-area {
   position: absolute;
   top: calc(100% + 6px);
-  right: 0;
-  width: 400px;
+  /* Offset the wrapper padding so the dropdown spans the full sidebar width */
+  left: -0.75rem;
+  right: -0.75rem;
   max-height: 60vh;
   overflow-y: auto;
   background: var(--pad-background-sidebar);
   border: 1px solid var(--pad-search-input-border);
-  border-radius: 8px;
+  border-radius: 0 0 8px 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   z-index: 200;
 }
 
-.navbar .pagefind-ui__drawer .pagefind-ui__message {
+.sidebar-search-wrapper .pagefind-ui__drawer .pagefind-ui__message {
   padding: 0.5rem 1rem !important;
   margin: 0 !important;
   font-size: 0.85rem !important;
 }
 
 /* ── Result items ── */
-.navbar .pagefind-ui__drawer .pagefind-ui__results {
+.sidebar-search-wrapper .pagefind-ui__drawer .pagefind-ui__results {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-.navbar .pagefind-ui__result {
+.sidebar-search-wrapper .pagefind-ui__result {
   padding: 0 !important;
   border-bottom: 1px solid var(--pad-search-item-separator);
   transition: background 0.1s;
 }
 
-.navbar .pagefind-ui__result .pagefind-ui__result-thumb {
+.sidebar-search-wrapper .pagefind-ui__result .pagefind-ui__result-thumb {
   display: none !important;
 }
 
-.navbar .pagefind-ui__result-inner {
+.sidebar-search-wrapper .pagefind-ui__result-inner {
   padding: 0.6rem 1rem;
 }
 
-.navbar .pagefind-ui__result:last-child {
+.sidebar-search-wrapper .pagefind-ui__result:last-child {
   border-bottom: none;
 }
 
-.navbar .pagefind-ui__result:hover .pagefind-ui__result-inner {
+.sidebar-search-wrapper .pagefind-ui__result:hover .pagefind-ui__result-inner {
   background: var(--pad-search-item-hover-bg);
 }
 
-.navbar .pagefind-ui__result-link {
+.sidebar-search-wrapper .pagefind-ui__result-link {
   color: var(--pad-search-result-title);
   font-weight: 500;
   font-size: 0.875rem;
   text-decoration: none;
 }
 
-.navbar .pagefind-ui__result-link:hover {
+.sidebar-search-wrapper .pagefind-ui__result-link:hover {
   color: var(--pad-search-result-title-hover);
   text-decoration: underline;
 }
 
-.navbar .pagefind-ui__result-excerpt {
+.sidebar-search-wrapper .pagefind-ui__result-excerpt {
   color: var(--pad-search-excerpt);
   font-size: 0.8125rem;
   margin-top: 0.2rem;
   line-height: 1.5;
 }
 
-.navbar .pagefind-ui__results-area .pagefind-ui__button {
+.sidebar-search-wrapper .pagefind-ui__results-area .pagefind-ui__button {
   border-radius: 6px !important;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
@@ -521,7 +572,7 @@ tr:hover td {
 }
 
 /* ── Highlighted match terms ── */
-.navbar mark {
+.sidebar-search-wrapper mark {
   background: var(--pad-search-highlight-bg);
   color: var(--pad-search-highlight-text);
   border-radius: 2px;
