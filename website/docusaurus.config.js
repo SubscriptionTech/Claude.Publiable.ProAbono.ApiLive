@@ -86,8 +86,9 @@ const config = {
         docs: {
           // Sidebar structure definition
           sidebarPath: './sidebars.js',
-          // Serve docs at /docs (not at the root)
-          routeBasePath: 'docs',
+          // Serve docs at the site root (no /docs prefix). The Introduction
+          // page carries `slug: /`, so it answers `/` directly.
+          routeBasePath: '/',
           // Use the OpenAPI-enhanced page component instead of the default one
           docItemComponent: '@theme/ApiItem',
           // Skip the auto-generated summary page (we build our own summary)

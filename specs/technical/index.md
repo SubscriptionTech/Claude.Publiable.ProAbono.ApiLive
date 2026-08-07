@@ -15,7 +15,7 @@ See [`shared/DocApi/technical/index.md`](../../shared/DocApi/technical/index.md)
 | [architecture.md](architecture.md) | Specific paths: `shared/ProAbonoLive/` submodule, `pa-live-openapi-3.0.3.yaml` spec filename |
 | [content-pipeline.md](content-pipeline.md) | Specific values: plugin `id: 'api'`, `specPath`, `outputDir` |
 | [navigation.md](navigation.md) | Specific `dirName` values for each section |
-| [deployment.md](deployment.md) | Root redirect URL `/docs/introduction/` |
+| [deployment.md](deployment.md) | Azure SWA workflow filename and deployment token secret name |
 
 Files not listed (stack, design) have no API Live overrides — DocApi is the full specification for those.
 
