@@ -10,7 +10,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // --prism-background-color from CSS is to make the JS theme object agree
 // with the design tokens from the start.
 const lightPrismTheme = {
-  plain: { color: '#9CDCFE', backgroundColor: '#333' },   // matches --pad-background-sidebar (light)
+  plain: { color: '#9CDCFE', backgroundColor: '#081f38' }, // matches --pad-background-sidebar (light)
   styles: prismThemes.vsDark.styles,
 };
 const darkPrismTheme = {
