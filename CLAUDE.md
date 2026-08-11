@@ -54,6 +54,10 @@ The website and the `specs/` folder must stay in sync:
 
 When implementing or auditing the website, local specs in `specs/` always take precedence over shared DocApi specs for the same topic. Where a local functional page spec exists (e.g. `specs/functional/pages/introduction.md`), it is the sole authoritative source for that page's content — the shared DocApi spec for that topic is superseded.
 
+## Memory
+
+`.claude/memory/MEMORY.md` holds the rules for this project. Read that index at the start of a session, and a memory file when its line looks relevant to the task.
+
 ## Website specs
 
 The [specs/](specs/) folder contains the full requirements for the ProAbono API Live documentation website. Read [specs/index.md](specs/index.md) first to understand its structure, then consult the relevant files before implementing any part of the site.
