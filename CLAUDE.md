@@ -81,7 +81,7 @@ When implementing or auditing the website, local specs in `specs/` always take p
 
 ## Memory
 
-`.claude/memory/MEMORY.md` holds the rules for this project. Read that index at the start of a session, and a memory file when its line looks relevant to the task.
+`.claude/memory/MEMORY.md` holds extra rules for this project. Read that index at the start of a session, and a memory file when its line looks relevant to the task.
 
 ## Website specs
 
