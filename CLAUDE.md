@@ -62,13 +62,6 @@ Every numbered point of such an answer must carry a prefix, written in bold so i
 
 Never number two lists `1, 2, 3…` in the same answer: a reference like **done-2** or **user-3** must always designate exactly one point.
 
-### Working with specs
-
-- **Local specs** are the specs located in the root `specs/` folder of this project.
-- **Shared specs** are specs located inside a `shared/` folder. When multiple shared utilities have been added, the name of the shared utility is used for disambiguation (e.g. "the DocApi specs").
-
-When the user asks to do anything with the specs, default to the local specs unless they explicitly reference a shared utility by name or are currently working on a file inside a shared folder. If there is any doubt, ask the user which specs to update.
-
 ### Language
 
 All generated Markdown files must be written in English, regardless of the language used in user instructions.
