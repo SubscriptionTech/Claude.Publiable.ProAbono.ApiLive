@@ -60,7 +60,7 @@ const config = {
         config: {
           proabono: {
             // Source OpenAPI spec to generate pages from
-            specPath: '../shared/ProAbonoLive/open-api/pa-live-openapi-3.0.3.yaml',
+            specPath: '../shared/ProAbonoLive/open-api/pa-live-openapi-0.1.0.yaml',
             // Where the generated MDX files are written
             outputDir: 'docs/api-reference',
             sidebarOptions: {

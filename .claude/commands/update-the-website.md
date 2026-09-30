@@ -21,7 +21,7 @@ Wait for the user's selections before doing anything.
 Use `AskUserQuestion` with `multiSelect: true` to ask the user which additional actions to perform. The question is: "Which other actions do you want to run?"
 
 Options (in this order):
-1. **Re-generate the API reference** — Run `npm run gen-api-docs` in the `website/` folder.
+1. **Re-generate the API reference** — Check the OpenAPI spec version in `specPath`, then run `npm run gen-api-docs` in the `website/` folder.
 2. **Adjust authored pages** — Compare the spec source files against the authored website pages and resolve discrepancies.
 3. **Full audit of the website** — Audit the specs folder against the website source (long, costs many tokens).
 4. **Commit** — Stage, commit, and push all changes in the root repository.
@@ -66,6 +66,10 @@ Report whether the submodule was updated (include the new commit hash if it chan
 
 ### Action 3 — Re-generate the API reference
 
+**3a. Check the OpenAPI spec version.**
+Read the current file version from `shared/ProAbonoLive/open-api/CLAUDE.md` and the version in the `specPath` of `website/docusaurus.config.js`. If they match, go on. If they differ, show the user both versions and ask whether to update `specPath`. Update it only on approval. See the rule in [specs/technical/content-pipeline.md](../../specs/technical/content-pipeline.md#openapi-spec-version-in-specpath).
+
+**3b. Run the generation.**
 Run the following command from the `website/` folder:
 
 ```

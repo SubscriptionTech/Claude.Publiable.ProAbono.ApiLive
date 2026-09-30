@@ -12,7 +12,7 @@ See [`shared/DocApi/pipeline/index.md`](../../shared/DocApi/pipeline/index.md) f
 
 | File | What it overrides or adds |
 |------|--------------------------|
-| [openapi.md](openapi.md) | Specific source spec path (`shared/ProAbonoLive/open-api/pa-live-openapi-3.0.3.yaml`) and output directory |
+| [openapi.md](openapi.md) | Specific source (the OpenAPI spec in `shared/ProAbonoLive/open-api/`) and output directory |
 | [authoring.md](authoring.md) | Hand-written sections and `shared/ProAbonoLive` source files used for authoring |
 
 ## Related

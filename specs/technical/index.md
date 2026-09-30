@@ -12,8 +12,8 @@ See [`shared/DocApi/technical/index.md`](../../shared/DocApi/technical/index.md)
 
 | File | What it overrides or adds |
 |------|--------------------------|
-| [architecture.md](architecture.md) | Specific paths: `shared/ProAbonoLive/` submodule, `pa-live-openapi-3.0.3.yaml` spec filename |
-| [content-pipeline.md](content-pipeline.md) | Specific values: plugin `id: 'api'`, `specPath`, `outputDir` |
+| [architecture.md](architecture.md) | Specific paths: `shared/ProAbonoLive/` submodule, location of the OpenAPI spec |
+| [content-pipeline.md](content-pipeline.md) | Specific values: plugin `id: 'api'`, `specPath`, `outputDir`; OpenAPI spec version check on `specPath` |
 | [navigation.md](navigation.md) | Specific `dirName` values for each section |
 | [deployment.md](deployment.md) | Azure SWA workflow filename and deployment token secret name |
 

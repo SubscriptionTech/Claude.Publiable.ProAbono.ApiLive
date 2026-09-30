@@ -11,7 +11,7 @@ Claude.DocApiLive/
 ├── shared/
 │   └── ProAbonoLive/              ← git submodule — API spec source of truth (not deployed)
 │       └── open-api/
-│           └── pa-live-openapi-3.0.3.yaml  ← input to docusaurus gen-api-docs
+│           └── <openapi-spec>.yaml  ← the OpenAPI spec, input to docusaurus gen-api-docs
 ├── website/                       ← Docusaurus project
 │   ├── docs/
 │   │   ├── <page-name>/           ← authored (one folder per page)
