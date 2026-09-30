@@ -4,6 +4,31 @@
 **Description:** API Live documentation for ProAbono
 **Stack:** React + Docusaurus
 
+## How Claude interacts with this project
+
+### Notes
+
+Never read, edit, create, or search a file in the `notes/` folder on Claude's own initiative, and never propose to include it in any processing. Only an explicit user request lifts that ban, one file at a time. `notes/CLAUDE.md` is excluded from the ban: it carries the rules of the folder and is read before any access to it.
+
+The ban covers the content of the notes, not their presence in the repository: a note is staged, committed, and pushed like any other file of the project, without being opened.
+
+### Specs
+
+- **Local specs** are the specs located in the root `specs/` folder of this project.
+- **Shared specs** are specs located inside a `shared/` folder. When multiple shared utilities have been added, the name of the shared utility is used for disambiguation (e.g. "the DocApi specs").
+
+When the user asks to do anything with the specs, default to the local specs unless they explicitly reference a shared utility by name or are currently working on a file inside a shared folder. If there is any doubt, ask the user which specs to update.
+
+#### Backlog
+
+The local specs and the shared specs can each hold a `backlog` folder, gathering the features and improvements that are deferred to a later version. Its `CLAUDE.md` file carries the rules and is read before creating, updating, or implementing a backlog.
+
+### Todo files
+
+A TODO file is a `todo-<name>.md` file at the root of the project, written by the `/pa-todo-create` command, processed by the `/pa-todo-process` command, and deleted once all of its sections are struck through. Never write an explicit reference to a TODO file — its name, its path, or a link to it — in any other file, whatever that file is: `CLAUDE.md`, a spec, a README, a source file, a command or skill file. A TODO file is referenced from the conversation only, so that deleting it never leaves a dangling reference behind.
+
+A TODO file is committed on purpose, so a list started on one machine can be resumed on another.
+
 ## How Claude interacts with the User
 
 ### When the user asks for a proposal
