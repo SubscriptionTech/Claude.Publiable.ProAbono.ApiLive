@@ -4,6 +4,16 @@
 **Description:** API Live documentation for ProAbono
 **Stack:** React + Docusaurus
 
+## Memory
+
+`.claude/memory/MEMORY.md` holds extra rules for this project. Read that index at the start of a session, and a memory file when its line looks relevant to the task.
+
+## Key terms
+
+These terms hold project-wide.
+
+- **OpenAPI spec** — the OpenAPI spec of the ProAbonoLive shared utility, as its key terms define it; never the one of ProAbonoBO.
+
 ## How Claude interacts with this project
 
 ### Notes
@@ -94,10 +104,6 @@ The website and the `specs/` folder must stay in sync:
 - **When updating the specs**, update the website accordingly. If information is missing to implement the website change, ask the user before proceeding.
 
 When implementing or auditing the website, local specs in `specs/` always take precedence over shared DocApi specs for the same topic. Where a local functional page spec exists (e.g. `specs/functional/pages/introduction.md`), it is the sole authoritative source for that page's content — the shared DocApi spec for that topic is superseded.
-
-## Memory
-
-`.claude/memory/MEMORY.md` holds extra rules for this project. Read that index at the start of a session, and a memory file when its line looks relevant to the task.
 
 ## Website specs
 

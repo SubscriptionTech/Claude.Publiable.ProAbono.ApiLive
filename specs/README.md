@@ -19,7 +19,7 @@ Use this prompt to regenerate the API reference pages after updating the `shared
 ```
 Regenerate the API reference from the OpenAPI spec.
 
-First compare the version in the `specPath` of the Docusaurus config with the current file version stated in `shared/ProAbonoLive/open-api/CLAUDE.md`. If they differ, show me both and ask before pointing `specPath` at the current version.
+First compare the version in the `specPath` of the Docusaurus config with the current file version of the OpenAPI spec. If they differ, show me both and ask before pointing `specPath` at the current version.
 
 Then run the generation command from the website folder: `npm run gen-api-docs`
 
