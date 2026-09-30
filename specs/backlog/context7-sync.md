@@ -1,6 +1,4 @@
-# Backlog
-
-## Context7 — Sync on changes
+# Context7 — Sync on changes
 
 Add a GitHub Action that triggers a Context7 documentation refresh on every push to `main`, so Context7 always serves the latest version of the docs.
 

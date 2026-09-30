@@ -107,7 +107,7 @@ When implementing or auditing the website, local specs in `specs/` always take p
 
 ## Website specs
 
-The [specs/](specs/) folder contains the full requirements for the ProAbono API Live documentation website. Read [specs/index.md](specs/index.md) first to understand its structure, then consult the relevant files before implementing any part of the site.
+The [specs/](specs/) folder contains the full requirements for the ProAbono API Live documentation website. Read [specs/CLAUDE.md](specs/CLAUDE.md) first to understand its structure, then consult the relevant files before implementing any part of the site.
 
 ## Shared utilities
 

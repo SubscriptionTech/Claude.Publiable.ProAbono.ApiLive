@@ -43,11 +43,9 @@ defines multiple named examples, so developers can browse all variants directly
 in the snippet. Currently the first example is always shown. Implement when
 multi-example endpoints become numerous or user feedback flags it as a pain point.
 
-## Search Engine
+## Context7 — Sync on changes
 
-See [search-engine.md](search-engine.md).
+See [context7-sync.md](context7-sync.md).
 
-Add a search box to the top navigation bar so developers can find any
-documentation page by typing free text. Results appear as a dropdown as the
-user types. Implement when the documentation grows large enough that manual
-navigation becomes a friction point.
+Add a GitHub Action that triggers a Context7 documentation refresh on every
+push to `main`, so Context7 always serves the latest version of the docs.

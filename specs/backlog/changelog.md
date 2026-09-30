@@ -43,5 +43,5 @@ entry must be written in English.
 1. Create `website/docs/changelog.md` with a `sidebar_position` frontmatter
    value that places it after the last top-level section (e.g. API Reference).
 2. No plugin configuration changes are required.
-3. Update `specs/technical/navigation.md` if a `sidebars.js` or
+3. Update the technical specs if a `sidebars.js` or
    `_category_.json` change is needed to surface the page in the sidebar.

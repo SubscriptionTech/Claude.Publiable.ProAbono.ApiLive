@@ -69,7 +69,7 @@ For each action marked `Documented: yes`:
    section.
 3. Use the Docusaurus `<Tabs>` / `<TabItem>` component for the code example
    tabs (curl / Node.js).
-4. Update `specs/technical/navigation.md` if a new `_category_.json`
+4. Update the technical specs if a new `_category_.json`
    entry or `sidebars.js` change is needed for the Guides section.
 
 ### Example — `customer.onboard`
