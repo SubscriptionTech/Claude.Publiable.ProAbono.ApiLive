@@ -6,3 +6,7 @@
 	path = shared/DocApi
 	url = https://github.com/SubscriptionTech/Claude.SharedSpecs.DocApi.git
 	branch = main
+[submodule "shared/Front2026"]
+	path = shared/Front2026
+	url = https://github.com/SubscriptionTech/Claude.SharedDesign.Front2026
+	branch = main
