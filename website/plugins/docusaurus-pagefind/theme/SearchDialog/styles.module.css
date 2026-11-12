@@ -1,0 +1,387 @@
+/* SearchDialog — shared/Front2026/components/custom/search-dialog.md.
+   Rules that adjust a global .f-* class are prefixed by a parent class so that
+   they win whatever the load order of the global and module stylesheets. */
+
+/* ─── Trigger (used by SearchBar) ───────────────────────────────────────────
+   AppBarWithSearch § search: SearchField at big screen, IconButton secondary
+   medium at desktop, IconButton secondary small below desktop. */
+
+.trigger {
+  display: contents;
+}
+
+.trigger .triggerField,
+.trigger .triggerMedium {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .trigger .triggerSmall {
+    display: none;
+  }
+
+  .trigger .triggerMedium {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 1600px) {
+  .trigger .triggerMedium {
+    display: none;
+  }
+
+  .trigger .triggerField {
+    display: flex;
+  }
+}
+
+/* ─── Scrim and panel ───────────────────────────────────────────────────── */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ifm-z-index-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-decorations-neutral-50);
+}
+
+.panel {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-none);
+  background-color: var(--color-bg-surface-neutral-subtle-default);
+}
+
+@media (min-width: 1280px) {
+  .panel {
+    width: var(--dimension-search-dialog-width);
+    height: auto;
+    max-height: var(--dimension-search-dialog-max-height);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-neutral-lg);
+  }
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────── */
+
+.header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--spacing-search-dialog-header-padding-top) var(--spacing-search-dialog-padding)
+    var(--spacing-search-dialog-padding);
+  border-bottom: var(--border-1) solid var(--color-border-neutral-default-default);
+  background-color: var(--color-bg-surface-neutral-subtle-default);
+}
+
+/* In the dialog the field takes the full width the header leaves it. */
+.header .field {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+}
+
+@media (min-width: 1280px) {
+  .header {
+    display: block;
+  }
+
+  .header .close {
+    position: absolute;
+    top: var(--spacing-search-dialog-close-offset);
+    inset-inline-end: var(--spacing-search-dialog-close-offset);
+  }
+}
+
+/* ─── Body ──────────────────────────────────────────────────────────────── */
+
+.bodyFrame {
+  position: relative;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-search-dialog-body-gap);
+  padding: var(--spacing-search-dialog-padding);
+}
+
+@media (min-width: 1280px) {
+  .body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.fade {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  z-index: 1;
+  height: var(--size-12);
+  background: var(--gradient-linear-neutral-6);
+  pointer-events: none;
+}
+
+/* ─── Facets ────────────────────────────────────────────────────────────── */
+
+.facets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-search-dialog-facets-gap);
+}
+
+@media (min-width: 1280px) {
+  .facets {
+    flex-shrink: 0;
+    width: var(--size-60);
+  }
+}
+
+.facetsTitle {
+  margin: 0;
+  color: var(--color-text-neutral-subtle-default);
+  font-size: var(--typo-medium-base-size);
+  font-weight: var(--typo-medium-base-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+}
+
+.facetList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-search-dialog-facets-list-gap);
+}
+
+@media (min-width: 1280px) {
+  .facetList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.facet {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  margin: 0;
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-md);
+  color: var(--color-text-neutral-subtle-default);
+  cursor: pointer;
+}
+
+/* The native checkbox covers the facet, invisible: it takes the clicks and
+   the focus, and the drawn box shows its state. */
+.facetInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.facet:has(.facetInput:focus-visible) {
+  outline: var(--border-2) solid var(--color-border-brand-default-focus);
+  outline-offset: var(--size-1);
+}
+
+.facetBox {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dimension-search-dialog-facet-box);
+  height: var(--dimension-search-dialog-facet-box);
+  border: var(--border-1-5) solid var(--color-border-neutral-strong-default);
+  border-radius: var(--radius-sm);
+}
+
+.facet .facetTick {
+  width: var(--size-3);
+  height: var(--size-3);
+  color: var(--color-icon-on-brand-default-default);
+}
+
+.facetText {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.facet:hover {
+  background-color: var(--color-bg-surface-brand-subtle-hover);
+}
+
+.facet:hover .facetBox {
+  background-color: var(--color-bg-fill-neutral-default-default);
+}
+
+.facet.facetSelected,
+.facet.facetSelected:hover {
+  background-color: var(--color-bg-surface-brand-subtle-active);
+  color: var(--color-text-neutral-default-default);
+}
+
+.facet.facetSelected .facetBox,
+.facet.facetSelected:hover .facetBox {
+  border-color: var(--color-border-brand-default-default);
+  background-color: var(--color-bg-fill-brand-default-default);
+}
+
+.facet.facetDisabled,
+.facet.facetDisabled:hover {
+  background-color: var(--color-bg-fill-neutral-default-disabled);
+  color: var(--color-text-neutral-default-disabled);
+  cursor: not-allowed;
+}
+
+.facet.facetDisabled .facetBox,
+.facet.facetDisabled:hover .facetBox {
+  border-color: var(--color-border-neutral-default-default);
+  background: none;
+}
+
+/* ─── Results ───────────────────────────────────────────────────────────── */
+
+.results {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-search-dialog-results-gap);
+}
+
+.results:empty {
+  display: none;
+}
+
+.summary {
+  margin: 0;
+  color: var(--color-text-neutral-default-default);
+  font-size: var(--typo-medium-base-size);
+  font-weight: var(--typo-medium-base-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+}
+
+.noResults {
+  margin: 0;
+  color: var(--color-text-neutral-subtle-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.results .rule {
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: var(--border-1) solid var(--color-border-neutral-default-default);
+  background: none;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+}
+
+.groupResults {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.group .groupTitle,
+.group .groupTitle:hover {
+  color: var(--color-text-neutral-default-default);
+  font-size: var(--typo-medium-xl-size);
+  font-weight: var(--typo-medium-xl-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+}
+
+.group .resultTitle,
+.group .resultTitle:hover {
+  color: var(--color-text-neutral-default-default);
+  font-size: var(--typo-regular-base-size);
+  font-weight: var(--typo-regular-base-weight);
+  line-height: var(--typo-line-height-base);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.group .groupTitle,
+.group .resultTitle {
+  text-decoration: none;
+}
+
+.group .groupTitle:hover,
+.group .resultTitle:hover {
+  text-decoration: underline;
+}
+
+.excerpt {
+  margin: 0;
+  color: var(--color-text-neutral-subtle-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  overflow-wrap: anywhere;
+}
+
+.excerpt mark {
+  padding: 0;
+  background: none;
+  color: var(--color-text-neutral-default-default);
+  font-weight: var(--typo-medium-sm-weight);
+}
+
+.chip {
+  align-self: flex-start;
+  padding: var(--size-1) var(--size-2-5);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-surface-brand-default-default);
+  color: var(--color-text-on-brand-default-default);
+  font-size: var(--typo-regular-xs-size);
+  font-weight: var(--typo-regular-xs-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.results .loadMore {
+  align-self: stretch;
+  width: 100%;
+}

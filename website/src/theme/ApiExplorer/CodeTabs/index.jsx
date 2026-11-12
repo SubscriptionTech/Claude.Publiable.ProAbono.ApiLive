@@ -1,6 +1,9 @@
 /* ============================================================================
  * Swizzled from docusaurus-theme-openapi-docs.
  * Replaces the scrolling <ul> tab list with a <select> dropdown.
+ * The DocApi CodeSample has one selector, the language: the inner instance
+ * that chooses a variant of the language shows no selector, and the
+ * language's first variant is shown.
  * ========================================================================== */
 
 import React, { cloneElement } from "react";
@@ -91,7 +94,10 @@ function TabContent({ lazy, children, selectedValue }) {
 
 function TabsComponent(props) {
   const tabs = useTabsContextValue(props);
-  const { className } = props;
+  const { className, includeVariant } = props;
+  const isVariantChoice =
+    includeVariant ||
+    (className ?? "").includes("openapi-tabs__code-container-inner");
 
   return (
     <TabsProvider value={tabs}>
@@ -101,7 +107,7 @@ function TabsComponent(props) {
           className
         )}
       >
-        <TabList {...props} {...tabs} />
+        {!isVariantChoice && <TabList {...props} {...tabs} />}
         <TabContent {...props} {...tabs} />
       </div>
     </TabsProvider>

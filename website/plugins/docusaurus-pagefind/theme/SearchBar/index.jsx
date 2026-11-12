@@ -1,39 +1,59 @@
-// Docusaurus integration glue for pagefind. Docusaurus exposes a `SearchBar`
-// theme slot in the navbar — placing a component with this exact name here causes
-// Docusaurus to swap it in automatically. Pagefind assets (index + UI widget) are
-// generated post-build and don't exist in dev mode, so they are lazy-loaded at
-// runtime only in production. In dev the component renders an empty div silently.
-import React, { useEffect, useRef } from 'react';
+// The search of the top bar (shared/Front2026/components/custom/app-bar-with-search.md,
+// part "search"), placed through the Docusaurus `SearchBar` theme slot. It renders the
+// three forms of the trigger and CSS shows exactly one per viewport mode:
+//   - big screen: a SearchField used as a trigger;
+//   - desktop: an IconButton, secondary, medium;
+//   - below desktop: an IconButton, secondary, small.
+// Activating any of them opens the SearchDialog, rendered only while open.
+import React, {useCallback, useRef, useState} from 'react';
+import clsx from 'clsx';
+import Icon from '@site/src/components/Icon';
+import SearchDialog from '../SearchDialog';
+import styles from '../SearchDialog/styles.module.css';
+
+const SEARCH_LABEL = 'Search';
 
 export default function SearchBar() {
-  const containerRef = useRef(null);
+  const [open, setOpen] = useState(false);
+  const triggerRef = useRef(null);
 
-  useEffect(() => {
-    if (!containerRef.current || process.env.NODE_ENV !== 'production') return;
-
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/pagefind/pagefind-ui.css';
-    document.head.appendChild(link);
-
-    const script = document.createElement('script');
-    script.src = '/pagefind/pagefind-ui.js';
-    script.onload = () => {
-      if (window.PagefindUI && containerRef.current) {
-        new window.PagefindUI({
-          element: containerRef.current,
-          showSubResults: true,
-          resetStyles: false,
-        });
-      }
-    };
-    document.head.appendChild(script);
-
-    return () => {
-      if (document.head.contains(link)) document.head.removeChild(link);
-      if (document.head.contains(script)) document.head.removeChild(script);
-    };
+  const openDialog = useCallback((event) => {
+    triggerRef.current = event.currentTarget;
+    setOpen(true);
   }, []);
 
-  return <div ref={containerRef} className="pagefind-search-container" />;
+  const closeDialog = useCallback(({returnFocus}) => {
+    setOpen(false);
+    if (returnFocus) triggerRef.current?.focus({preventScroll: true});
+  }, []);
+
+  return (
+    <div className={styles.trigger}>
+      <button
+        type="button"
+        className={clsx('f-search-field', styles.triggerField)}
+        aria-haspopup="dialog"
+        onClick={openDialog}>
+        <Icon name="search-01" className="f-search-field__icon" />
+        <span className="f-search-field__placeholder">{SEARCH_LABEL}</span>
+      </button>
+      <button
+        type="button"
+        className={clsx('f-icon-button f-icon-button--secondary f-icon-button--medium', styles.triggerMedium)}
+        aria-label={SEARCH_LABEL}
+        aria-haspopup="dialog"
+        onClick={openDialog}>
+        <Icon name="search-01" />
+      </button>
+      <button
+        type="button"
+        className={clsx('f-icon-button f-icon-button--secondary f-icon-button--small', styles.triggerSmall)}
+        aria-label={SEARCH_LABEL}
+        aria-haspopup="dialog"
+        onClick={openDialog}>
+        <Icon name="search-01" />
+      </button>
+      {open && <SearchDialog onClose={closeDialog} />}
+    </div>
+  );
 }

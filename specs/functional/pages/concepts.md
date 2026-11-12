@@ -18,6 +18,8 @@ Introduce the ProAbono data model. Help developers understand the entities and t
 
 A full-width SVG diagram illustrating the entity relationships. Update this diagram when the entity model changes.
 
+The diagram is drawn in the colours and the typeface of the design: every colour and the font are Front2026 tokens, so that it follows the theme in force, light or dark. It is part of the page rather than a separate image file shown in it, since an image shown as a separate file cannot follow the theme. It says what it shows to a visitor who cannot see it: an Offer has Features; when a Customer subscribes, it starts a Subscription.
+
 #### 2. Glossary
 
 Table: Resource, Description, API resource.

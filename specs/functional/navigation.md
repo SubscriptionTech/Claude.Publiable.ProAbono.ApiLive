@@ -1,6 +1,6 @@
 # Navigation
 
-Page map of each sidebar section of the ProAbono API Live documentation website. The section order and the navbar items are those of the shared DocApi functional specifications.
+Page map of each sidebar section of the ProAbono API Live documentation website. The section order, the sections of the search, the top bar — whose site title reads `API Live | Reference` — and the footer are those of the shared DocApi functional specifications. The design is that of the DocApi functional specifications, derived from the Front2026 design system; this site adds nothing to it.
 
 ## Introduction
 

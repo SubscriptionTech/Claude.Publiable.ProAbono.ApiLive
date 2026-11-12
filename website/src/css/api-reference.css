@@ -1,0 +1,459 @@
+/*
+ * The API reference pages: the DocApi API reference components
+ * (functional/api-components.md) applied to the markup of the openapi theme,
+ * and the panes of the API reference layout.
+ *
+ * Every value is a token. The openapi theme ships its own styles, loaded after
+ * this file: every rule is scoped under .doc-item--api (set on the page area
+ * of an operation page) so that it wins by specificity, not by load order.
+ * The CodeSample rules are scoped under .doc-item instead: the hand-written
+ * snippets of the authored pages use the same sample UI.
+ */
+
+/* ─── Panes: the centre, then the samples; side by side from desktop ───── */
+
+.doc-item--api .theme-api-markdown {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+}
+
+.doc-item--api .theme-api-markdown > .col {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  flex: none;
+}
+
+@media (min-width: 1280px) {
+  .doc-item--api .theme-api-markdown {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--spacing-side-column-padding-inline);
+  }
+
+  .doc-item--api .theme-api-markdown > .openapi-right-panel__container {
+    padding-inline-start: var(--spacing-side-column-padding-inline);
+    border-inline-start: var(--border-1) solid var(--color-border-neutral-strong-default);
+  }
+}
+
+/* Not shown (DocApi API reference layout): the interactive request form, its
+   response, the security details and the media-type selector */
+.openapi-explorer__request-form,
+.openapi-explorer__response-container,
+.openapi-security__details,
+.openapi-tabs__mime-container {
+  display: none !important;
+}
+
+/* ─── DocApi EndpointLine ──────────────────────────────────────────────── */
+
+.doc-item--api .openapi__divider {
+  display: none;
+}
+
+.doc-item--api pre.openapi__method-endpoint {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  width: auto;
+  max-width: none;
+  margin: 0 0 var(--size-6);
+  padding: var(--size-3) var(--size-4);
+  border: var(--border-1) solid var(--color-border-neutral-default-default);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface-neutral-default-default);
+  box-shadow: none;
+  white-space: normal;
+}
+
+.doc-item--api .openapi__method-endpoint .badge {
+  flex-shrink: 0;
+  margin: 0;
+  padding: var(--size-1) var(--size-2);
+  border: var(--border-1) solid var(--method-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--method-fill);
+  color: var(--method-text);
+  font-family: var(--typo-default);
+  font-size: var(--typo-medium-xs-size);
+  font-weight: var(--typo-medium-xs-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+  text-transform: uppercase;
+}
+
+.doc-item--api .openapi__method-endpoint .openapi__method-endpoint-path {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  color: var(--color-text-neutral-default-default);
+  font-family: var(--typo-code);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: normal;
+}
+
+/* ─── DocApi ParameterGroup ────────────────────────────────────────────── */
+
+.doc-item--api details.openapi-markdown__details {
+  --ifm-alert-background-color: transparent;
+  --ifm-alert-border-color: transparent;
+  --ifm-alert-foreground-color: var(--color-text-neutral-default-default);
+  --docusaurus-details-decoration-color: transparent;
+  margin: 0 0 var(--size-6) !important;
+  padding: 0;
+  /* !important: the theme unsets the border with !important */
+  border: var(--border-1) solid var(--color-border-neutral-default-default) !important;
+  border-radius: var(--radius-lg);
+  background: none;
+  box-shadow: none;
+  color: var(--color-text-neutral-default-default);
+}
+
+.doc-item--api details.openapi-markdown__details > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-4);
+  list-style: none;
+  cursor: pointer;
+}
+
+.doc-item--api details.openapi-markdown__details summary::-webkit-details-marker {
+  display: none;
+}
+
+.doc-item--api details.openapi-markdown__details > summary :is(h3, h4, strong) {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text-neutral-default-default);
+  font-family: var(--typo-default);
+  font-size: var(--typo-medium-base-size);
+  font-weight: var(--typo-medium-base-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+  text-transform: none;
+}
+
+/* The chevron: arrow-right-01-round, turned a quarter down while open */
+.doc-item--api details.openapi-markdown__details summary::before {
+  content: '';
+  position: static;
+  flex-shrink: 0;
+  width: var(--size-4);
+  height: var(--size-4);
+  margin: 0;
+  border: 0;
+  background-color: var(--color-icon-neutral-subtle-default);
+  -webkit-mask: url('/img/design/icon-arrow-right-01-round.svg') center / contain no-repeat;
+  mask: url('/img/design/icon-arrow-right-01-round.svg') center / contain no-repeat;
+  filter: none;
+  /* !important: the theme sets its own rotation with !important */
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Docusaurus details keep their state in data-collapsed (the element stays
+   [open] while it animates closed) */
+.doc-item--api details.openapi-markdown__details[data-collapsed='false'] > summary::before,
+.doc-item--api details.openapi-markdown__details details[data-collapsed='false'] > summary::before {
+  transform: rotate(90deg) !important;
+}
+
+/* The list: a rule above each Parameter */
+.doc-item--api details.openapi-markdown__details > div {
+  border-top: var(--border-1) solid var(--color-border-neutral-default-default);
+}
+
+.doc-item--api details.openapi-markdown__details [class*='collapsibleContent'] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.doc-item--api details.openapi-markdown__details :is(ul, li) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doc-item--api :is(.openapi-params__list-item, .openapi-schema__list-item) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin: 0;
+  padding: var(--size-4);
+  border: 0;
+  border-top: var(--border-1) solid var(--color-border-neutral-default-default);
+  list-style: none;
+}
+
+.doc-item--api :is(.openapi-params__list-item, .openapi-schema__list-item):first-child {
+  border-top: 0;
+}
+
+.doc-item--api .openapi-schema__container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--size-2);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.doc-item--api .openapi-schema__property {
+  color: var(--color-text-neutral-default-default);
+  font-family: var(--typo-code);
+  font-size: var(--typo-medium-sm-size);
+  font-weight: var(--typo-medium-sm-weight);
+}
+
+.doc-item--api :is(.openapi-schema__type, .openapi-schema__name) {
+  color: var(--color-text-neutral-subtle-default);
+  font-family: var(--typo-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+}
+
+.doc-item--api .openapi-schema__required {
+  color: var(--color-text-error-default-default);
+  font-size: var(--typo-medium-xs-size);
+  font-weight: var(--typo-medium-xs-weight);
+  text-transform: none;
+}
+
+.doc-item--api .openapi-schema__divider {
+  display: none;
+}
+
+.doc-item--api :is(.openapi-params__list-item, .openapi-schema__list-item) :is(p, li, div) {
+  color: var(--color-text-neutral-subtle-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-base);
+}
+
+.doc-item--api :is(.openapi-params__list-item, .openapi-schema__list-item) p {
+  margin: 0;
+}
+
+/* Constraints: "Possible values", "Default value" and their labels */
+.doc-item--api :is(.openapi-params__list-item, .openapi-schema__list-item) strong:not(.openapi-schema__property) {
+  color: var(--color-text-neutral-subtle-default);
+  font-size: var(--typo-medium-xs-size);
+  font-weight: var(--typo-medium-xs-weight);
+}
+
+/* Nested properties: a collapsible row, the children behind a guide line */
+.doc-item--api details.openapi-markdown__details details {
+  margin: var(--size-2) 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.doc-item--api details.openapi-markdown__details details > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: 0;
+  color: var(--color-text-neutral-subtle-default);
+  list-style: none;
+  cursor: pointer;
+}
+
+.doc-item--api details.openapi-markdown__details details > summary :is(.openapi-schema__property, .openapi-schema__name) {
+  color: inherit;
+  font-family: var(--typo-default);
+  font-size: var(--typo-medium-sm-size);
+  font-weight: var(--typo-medium-sm-weight);
+}
+
+.doc-item--api details.openapi-markdown__details summary:hover,
+.doc-item--api details.openapi-markdown__details summary:hover :is(h3, h4, strong, span) {
+  color: var(--color-text-neutral-default-default);
+}
+
+.doc-item--api details.openapi-markdown__details details > div {
+  margin-top: var(--size-2);
+  margin-inline-start: calc(var(--size-4) / 2);
+  padding-inline-start: var(--size-4);
+  border: 0;
+  border-inline-start: var(--border-1) solid var(--color-border-neutral-default-default);
+}
+
+.doc-item--api details.openapi-markdown__details [style*='margin-left'] {
+  margin-left: 0 !important;
+}
+
+/* ─── DocApi Tabs ──────────────────────────────────────────────────────── */
+
+.doc-item--api .theme-api-markdown ul.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0 0 var(--size-4);
+  padding: 0;
+  overflow-x: auto;
+  border: 0;
+  border-bottom: var(--border-1) solid var(--color-border-neutral-default-default);
+  scrollbar-width: none;
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .tabs__item {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--size-2);
+  margin: 0 0 calc(-1 * var(--border-1));
+  padding: var(--size-2) var(--size-3);
+  border: 0;
+  border-bottom: var(--border-2) solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--color-text-neutral-subtle-default);
+  font-family: var(--typo-default);
+  font-size: var(--typo-medium-sm-size);
+  font-weight: var(--typo-medium-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+  list-style: none;
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .tabs__item:hover {
+  background: none;
+  color: var(--color-text-neutral-default-default);
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .tabs__item.active,
+.doc-item--api .theme-api-markdown ul.tabs .tabs__item.tabs__item--active {
+  border-bottom-color: var(--color-border-brand-default-default);
+  background: none;
+  color: var(--color-text-neutral-default-default);
+}
+
+/* Status-code marker, coloured by the class of the code */
+.doc-item--api .theme-api-markdown ul.tabs .openapi-tabs__response-code-item::before {
+  content: '';
+  flex-shrink: 0;
+  width: var(--size-2);
+  height: var(--size-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-icon-info-default-default);
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .openapi-tabs__response-code-item.success::before {
+  background-color: var(--color-icon-success-default-default);
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .openapi-tabs__response-code-item.warning::before {
+  background-color: var(--color-icon-warning-default-default);
+}
+
+.doc-item--api .theme-api-markdown ul.tabs .openapi-tabs__response-code-item.danger::before {
+  background-color: var(--color-icon-error-default-default);
+}
+
+.doc-item--api .openapi-tabs__arrow {
+  display: none;
+}
+
+/* ─── DocApi CodeSample ────────────────────────────────────────────────── */
+
+.doc-item .tabs-container.openapi-tabs__code-container,
+.doc-item .openapi-tabs__code-container .openapi-tabs__code-content {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* The language selector: the appearance of the Dropdown trigger, small */
+.doc-item select.openapi-tabs__code-select {
+  display: block;
+  width: 100%;
+  margin: 0 0 var(--size-3);
+  padding: var(--spacing-dropdown-trigger-padding-block-small) var(--spacing-dropdown-trigger-padding-inline-small);
+  border: var(--border-1) solid var(--color-border-neutral-default-default);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-fill-neutral-default-default);
+  color: var(--color-text-neutral-default-default);
+  font-family: var(--typo-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  cursor: pointer;
+}
+
+.doc-item select.openapi-tabs__code-select:hover {
+  border-color: var(--color-border-neutral-default-hover);
+  background-color: var(--color-bg-fill-neutral-default-hover);
+}
+
+.doc-item select.openapi-tabs__code-select:focus-visible {
+  outline: none;
+  border-color: var(--color-border-brand-default-default);
+  box-shadow: 0 0 0 calc(var(--border-2) - var(--border-1)) var(--color-border-brand-default-default);
+}
+
+.doc-item .openapi-right-panel__container .openapi-explorer__code-block-container {
+  margin: 0 0 var(--size-6);
+}
+
+.doc-item .openapi-explorer__code-block-title {
+  margin: 0;
+  padding: var(--size-3) var(--size-6);
+  border: 0;
+  background-color: var(--color-bg-surface-inverse-subtle-default);
+  color: var(--color-text-on-neutral-subtle-default);
+  font-family: var(--typo-default);
+  font-size: var(--typo-medium-xs-size);
+  font-weight: var(--typo-medium-xs-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+}
+
+/* The Front2026 code block has no line numbers and no expand control; its
+   copy control shows copy-01, then tick-02 once copied */
+.doc-item .openapi-explorer__code-block-code-line-number,
+.doc-item .openapi-explorer__code-block-expand-btn,
+.doc-item .openapi-explorer__code-block-word-wrap-btn--enabled {
+  display: none !important;
+}
+
+.doc-item .openapi-explorer__code-block-copy-btn svg,
+.doc-item .openapi-explorer__code-block-copy-btn-icons {
+  display: none;
+}
+
+.doc-item .openapi-explorer__code-block-copy-btn::before {
+  content: '';
+  width: var(--size-4);
+  height: var(--size-4);
+  background-color: currentColor;
+  -webkit-mask: url('/img/design/icon-copy-01.svg') center / contain no-repeat;
+  mask: url('/img/design/icon-copy-01.svg') center / contain no-repeat;
+}
+
+.doc-item .openapi-explorer__code-block-copy-btn--copied::before {
+  -webkit-mask-image: url('/img/design/icon-tick-02.svg');
+  mask-image: url('/img/design/icon-tick-02.svg');
+  color: var(--color-icon-on-neutral-default-default);
+}
+
+.doc-item .openapi-explorer__code-block-container pre {
+  margin: 0;
+  padding: var(--size-5) var(--size-6);
+  background: none !important;
+  font-family: var(--typo-code);
+  font-size: var(--typo-regular-sm-size);
+  line-height: var(--typo-line-height-body);
+}

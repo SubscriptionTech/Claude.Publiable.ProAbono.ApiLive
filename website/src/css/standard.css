@@ -1,0 +1,624 @@
+/* ─── Front2026 standard components ─────────────────────────────────────────
+ *
+ * Global classes for the standard components of the Front2026 design system
+ * (shared/Front2026/components/standard/). Every value is a design token.
+ *
+ * .f-icon                     A mask-drawn icon (see src/components/Icon).
+ *                             Its colour is currentColor; the placing rule
+ *                             sets its width and height.
+ *
+ * .f-button                   Button, on <a> or <button>.
+ *   --primary (default look) | --secondary | --outline
+ *   --large (default size)   | --medium    | --small
+ *   __icon                    leading or trailing icon (an .f-icon)
+ *   __label                   the text of the action
+ *   __note                    the secondary text beside the label
+ *   __avatar                  round portrait holder; __avatar-image inside it,
+ *                             __avatar-status for the indicator over it
+ *   Disabled: the `disabled` attribute or aria-disabled="true".
+ *
+ * .f-icon-button              IconButton, on <button>; holds one .f-icon.
+ *   --primary (default look) | --secondary | --ghost
+ *   --large (default size)   | --medium    | --small
+ *
+ * .f-link                     Link, on <a>. Without a variant, colour and
+ *                             hover come from the placing component.
+ *   --neutral | --on-neutral | --brand | --accent
+ *   --large (default size)   | --medium    | --small
+ *   __icon                    leading or trailing icon (an .f-icon)
+ *   __text                    the words (optional wrapper)
+ *
+ * .f-search-field             SearchField, on a container (<div>) holding:
+ *   __icon                    the search-01 icon (an .f-icon)
+ *   __input                   the <input>
+ *   __clear                   the clear control (<button>); hidden while the
+ *                             input is empty
+ *   Used as a trigger: the container is a <button> holding __icon and
+ *   __placeholder (the placeholder text) instead of __input.
+ *
+ * Every class applies its default variant and size when no modifier is given.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Icon ──────────────────────────────────────────────────────────────── */
+
+.f-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask: var(--f-icon-url) center / contain no-repeat;
+  mask: var(--f-icon-url) center / contain no-repeat;
+}
+
+/* ─── Focus outline (tokens/effects.md § Focus outline) ─────────────────── */
+
+.f-button:focus-visible,
+.f-icon-button:focus-visible,
+.f-link:focus-visible,
+.f-search-field__clear:focus-visible {
+  outline: var(--border-2) solid var(--color-border-brand-default-focus);
+  outline-offset: var(--size-1);
+}
+
+.f-button:focus:not(:focus-visible),
+.f-icon-button:focus:not(:focus-visible),
+.f-link:focus:not(:focus-visible),
+.f-search-field__clear:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ─── Button ────────────────────────────────────────────────────────────── */
+
+.f-button {
+  /* Size: large (default) */
+  --f-button-icon-size: var(--size-6);
+  --f-button-avatar-size: var(--dimension-button-avatar-large);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-button-gap-large);
+  max-height: var(--dimension-button-max-height-large);
+  margin: 0;
+  padding: var(--spacing-button-padding-block-large) var(--spacing-button-padding-inline-large);
+  border-width: var(--border-1);
+  border-style: solid;
+  border-radius: var(--radius-xl);
+  font-family: var(--typo-regular-base-family);
+  font-size: var(--typo-regular-base-size);
+  font-weight: var(--typo-regular-base-weight);
+  line-height: var(--typo-line-height-base);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Variant: primary (default) */
+  background-color: var(--color-bg-fill-brand-default-default);
+  border-color: var(--color-bg-fill-brand-default-default);
+  color: var(--color-text-on-brand-default-default);
+  box-shadow: var(--shadow-accent-md);
+}
+
+.f-button:hover {
+  text-decoration: none;
+}
+
+.f-button__label {
+  white-space: nowrap;
+}
+
+.f-button__icon {
+  width: var(--f-button-icon-size);
+  height: var(--f-button-icon-size);
+  color: var(--color-icon-on-brand-default-default);
+}
+
+.f-button__note {
+  font-size: var(--typo-regular-sm-size);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  white-space: nowrap;
+  color: var(--color-text-on-brand-subtle-default);
+}
+
+.f-button__avatar {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--f-button-avatar-size);
+  height: var(--f-button-avatar-size);
+  border: var(--border-2) solid var(--color-border-neutral-default-default);
+  border-radius: var(--radius-full);
+}
+
+.f-button__avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+}
+
+.f-button__avatar-status {
+  position: absolute;
+  top: 0;
+  inset-inline-end: 0;
+  width: var(--size-2-5);
+  height: var(--size-2-5);
+}
+
+/* Sizes */
+
+.f-button--medium {
+  --f-button-icon-size: var(--size-5);
+  --f-button-avatar-size: var(--dimension-button-avatar-medium);
+  max-height: var(--dimension-button-max-height-medium);
+  padding: var(--spacing-button-padding-block-medium) var(--spacing-button-padding-inline-medium);
+}
+
+.f-button--medium .f-button__note {
+  font-size: var(--typo-regular-xs-size);
+}
+
+.f-button--small {
+  --f-button-icon-size: var(--size-4);
+  --f-button-avatar-size: var(--dimension-button-avatar-small);
+  gap: var(--spacing-button-gap-small);
+  max-height: var(--dimension-button-max-height-small);
+  padding: var(--spacing-button-padding-block-small) var(--spacing-button-padding-inline-medium);
+  border-radius: var(--radius-lg);
+}
+
+.f-button--small .f-button__note {
+  font-size: var(--typo-regular-xxs-size);
+}
+
+/* Variant: primary — states */
+
+.f-button:hover {
+  background-color: var(--color-bg-fill-brand-default-hover);
+  border-color: var(--color-bg-fill-brand-default-hover);
+  color: var(--color-text-on-brand-default-default);
+}
+
+.f-button:active {
+  background-color: var(--color-bg-fill-brand-default-active);
+  border-color: var(--color-bg-fill-brand-default-active);
+}
+
+/* Variant: secondary */
+
+.f-button--secondary,
+.f-button--secondary:hover {
+  border-color: var(--color-border-neutral-default-default);
+  color: var(--color-text-neutral-default-default);
+  box-shadow: none;
+}
+
+.f-button--secondary {
+  background-color: var(--color-bg-fill-neutral-subtle-default);
+}
+
+.f-button--secondary:hover {
+  background-color: var(--color-bg-fill-neutral-subtle-hover);
+}
+
+.f-button--secondary:active {
+  background-color: var(--color-bg-fill-neutral-subtle-active);
+  border-color: var(--color-border-neutral-default-default);
+}
+
+.f-button--secondary .f-button__icon {
+  color: var(--color-icon-neutral-default-default);
+}
+
+.f-button--secondary .f-button__note {
+  color: inherit;
+}
+
+/* Variant: outline */
+
+.f-button--outline,
+.f-button--outline:hover {
+  border-color: var(--color-border-on-neutral-default-default);
+  color: var(--color-text-on-neutral-default-default);
+  box-shadow: none;
+}
+
+.f-button--outline {
+  background: none;
+}
+
+.f-button--outline:hover {
+  background-color: var(--color-bg-decorations-white-20);
+}
+
+.f-button--outline:active {
+  background-color: var(--color-bg-decorations-white-30);
+  border-color: var(--color-border-on-neutral-default-default);
+}
+
+.f-button--outline .f-button__icon {
+  color: var(--color-icon-on-neutral-default-default);
+}
+
+.f-button--outline .f-button__note {
+  color: inherit;
+}
+
+/* Disabled — every variant */
+
+.f-button:disabled,
+.f-button[aria-disabled='true'] {
+  cursor: not-allowed;
+  background-color: var(--color-bg-fill-brand-default-disabled);
+  border-color: var(--color-bg-fill-brand-default-disabled);
+  color: var(--color-text-on-brand-default-default);
+  box-shadow: none;
+}
+
+.f-button:disabled .f-button__icon,
+.f-button[aria-disabled='true'] .f-button__icon {
+  color: var(--color-icon-neutral-subtlest-default);
+}
+
+.f-button--secondary:disabled,
+.f-button--secondary[aria-disabled='true'] {
+  background-color: var(--color-bg-fill-neutral-subtle-disabled);
+  border-color: var(--color-border-neutral-default-default);
+  color: var(--color-text-neutral-default-disabled);
+}
+
+.f-button--outline:disabled,
+.f-button--outline[aria-disabled='true'] {
+  background: none;
+  border-color: var(--color-border-on-neutral-subtle-default);
+  color: var(--color-text-on-neutral-subtlest-default);
+}
+
+.f-button--outline:disabled .f-button__icon,
+.f-button--outline[aria-disabled='true'] .f-button__icon {
+  color: var(--color-icon-on-neutral-subtlest-default);
+}
+
+/* ─── IconButton ────────────────────────────────────────────────────────── */
+
+.f-icon-button {
+  /* Size: large (default) */
+  --f-icon-button-icon-size: var(--size-6);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dimension-icon-button-large);
+  height: var(--dimension-icon-button-large);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-xl);
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* Variant: primary (default) */
+  background-color: var(--color-bg-fill-brand-default-default);
+  color: var(--color-icon-on-brand-default-default);
+}
+
+.f-icon-button .f-icon {
+  width: var(--f-icon-button-icon-size);
+  height: var(--f-icon-button-icon-size);
+}
+
+/* Sizes */
+
+.f-icon-button--medium {
+  --f-icon-button-icon-size: var(--size-5);
+  width: var(--dimension-icon-button-medium);
+  height: var(--dimension-icon-button-medium);
+  border-radius: var(--radius-lg);
+}
+
+.f-icon-button--small {
+  --f-icon-button-icon-size: var(--size-5);
+  width: var(--dimension-icon-button-small);
+  height: var(--dimension-icon-button-small);
+  border-radius: var(--radius-lg);
+}
+
+/* Variant: primary — states */
+
+.f-icon-button:hover {
+  background-color: var(--color-bg-fill-brand-default-hover);
+}
+
+.f-icon-button:active {
+  background-color: var(--color-bg-fill-brand-default-active);
+}
+
+.f-icon-button:disabled,
+.f-icon-button[aria-disabled='true'] {
+  cursor: not-allowed;
+  background-color: var(--color-bg-fill-brand-default-disabled);
+  color: var(--color-icon-neutral-subtlest-default);
+}
+
+/* Variant: secondary */
+
+.f-icon-button--secondary {
+  border: var(--border-1) solid var(--color-border-neutral-default-default);
+  background-color: var(--color-bg-fill-neutral-default-default);
+  color: var(--color-icon-neutral-default-default);
+}
+
+.f-icon-button--secondary:hover {
+  border-color: var(--color-border-neutral-default-hover);
+  background-color: var(--color-bg-fill-neutral-default-hover);
+}
+
+.f-icon-button--secondary:active {
+  border-color: var(--color-border-neutral-strong-default);
+  background-color: var(--color-bg-fill-neutral-default-active);
+}
+
+.f-icon-button--secondary:disabled,
+.f-icon-button--secondary[aria-disabled='true'] {
+  border-color: var(--color-border-neutral-default-disabled);
+  background-color: var(--color-bg-fill-neutral-default-disabled);
+  color: var(--color-icon-neutral-default-disabled);
+}
+
+/* Variant: ghost */
+
+.f-icon-button--ghost {
+  background: none;
+  color: var(--color-icon-neutral-default-default);
+}
+
+.f-icon-button--ghost:hover {
+  background-color: var(--color-bg-fill-neutral-subtle-hover);
+}
+
+.f-icon-button--ghost:active {
+  background-color: var(--color-bg-fill-neutral-subtle-active);
+}
+
+.f-icon-button--ghost:disabled,
+.f-icon-button--ghost[aria-disabled='true'] {
+  background-color: var(--color-bg-fill-neutral-subtle-disabled);
+  color: var(--color-icon-neutral-default-disabled);
+}
+
+/* ─── Link ──────────────────────────────────────────────────────────────── */
+
+.f-link {
+  /* Size: large (default) */
+  --f-link-icon-size: var(--size-6);
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-link-gap-large);
+  font-size: var(--typo-regular-base-size);
+  font-weight: var(--typo-regular-base-weight);
+  line-height: var(--typo-line-height-base);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Without a variant, the hover state belongs to the placing component. */
+.f-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.f-link__icon {
+  width: var(--f-link-icon-size);
+  height: var(--f-link-icon-size);
+}
+
+/* Sizes */
+
+.f-link--medium {
+  --f-link-icon-size: var(--size-5);
+  gap: var(--spacing-link-gap-medium);
+  font-size: var(--typo-regular-sm-size);
+  line-height: var(--typo-line-height-heading);
+}
+
+.f-link--small {
+  --f-link-icon-size: var(--size-4);
+  gap: var(--spacing-link-gap-medium);
+  font-size: var(--typo-regular-xs-size);
+  line-height: var(--typo-line-height-heading);
+}
+
+/* Variants: text and icons share the colour; hover underlines, nothing else. */
+
+.f-link--neutral,
+.f-link--neutral:hover {
+  color: var(--color-text-neutral-default-default);
+}
+
+.f-link--on-neutral,
+.f-link--on-neutral:hover {
+  color: var(--color-text-on-neutral-default-default);
+}
+
+.f-link--brand,
+.f-link--brand:hover {
+  color: var(--color-text-brand-default-default);
+}
+
+.f-link--accent,
+.f-link--accent:hover {
+  color: var(--color-text-accent-default-default);
+}
+
+.f-link--neutral:hover,
+.f-link--on-neutral:hover,
+.f-link--brand:hover,
+.f-link--accent:hover {
+  text-decoration: underline;
+}
+
+/* ─── SearchField ───────────────────────────────────────────────────────── */
+
+.f-search-field {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  width: 100%;
+  max-width: var(--dimension-search-field-max-width);
+  margin: 0;
+  padding: var(--size-4);
+  border: var(--border-1) solid var(--color-border-neutral-default-default);
+  border-radius: var(--radius-xl);
+  background-color: var(--color-bg-fill-neutral-default-default);
+  color: var(--color-text-neutral-default-default);
+  font-family: var(--typo-regular-base-family);
+  font-size: var(--typo-regular-base-size);
+  font-weight: var(--typo-regular-base-weight);
+  line-height: var(--typo-line-height-base);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  text-align: start;
+}
+
+.f-search-field__icon {
+  width: var(--size-5);
+  height: var(--size-5);
+  color: var(--color-icon-neutral-subtle-default);
+}
+
+.f-search-field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--color-text-neutral-default-default);
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.f-search-field__input::placeholder {
+  color: var(--color-text-neutral-subtle-default);
+  opacity: 1;
+}
+
+.f-search-field__input::-webkit-search-decoration,
+.f-search-field__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Trigger use: a <button> showing the placeholder. */
+.f-search-field__placeholder {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+  color: var(--color-text-neutral-subtle-default);
+}
+
+button.f-search-field {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.f-search-field__clear {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-text-neutral-subtle-default);
+  font-family: var(--typo-regular-xs-family);
+  font-size: var(--typo-regular-xs-size);
+  font-weight: var(--typo-regular-xs-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.f-search-field__clear:hover {
+  color: var(--color-text-neutral-default-default);
+}
+
+/* Empty: no clear control. */
+.f-search-field:has(.f-search-field__input:placeholder-shown) .f-search-field__clear {
+  display: none;
+}
+
+/* Filled: the icon in the default neutral colour. */
+.f-search-field:has(.f-search-field__input:not(:placeholder-shown)) .f-search-field__icon {
+  color: var(--color-icon-neutral-default-default);
+}
+
+/* Hover: fill and border one step stronger, the icon in the default colour. */
+.f-search-field:hover {
+  border-color: var(--color-border-neutral-default-hover);
+  background-color: var(--color-bg-fill-neutral-default-hover);
+}
+
+.f-search-field:hover .f-search-field__icon {
+  color: var(--color-icon-neutral-default-default);
+}
+
+/* Focus: brand border at the wider width, in place of the focus outline.
+   The padding gives back the extra border width so the content keeps its place. */
+.f-search-field:has(.f-search-field__input:focus),
+button.f-search-field:focus-visible {
+  border-width: var(--border-2);
+  border-color: var(--color-border-brand-default-default);
+  padding: calc(var(--size-4) - var(--border-2) + var(--border-1));
+  outline: none;
+}
+
+.f-search-field:has(.f-search-field__input:focus) .f-search-field__icon,
+button.f-search-field:focus-visible .f-search-field__icon {
+  color: var(--color-icon-brand-default-default);
+}
+
+button.f-search-field:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Disabled: disabled fill, border, text and icon; no text, no clear control. */
+.f-search-field:has(.f-search-field__input:disabled),
+button.f-search-field:disabled {
+  cursor: not-allowed;
+  border-color: var(--color-border-neutral-default-disabled);
+  background-color: var(--color-bg-fill-neutral-default-disabled);
+}
+
+.f-search-field:has(.f-search-field__input:disabled) .f-search-field__icon,
+button.f-search-field:disabled .f-search-field__icon {
+  color: var(--color-icon-neutral-default-disabled);
+}
+
+.f-search-field__input:disabled::placeholder,
+button.f-search-field:disabled .f-search-field__placeholder {
+  color: var(--color-text-neutral-default-disabled);
+}
+
+.f-search-field:has(.f-search-field__input:disabled) .f-search-field__clear {
+  display: none;
+}

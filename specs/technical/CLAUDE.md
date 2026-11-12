@@ -20,6 +20,21 @@ The `specPath` of the `docusaurus-plugin-openapi-docs` plugin, in `website/docus
 
 A new version of the OpenAPI spec is a new file, and the previous files stay in the submodule, so `specPath` does not move to a new version on its own. Before regenerating the API reference, compare the version in `specPath` with the current file version. When they differ, ask the user before pointing `specPath` at the new file.
 
+### Sections configuration
+
+`customFields.sections` in `website/docusaurus.config.js` names the docs folders of this site:
+
+| Section | `docIdPrefix` |
+|---------|---------------|
+| Introduction | `introduction/` |
+| Getting Started | `quick-start/` |
+| Authentication | `authentication/` |
+| Concepts | `concepts/` |
+| API Reference | `api-reference/` |
+| Guides | `guides/` |
+
+The Getting Started folder is `quick-start/` (the DocApi template writes `getting-started/`).
+
 ### Deployment
 
 | Item | Value |

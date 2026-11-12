@@ -1,46 +1,19 @@
+// Front2026 NavigationTree, panel form (below desktop): handed to the top bar,
+// which shows it in its panel and closes the panel on navigation.
 import React from 'react';
 import clsx from 'clsx';
-import {
-  NavbarSecondaryMenuFiller,
-  ThemeClassNames,
-} from '@docusaurus/theme-common';
-import {useNavbarMobileSidebar} from '@docusaurus/theme-common/internal';
+import {NavbarSecondaryMenuFiller, ThemeClassNames} from '@docusaurus/theme-common';
 import DocSidebarItems from '@theme/DocSidebarItems';
-import SearchBar from '@theme/SearchBar';
 
-const DocSidebarMobileSecondaryMenu = ({sidebar, path}) => {
-  const mobileSidebar = useNavbarMobileSidebar();
-  return (
-    <>
-      <div className="sidebar-search-wrapper">
-        <SearchBar />
-      </div>
-      <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
-        <DocSidebarItems
-          items={sidebar}
-          activePath={path}
-          onItemClick={(item) => {
-            if (item.type === 'category' && item.href) {
-              mobileSidebar.toggle();
-            }
-            if (item.type === 'link') {
-              mobileSidebar.toggle();
-            }
-          }}
-          level={1}
-        />
-      </ul>
-    </>
-  );
-};
+// eslint-disable-next-line react/function-component-definition
+const DocSidebarPanelTree = ({sidebar, path}) => (
+  <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'tree', 'tree--panel', 'tree__list')}>
+    <DocSidebarItems items={sidebar} activePath={path} level={1} />
+  </ul>
+);
 
 function DocSidebarMobile(props) {
-  return (
-    <NavbarSecondaryMenuFiller
-      component={DocSidebarMobileSecondaryMenu}
-      props={props}
-    />
-  );
+  return <NavbarSecondaryMenuFiller component={DocSidebarPanelTree} props={props} />;
 }
 
 export default React.memo(DocSidebarMobile);

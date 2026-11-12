@@ -1,33 +1,16 @@
+// Front2026 NavigationTree, column form (from desktop).
 import React from 'react';
 import clsx from 'clsx';
-import {useThemeConfig} from '@docusaurus/theme-common';
-import Logo from '@theme/Logo';
-import CollapseButton from '@theme/DocSidebar/Desktop/CollapseButton';
-import Content from '@theme/DocSidebar/Desktop/Content';
-import SearchBar from '@theme/SearchBar';
-import styles from './styles.module.css';
+import {ThemeClassNames} from '@docusaurus/theme-common';
+import DocSidebarItems from '@theme/DocSidebarItems';
 
-function DocSidebarDesktop({path, sidebar, onCollapse, isHidden}) {
-  const {
-    navbar: {hideOnScroll},
-    docs: {
-      sidebar: {hideable},
-    },
-  } = useThemeConfig();
+function DocSidebarDesktop({path, sidebar}) {
   return (
-    <div
-      className={clsx(
-        styles.sidebar,
-        hideOnScroll && styles.sidebarWithHideableNavbar,
-        isHidden && styles.sidebarHidden,
-      )}>
-      {hideOnScroll && <Logo tabIndex={-1} className={styles.sidebarLogo} />}
-      <div className="sidebar-search-wrapper">
-        <SearchBar />
-      </div>
-      <Content path={path} sidebar={sidebar} />
-      {hideable && <CollapseButton onClick={onCollapse} />}
-    </div>
+    <nav className="tree tree--column" aria-label="Documentation" data-pagefind-ignore="all">
+      <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'tree__list')}>
+        <DocSidebarItems items={sidebar} activePath={path} level={1} />
+      </ul>
+    </nav>
   );
 }
 

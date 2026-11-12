@@ -13,7 +13,8 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "gen-api-docs": "docusaurus clean-api-docs all && docusaurus gen-api-docs all",
-    "clean-api-docs": "docusaurus clean-api-docs all"
+    "clean-api-docs": "docusaurus clean-api-docs all",
+    "gen-design": "node scripts/gen-design.mjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.1",
