@@ -12,7 +12,7 @@
 
 These terms hold project-wide.
 
-- **OpenAPI spec** — the OpenAPI spec of the ProAbonoLive shared utility, as its key terms define it; never the one of ProAbonoBO.
+- **OpenAPI spec** — the OpenAPI spec of the ProAbonoLive shared utility, as its key terms define it.
 
 ## How Claude interacts with this project
 
@@ -116,4 +116,3 @@ Read the following files for context before answering questions about this proje
 <!-- populated by pa-shared-add -->
 - shared/DocApi/CLAUDE.md
 - shared/ProAbonoLive/CLAUDE.md
-- shared/ProAbonoBO/CLAUDE.md
