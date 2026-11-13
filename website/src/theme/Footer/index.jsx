@@ -36,13 +36,16 @@ const defaultActions = (language) => [
   },
 ];
 
+const DOCUMENTATION_LINKS = [
+  {label: 'Knowledge base', href: 'https://docs.proabono.com/en/'},
+  {
+    label: 'Developer zone',
+    href: 'https://docs.proabono.com/en/developer/welcome-docs-developer/',
+  },
+];
+
 // PLACEHOLDER: the links below, to be defined.
 const PLACEHOLDER = '#';
-const DOCUMENTATION_LINKS = [
-  {label: 'Knowledge base', href: PLACEHOLDER},
-  {label: 'Developer zone', href: PLACEHOLDER},
-  {label: 'API reference', href: PLACEHOLDER},
-];
 const LEGAL_LINKS = [
   {label: 'Privacy policy', href: PLACEHOLDER},
   {label: 'Terms of use', href: PLACEHOLDER},
