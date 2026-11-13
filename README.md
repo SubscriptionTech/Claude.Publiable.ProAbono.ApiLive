@@ -20,7 +20,7 @@ npm install   # first time only
 npm start
 ```
 
-The site is served at `http://localhost:3000`. Search is not available in this mode.
+The site is served at `http://localhost:3001`. Search is not available in this mode.
 
 ### Production mode (with search)
 
