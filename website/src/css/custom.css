@@ -166,17 +166,6 @@ samp {
   display: none;
 }
 
-/* DocApi API selector: right of the search from desktop; below desktop, at
-   the top of the panel, stretched to its width */
-.app-bar__api-selector {
-  grid-area: selector;
-  display: none;
-}
-
-.app-bar__panel .app-bar__panel-api-selector {
-  width: 100%;
-}
-
 .app-bar__menu {
   grid-area: menu;
 }
@@ -215,17 +204,10 @@ samp {
   }
 
   .app-bar__bar {
-    grid-template-columns: auto auto minmax(0, 1fr) auto auto auto;
-    grid-template-areas: 'mark title . search selector actions';
+    grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+    grid-template-areas: 'mark title . search actions';
     column-gap: var(--size-6);
     padding: var(--size-6) var(--spacing-app-bar-padding-inline);
-  }
-
-  /* The search, the selector and the Actions sit together, the gap of the
-     search before the Actions between each */
-  .app-bar__api-selector {
-    display: block;
-    margin-inline-start: calc(var(--size-3) - var(--size-6));
   }
 
   .app-bar__title {
@@ -253,18 +235,17 @@ samp {
 
 @media (min-width: 1600px) {
   /* At big screen the search field sits between the title and the Actions,
-     the five spread across the bar */
+     the four spread across the bar */
   .app-bar__bar {
-    grid-template-columns: auto auto minmax(0, 1fr) auto auto;
-    grid-template-areas: 'mark title search selector actions';
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+    grid-template-areas: 'mark title search actions';
   }
 
   .app-bar__search {
     justify-content: center;
   }
 
-  .app-bar__actions,
-  .app-bar__api-selector {
+  .app-bar__actions {
     margin-inline-start: 0;
   }
 
@@ -1480,10 +1461,13 @@ a.breadcrumb__text:hover {
   height: var(--dimension-dropdown-tick-small);
 }
 
-/* ─── Front2026 Footer, DocApi arrangement ─────────────────────────────── */
-/* DocApi design: no link column; one row from desktop — the mark at the
-   leading edge, the notice centred, the theme toggle at the trailing edge;
-   stacked below desktop. Every value is a token of the Front2026 Footer. */
+/* ─── Front2026 Footer ─────────────────────────────────────────────────── */
+/* The arrangement of the front website. Below desktop: one column — the
+   brand (mark, claim, actions), the link columns, the controls, the legal
+   line, the notice above the legal links. From desktop: the brand on the two
+   leading tracks, one track per link column, the controls under the columns
+   (DocApi: in the track of the third column, which holds no links), the legal
+   line across the whole grid. */
 
 .site-footer {
   padding: var(--spacing-footer-wrapper-padding);
@@ -1491,13 +1475,19 @@ a.breadcrumb__text:hover {
 }
 
 .site-footer__block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--spacing-footer-gap);
   padding: var(--spacing-footer-padding-block) var(--spacing-footer-padding-inline);
   border-radius: var(--radius-3xl);
   background-color: var(--color-bg-surface-inverse-default-default);
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-12);
 }
 
 .site-footer__mark {
@@ -1509,8 +1499,79 @@ a.breadcrumb__text:hover {
   mask: var(--f-icon-url) center / contain no-repeat;
 }
 
-.site-footer__notice {
+.site-footer__claim {
   margin: 0;
+  color: var(--color-text-on-neutral-subtle-default);
+  font-size: var(--typo-regular-5xl-size);
+  font-weight: var(--typo-regular-5xl-weight);
+  line-height: var(--typo-line-height-display);
+  letter-spacing: var(--typo-letter-spacing-regular);
+}
+
+.site-footer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-4);
+}
+
+.site-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+}
+
+.site-footer__column-title {
+  margin: 0;
+  color: var(--color-text-on-neutral-default-default);
+  font-size: var(--typo-medium-base-size);
+  font-weight: var(--typo-medium-base-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-medium);
+}
+
+.site-footer__links,
+.site-footer__legal-links {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__links {
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.site-footer__link {
+  color: var(--color-text-on-neutral-subtle-default);
+  font-size: var(--typo-regular-sm-size);
+  font-weight: var(--typo-regular-sm-weight);
+  line-height: var(--typo-line-height-heading);
+  letter-spacing: var(--typo-letter-spacing-regular);
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  color: var(--color-text-on-neutral-default-default);
+  text-decoration: none;
+}
+
+.site-footer__controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.site-footer__controls .f-dropdown {
+  width: 100%;
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-footer-legal-gap);
+  padding-top: var(--size-9);
+  border-top: var(--border-1) solid var(--color-border-on-neutral-default-default);
   color: var(--color-text-on-neutral-subtlest-default);
   font-size: var(--typo-regular-sm-size);
   font-weight: var(--typo-regular-sm-weight);
@@ -1518,23 +1579,53 @@ a.breadcrumb__text:hover {
   letter-spacing: var(--typo-letter-spacing-regular);
 }
 
+.site-footer__notice {
+  margin: 0;
+}
+
+.site-footer__legal-links {
+  flex-wrap: wrap;
+  column-gap: var(--size-9);
+  row-gap: var(--size-4);
+}
+
+/* Legal links: the subtlest step at rest, the default step on hover */
+.site-footer__legal .site-footer__link {
+  color: var(--color-text-on-neutral-subtlest-default);
+}
+
+.site-footer__legal .site-footer__link:hover {
+  color: var(--color-text-on-neutral-default-default);
+}
+
 @media (min-width: 1280px) {
   .site-footer__block {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: center;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .site-footer__brand {
-    justify-self: start;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
   }
 
-  .site-footer__notice {
-    justify-self: center;
-    text-align: center;
+  .site-footer__column {
+    grid-row: 1;
   }
 
+  /* The controls under the columns, level with the end of the brand, in the
+     track of the third column */
   .site-footer__controls {
-    justify-self: end;
+    grid-column: 5;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  .site-footer__legal {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
   }
 }

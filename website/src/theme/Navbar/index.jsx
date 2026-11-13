@@ -1,7 +1,6 @@
 // Front2026 AppBarWithSearch: the mark (leading to the ProAbono website), the
 // site title in place of the
 // Navigation (DocApi design: the bar holds no navigation entries), the search,
-// the DocApi API selector (in the panel below desktop),
 // the Actions (sign-in) and, below desktop, the menu control and the panel
 // holding the navigation tree. The tree is the docs sidebar, which
 // DocSidebar/Mobile hands over through Docusaurus' navbar secondary menu.
@@ -13,7 +12,6 @@ import {useLocation} from '@docusaurus/router';
 import {useNavbarSecondaryMenu} from '@docusaurus/theme-common/internal';
 import SearchBar from '@theme/SearchBar';
 import Icon from '@site/src/components/Icon';
-import ApiSelector from '@site/src/components/ApiSelector';
 
 const useIsomorphicLayoutEffect =
   typeof window === 'undefined' ? useEffect : useLayoutEffect;
@@ -88,8 +86,6 @@ export default function Navbar() {
         <div className="app-bar__search">
           <SearchBar />
         </div>
-        {/* The API selector, from desktop; below desktop it is in the panel */}
-        <ApiSelector className="app-bar__api-selector" />
         <div className="app-bar__actions">
           <SignIn size="large" className="app-bar__sign-in--big-screen" />
           <SignIn size="medium" className="app-bar__sign-in--desktop" />
@@ -105,7 +101,6 @@ export default function Navbar() {
         </button>
       </div>
       <div id="app-bar-panel" className="app-bar__panel" hidden={!open}>
-        <ApiSelector className="app-bar__panel-api-selector" />
         <nav className="app-bar__panel-tree" aria-label="Documentation">
           {secondaryMenu.content}
         </nav>

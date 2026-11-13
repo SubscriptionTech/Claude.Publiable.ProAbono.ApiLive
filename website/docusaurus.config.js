@@ -16,9 +16,8 @@ const SIGN_IN_URL = 'https://via.proabono.com/Auth/Login';
 // The ProAbono website, where the ProAbono mark leads (DocApi navigation).
 const PROABONO_URL = 'https://www.proabono.com';
 
-// Every ProAbono API documentation website, in the order of the API selector
-// (DocApi navigation): the same list on every site. The site's own entry is
-// marked current by currentApiSite, and leads to the site's entry page.
+// Every ProAbono API documentation website, in order: the same list on every
+// site.
 const API_SITES = [
   { label: 'API Live', url: 'https://ref-api-live.proabono.com' },
   { label: 'API Backoffice', url: 'https://ref-api-bo.proabono.com' },
@@ -50,8 +49,6 @@ const config = {
     signInUrl: SIGN_IN_URL,
     proabonoUrl: PROABONO_URL,
     apiSites: API_SITES,
-    // The label of this site's entry in API_SITES
-    currentApiSite: 'API Live',
     // The year in the footer's legal notice: the year the site is built
     buildYear: new Date().getFullYear(),
   },

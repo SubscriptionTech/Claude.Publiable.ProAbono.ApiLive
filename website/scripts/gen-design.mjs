@@ -45,10 +45,15 @@ const ICONS = [
   'alert-02',
   'alert-diamond',
   'github',
+  'mouse-left-click-04',
+  'status',
 ];
 
 /** Logos copied to static/img/design/, from <Front2026>/assets/logos/. */
 const LOGOS = ['logo-wordmark.svg', 'logo-mark.svg'];
+
+/** Portraits copied to static/img/design/, from <Front2026>/assets/portraits/. */
+const PORTRAITS = ['avatar-demo.jpg'];
 
 const FRONT_ROOT = path.resolve(process.cwd(), process.argv[2] ?? '../shared/Front2026');
 const TOKENS_DIR = path.join(FRONT_ROOT, 'tokens');
@@ -992,6 +997,7 @@ function assetSources() {
   const list = [
     ...LOGOS.map((f) => ({ from: path.join(FRONT_ROOT, 'assets', 'logos', f), to: f, what: `logo ${f}` })),
     ...ICONS.map((n) => ({ from: path.join(FRONT_ROOT, 'assets', 'icons', `icon-${n}.svg`), to: `icon-${n}.svg`, what: `icon ${n}` })),
+    ...PORTRAITS.map((f) => ({ from: path.join(FRONT_ROOT, 'assets', 'portraits', f), to: f, what: `portrait ${f}` })),
   ];
   const missing = list.filter((a) => !fs.existsSync(a.from));
   if (missing.length) fail(`asset(s) not found: ${missing.map((a) => `${a.what} (${a.from})`).join(', ')}`);
