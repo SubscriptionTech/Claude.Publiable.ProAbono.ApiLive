@@ -33,4 +33,4 @@ npm run build
 npm run serve
 ```
 
-The site is served at `http://localhost:3000`.
+The site is served at `http://localhost:3001`.
