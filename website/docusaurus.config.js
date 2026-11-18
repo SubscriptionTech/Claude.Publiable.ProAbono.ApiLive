@@ -21,7 +21,8 @@ const PROABONO_URL = 'https://www.proabono.com';
 const API_SITES = [
   { label: 'API Live', url: 'https://ref-api-live.proabono.com' },
   { label: 'API Backoffice', url: 'https://ref-api-bo.proabono.com' },
-  { label: 'API Backoffice for platform', url: 'https://ref-api-platform.proabono.com' },
+  // Hidden until the website exists.
+  // { label: 'API Backoffice for platform', url: 'https://ref-api-platform.proabono.com' },
 ];
 
 /** @type {import('@docusaurus/types').Config} */
