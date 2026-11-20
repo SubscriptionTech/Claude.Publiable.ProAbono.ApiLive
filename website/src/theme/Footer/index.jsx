@@ -50,7 +50,6 @@ const PLACEHOLDER = '#';
 const LEGAL_LINKS = [
   {label: 'Privacy policy', href: PLACEHOLDER},
   {label: 'Terms of use', href: PLACEHOLDER},
-  {label: 'Cookies', href: PLACEHOLDER},
 ];
 
 // The consent link, last of the Legal line, in the page language: it opens
