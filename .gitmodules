@@ -10,3 +10,7 @@
 	path = shared/Front2026
 	url = https://github.com/SubscriptionTech/Claude.SharedDesign.Front2026
 	branch = main
+[submodule "shared/ConsentAnalytics"]
+	path = shared/ConsentAnalytics
+	url = https://github.com/SubscriptionTech/Claude.SharedThird.ConsentAnalytics
+	branch = main
