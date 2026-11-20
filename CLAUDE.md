@@ -96,6 +96,8 @@ When the user says **"update the website"** (or any close paraphrase), invoke th
 
 - The name of the API is **"API Live"**, not "Live API". Never rename or reorder these words.
 
+Cookie management on this website comes from the ConsentAnalytics shared utility: read `shared/ConsentAnalytics/CLAUDE.md` before any task that touches cookies, the consent or a third-party service.
+
 ### Website and specs sync
 
 The website and the `specs/` folder must stay in sync:
