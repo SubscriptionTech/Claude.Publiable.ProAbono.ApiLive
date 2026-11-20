@@ -39,6 +39,7 @@ The Getting Started folder is `quick-start/` (the DocApi template writes `gettin
 
 | Item | Value |
 |------|-------|
+| Domain | `ref-api-live.proabono.com` |
 | Workflow file | `.github/workflows/azure-static-web-apps-nice-ground-08a335503.yml` |
 | Deployment token secret | `AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_GROUND_08A335503` |
 

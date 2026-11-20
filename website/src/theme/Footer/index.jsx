@@ -1,7 +1,8 @@
 // Front2026 Footer, in the arrangement of the front website: the brand (the
 // mark, the default claim and the default Actions), the link Columns, the
 // Controls holding the
-// ThemeToggle, and the Legal line (the notice and the legal links).
+// ThemeToggle, and the Legal line (the notice, the legal links and the
+// consent link).
 // DocApi: two link columns, Documentation and APIs; the Controls stand in the
 // place of the third column. The links marked PLACEHOLDER are to be defined.
 import React from 'react';
@@ -51,6 +52,21 @@ const LEGAL_LINKS = [
   {label: 'Terms of use', href: PLACEHOLDER},
   {label: 'Cookies', href: PLACEHOLDER},
 ];
+
+// The consent link, last of the Legal line, in the page language: it opens
+// the cookie consent preferences (ConsentAnalytics).
+const CONSENT_LABEL = {en: 'Manage my consents', fr: 'Gérer mes consentements'};
+
+// The consent script opens the preferences on a click of the `data-cc` links
+// present when it starts, and prevents the default. A footer drawn after that,
+// on a change of page, holds a link the script never saw: the preferences are
+// then opened here, without following `#`. Without the script, the link does
+// nothing.
+function openConsentPreferences(event) {
+  if (event.nativeEvent.defaultPrevented) return;
+  event.preventDefault();
+  window.paAnalytics?.showPreferences();
+}
 
 // A link to this site is a Docusaurus link; any other is a plain link, in the
 // same tab.
@@ -146,6 +162,15 @@ export default function Footer() {
                 </FooterLink>
               </li>
             ))}
+            <li>
+              <a
+                href="#"
+                data-cc="show-preferencesModal"
+                className="site-footer__link"
+                onClick={openConsentPreferences}>
+                {CONSENT_LABEL[language]}
+              </a>
+            </li>
           </ul>
         </div>
       </div>
