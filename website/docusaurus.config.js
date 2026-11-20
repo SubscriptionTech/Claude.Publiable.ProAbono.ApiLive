@@ -94,9 +94,6 @@ const config = {
       },
     },
   ],
-  // Keeps the consent's classes on <html> when Docusaurus rewrites its
-  // `class` attribute, so that the banner stays shown
-  clientModules: ['./src/clientModules/keepConsentClasses.js'],
 
   // Opt into Docusaurus v4 behaviour flags ahead of the stable release
   future: {
