@@ -4,7 +4,7 @@
 // ThemeToggle, and the Legal line (the notice, the legal links and the
 // consent link).
 // DocApi: two link columns, Documentation and APIs; the Controls stand in the
-// place of the third column. The links marked PLACEHOLDER are to be defined.
+// place of the third column.
 import React from 'react';
 import clsx from 'clsx';
 import isInternalUrl from '@docusaurus/isInternalUrl';
@@ -45,11 +45,15 @@ const DOCUMENTATION_LINKS = [
   },
 ];
 
-// PLACEHOLDER: the links below, to be defined.
-const PLACEHOLDER = '#';
+// The legal pages of the ProAbono website, the same as on the knowledge base
+// (docs.proabono.com), in English on every page.
 const LEGAL_LINKS = [
-  {label: 'Privacy policy', href: PLACEHOLDER},
-  {label: 'Terms of use', href: PLACEHOLDER},
+  {label: 'Legal Notice', href: 'https://www.proabono.com/en/about/legal'},
+  {
+    label: 'Terms & Conditions',
+    href: 'https://www.proabono.com/en/about/terms-and-conditions',
+  },
+  {label: 'Privacy Policy', href: 'https://www.proabono.com/en/about/privacy-policy'},
 ];
 
 // The consent link, last of the Legal line, in the page language: it opens
@@ -70,7 +74,7 @@ function openConsentPreferences(event) {
 // A link to this site is a Docusaurus link; any other is a plain link, in the
 // same tab.
 function FooterLink({href, className, children}) {
-  if (href !== PLACEHOLDER && isInternalUrl(href)) {
+  if (isInternalUrl(href)) {
     return (
       <Link to={href} className={className}>
         {children}
