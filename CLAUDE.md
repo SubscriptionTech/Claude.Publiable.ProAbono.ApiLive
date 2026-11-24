@@ -107,6 +107,18 @@ The website and the `specs/` folder must stay in sync:
 
 When implementing or auditing the website, local specs in `specs/` always take precedence over shared DocApi specs for the same topic. Where a local functional page spec exists (e.g. `specs/functional/pages/introduction.md`), it is the sole authoritative source for that page's content — the shared DocApi spec for that topic is superseded.
 
+#### DocApi updates
+
+The DocApi specs are the shared base layer of the specs (see [specs/CLAUDE.md](specs/CLAUDE.md)), so a move of the `shared/DocApi` pointer is a specs update, whatever moves it: `/pa-shared-pull`, `/update-the-website`, a `git pull` of this project, or a manual checkout. The website follows in the same task, without waiting to be asked:
+
+1. **List the changes.** Diff the submodule between the old and the new pointer: `git -C shared/DocApi diff <old>..<new>`. The old pointer is the one recorded before the move, e.g. `git rev-parse HEAD~1:shared/DocApi` once the bump is committed.
+2. **Carry the code.** Each file of `shared/DocApi/code/` has its copy at the same path under `website/` (`code/src/theme/Footer/index.jsx` → `website/src/theme/Footer/index.jsx`), except `code/src/index.md`, which is a bootstrapping guide and has no copy. Apply every change of `code/` to the copy. A copy may differ from DocApi on purpose — template placeholders such as `{{API_NAME}}` filled in, links or sections specific to API Live: apply the DocApi change on top of those differences and keep them.
+3. **Carry the specs.** Implement in the website each change of DocApi's `functional/`, `pipeline/` and `technical/` specs that `code/` does not already carry.
+4. **Respect the local overrides.** Where a local spec in `specs/` covers a changed point, the local spec wins: do not apply that point, and list it for the user with the options (keep the local spec, or align it on DocApi). Update a local spec only on the user's choice.
+5. **Install the dependencies.** When `website/package.json` changes, run `npm install` in `website/`.
+
+Report what was carried, and what was held back by a local override.
+
 ## Website specs
 
 The [specs/](specs/) folder contains the full requirements for the ProAbono API Live documentation website. Read [specs/CLAUDE.md](specs/CLAUDE.md) first to understand its structure, then consult the relevant files before implementing any part of the site.

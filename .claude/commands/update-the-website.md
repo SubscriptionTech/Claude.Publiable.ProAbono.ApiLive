@@ -10,7 +10,7 @@ Use `AskUserQuestion` with `multiSelect: true` to ask the user which submodules 
 
 Options (in this order):
 1. **Pull the latest version of the API Live specs** — Update the `shared/ProAbonoLive` submodule to the latest remote commit.
-2. **Pull the latest version of the API Documentation specs** — Update the `shared/DocApi` submodule to the latest remote commit.
+2. **Pull the latest version of the API Documentation specs** — Update the `shared/DocApi` submodule to the latest remote commit and carry the changes into the website.
 
 Wait for the user's selections before doing anything.
 
@@ -58,9 +58,11 @@ Run the following command from the repository root:
 git submodule update --remote shared/DocApi
 ```
 
-Report whether the submodule was updated (include the new commit hash if it changed) or was already up to date.
+Before running it, record the old pointer: `git rev-parse HEAD:shared/DocApi`.
 
-**Do nothing else after this.** Do not sync the specs or update the website as part of this action — that is handled by the other actions.
+Report whether the submodule was updated (include the old and new commit hashes if it changed) or was already up to date.
+
+If the pointer moved, carry the update into the website now, following **DocApi updates** in the root [CLAUDE.md](../../CLAUDE.md), with the old pointer recorded above. This step is part of this action: it runs even though no other action was selected.
 
 ---
 
